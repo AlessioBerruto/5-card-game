@@ -1,6 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.home-page,
+.game-page,
+.profile-page {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+}
+
+.home-title {
+  margin-bottom: 7vh;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7vw;
+}
+
+.home-description {
+  max-width: 400px;
+  font-size: 1.5rem;
+}
+
+.form-wrapper {
+  width: 400px;
+  background-color: lightgrey;
   padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.form-wrapper p {
+  margin-top: 2vh;
+  margin-bottom: 0;
   text-align: center;
+}
+
+.input-field {
+  margin-bottom: 1rem;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 2vh;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.toggle-form {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
 }

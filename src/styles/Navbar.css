@@ -1,4 +1,25 @@
-.Navbar {
-  background-color: gray;
-  color: black;
+nav {
+  background-color: #4c516d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+nav img {
+  margin-left: 0.5vw;
+}
+nav .navbar-link {
+  text-decoration: none;
+  margin-right: 2vw;
+  font-size: 1rem;
+}
+nav .brand-name {
+  display: inline;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: aliceblue;
+  margin-left: 1vw;
+}
+nav .navbar-toggler {
+  border-style: none;
+}
+nav .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='aliceblue' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
