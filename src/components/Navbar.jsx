@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/Navbar.scss";
 import brandmarkBlu from "../assets/brandmark-blu.png";
 
 function Navbar() {
-
-  const [isNavCollapsed, setIsNavCollapsed] = useState(true);  
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const navigate = useNavigate();
 
-  useEffect(() => {    
+  const handleLogout = () => {    
+    navigate("/");
+  };
+
+  useEffect(() => {
     const navLinks = document.querySelectorAll(".navbar-link");
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
@@ -20,7 +24,7 @@ function Navbar() {
   }, [isNavCollapsed]);
 
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-light">
+    <nav className="navbar sticky-left navbar-expand-lg navbar-light">
       <div className="container-fluid">
         <div className="navbar-brand">
           <img
@@ -58,6 +62,16 @@ function Navbar() {
               <Link to="/profile" className="navbar-link" onClick={handleNavCollapse}>
                 Profile
               </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/rules" className="navbar-link" onClick={handleNavCollapse}>
+                Rules
+              </Link>
+            </li>
+            <li className="nav-item">
+              <span className="navbar-link logout-link" onClick={handleLogout}>
+                Logout
+              </span>
             </li>
           </ul>
         </div>

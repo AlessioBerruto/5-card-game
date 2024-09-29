@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';       
 import Profile from './pages/Profile.jsx';  
 import Game from './pages/Game.jsx';      
+import Rules from './pages/Rules.jsx';      
 import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/game",  
     element: <Game />,
+  },
+  {
+    path: "/rules",  
+    element: <Rules />,
   },
 ], {
   basename: "/5-card-game",  
