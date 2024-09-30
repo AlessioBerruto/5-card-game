@@ -14,7 +14,7 @@ const App = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/login', { // Cambia l'URL in base al tuo backend
+      const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const App = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/register', { // Cambia l'URL in base al tuo backend
+      const response = await fetch('http://localhost:5000/api/register', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

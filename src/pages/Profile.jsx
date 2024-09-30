@@ -22,7 +22,7 @@ function Profile() {
 		try {
 			const response = await axios.post("http://localhost:5000/api/register", formData);
 			setMessage(response.data.message);
-			setUserId(response.data.userId); // Memorizza l'ID utente per operazioni successive
+			setUserId(response.data.userId); 
 		} catch (error) {
 			setMessage(
 				error.response.data.message || "Errore durante la registrazione"
@@ -69,7 +69,7 @@ function Profile() {
 			}
 			const response = await axios.delete(`http://localhost:5000/api/users/${userId}`);
 			setMessage(response.data.message);
-			setUserId(null); // Rimuovi l'ID utente dalla sessione
+			setUserId(null); 
 		} catch (error) {
 			setMessage(
 				error.response.data.message || "Errore durante la cancellazione"
