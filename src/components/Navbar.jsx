@@ -8,7 +8,8 @@ function Navbar() {
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
   const navigate = useNavigate();
 
-  const handleLogout = () => {    
+  const handleLogout = () => {
+    
     navigate("/");
   };
 
@@ -24,7 +25,7 @@ function Navbar() {
   }, [isNavCollapsed]);
 
   return (
-    <nav className="navbar sticky-left navbar-expand-lg navbar-light">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light">
       <div className="container-fluid">
         <div className="navbar-brand">
           <img
