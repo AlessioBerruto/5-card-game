@@ -5,16 +5,10 @@ import bodyParser from "body-parser";
 import User from "./models/User.js"; 
 import dotenv from "dotenv";
 
-
 dotenv.config();
-console.log(process.env.MONGODB_URI);
-
 
 mongoose.
-connect(process.env.MONGODB_URI, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-})
+connect(process.env.MONGODB_URI)
 	.then(() => console.log("Connessione al database riuscita"))
 	.catch((err) => console.error("Connessione al database fallita", err));
 
