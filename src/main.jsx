@@ -7,6 +7,7 @@ import App from './App.jsx';
 import Profile from './pages/Profile.jsx';  
 import Game from './pages/Game.jsx';      
 import Rules from './pages/Rules.jsx';      
+import Assistance from './pages/Assistance.jsx';      
 import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/rules",  
     element: <Rules />,
+  },
+  {
+    path: "/assistance",  
+    element: <Assistance />,
   },
 ], {
   basename: "/5-card-game",  

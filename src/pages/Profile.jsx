@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 function Profile() {
 	const [formData, setFormData] = useState({
@@ -20,9 +20,12 @@ function Profile() {
 	// Registrazione utente
 	const handleRegister = async () => {
 		try {
-			const response = await axios.post("http://localhost:5000/api/register", formData);
+			const response = await axios.post(
+				"http://localhost:5000/api/register",
+				formData
+			);
 			setMessage(response.data.message);
-			setUserId(response.data.userId); 
+			setUserId(response.data.userId);
 		} catch (error) {
 			setMessage(
 				error.response.data.message || "Errore durante la registrazione"
@@ -51,7 +54,10 @@ function Profile() {
 				setMessage("Effettua prima il login per aggiornare i dati");
 				return;
 			}
-			const response = await axios.put(`http://localhost:5000/api/users/${userId}`, formData);
+			const response = await axios.put(
+				`http://localhost:5000/api/users/${userId}`,
+				formData
+			);
 			setMessage(response.data.message);
 		} catch (error) {
 			setMessage(
@@ -67,9 +73,11 @@ function Profile() {
 				setMessage("Effettua prima il login per cancellare il profilo");
 				return;
 			}
-			const response = await axios.delete(`http://localhost:5000/api/users/${userId}`);
+			const response = await axios.delete(
+				`http://localhost:5000/api/users/${userId}`
+			);
 			setMessage(response.data.message);
-			setUserId(null); 
+			setUserId(null);
 		} catch (error) {
 			setMessage(
 				error.response.data.message || "Errore durante la cancellazione"
@@ -79,37 +87,52 @@ function Profile() {
 
 	return (
 		<>
-			<Navbar />
-			<div className="profile-container">
-				<h2>Gestione Profilo Utente</h2>
-				<p>{message}</p>
+			<div className="profile-page">
+				<div className="profile-img">
+					<div className="card">
+						<img
+							src="./src/assets/AB-icon.png"
+							className="card-img-top"
+							alt="..."
+						/>
+						<div className="card-body">
+							<p>Nome Utente</p>
+						</div>
+					</div>
+					<button onClick={handleUpdate}>Modifica</button>
+					<button onClick={handleDelete}>Elimina Account</button>
+				</div>
+				<div className="profile-details">
+					<h2>Dati dell'utente</h2>
+					<p>{message}</p>
 
-				<input
-					type="text"
-					name="name"
-					placeholder="Nome"
-					value={formData.name}
-					onChange={handleChange}
-				/>
-				<input
-					type="email"
-					name="email"
-					placeholder="Email"
-					value={formData.email}
-					onChange={handleChange}
-				/>
-				<input
-					type="password"
-					name="password"
-					placeholder="Password"
-					value={formData.password}
-					onChange={handleChange}
-				/>
-
-				<button onClick={handleRegister}>Registrati</button>
-				<button onClick={handleLogin}>Accedi</button>
-				<button onClick={handleUpdate}>Modifica</button>
-				<button onClick={handleDelete}>Elimina Account</button>
+					<input
+						type="text"
+						name="name"
+						placeholder="Nome"
+						value={formData.name}
+						onChange={handleChange}
+					/>
+					<input
+						type="email"
+						name="email"
+						placeholder="Email"
+						value={formData.email}
+						onChange={handleChange}
+					/>
+					<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						value={formData.password}
+						onChange={handleChange}
+					/>					
+				</div>
+				<footer>
+					<Link to="/game" className="navbar-link">
+						Game
+					</Link>
+				</footer>
 			</div>
 		</>
 	);

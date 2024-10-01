@@ -1,0 +1,34 @@
+.assistance-page {
+	background-color: lightblue;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 75%;  
+    min-height: 80vh;      
+    padding: 50px;
+    border: 2px solid red;
+
+    textarea {
+        width: 50%;
+        height: 20vh;
+    }
+
+    input {
+        margin-top: 3vh;
+        width: 20vw;
+    }
+
+    p {
+        margin: 7vh 0;
+    }
+}
