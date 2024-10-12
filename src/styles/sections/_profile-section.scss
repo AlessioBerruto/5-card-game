@@ -1,5 +1,5 @@
 .profile-page {
-	background-color: lightblue;
+	background-color: #009E52;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -18,11 +18,14 @@
 .profile-img {
     align-items: center;
 
-    .card {
+    .card-bg-trasparent {
         width: 17vw;
 
         p{
             margin-bottom: 0;
+            color: black;
+            font-weight: 600;
+            font-size: 1.5rem;
         }
     }
 
@@ -44,5 +47,5 @@
 }
 
 .password-toggle-icon {
-    background-color: aliceblue;
+    background-color: white;
 }

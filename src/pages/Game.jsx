@@ -9,8 +9,8 @@ const Game = () => {
 	// Funzione per gestire il logout
 	const handleLogout = async () => {
 		try {
-			// await axios.post("http://localhost:5000/api/logout"); 
-			navigate("/"); 
+			await axios.post("http://localhost:5000/api/logout");
+			navigate("/");
 		} catch (error) {
 			console.error("Errore nel logout:", error);
 		}
@@ -31,9 +31,9 @@ const Game = () => {
 			<div className={`game-page ${showLogoutModal ? "modal-active" : ""}`}>
 				<div className="left-navbar">
 					<Link to="/profile" className="navbar-link">
-						<div className="card">
+						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/user-profile-img.svg"
+								src="./src/assets/utente-bianco.svg"
 								className="card-img-top"
 								alt="user-profile-img"
 							/>
@@ -42,9 +42,9 @@ const Game = () => {
 					</Link>
 
 					<Link to="/rules" className="navbar-link">
-						<div className="card">
+						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/rules-img.svg"
+								src="./src/assets/regole-bianco.svg"
 								className="card-img-top"
 								alt="rules-img"
 							/>
@@ -53,15 +53,14 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
-					<div className="game-timer">
-						<h1>Coming Soon...</h1>
-					</div>
+					<img src="./src/assets/cinque-game-bg.png" alt="5 Game Background" />
+					{/* <h1>Coming Soon...</h1> */}
 				</div>
 				<div className="right-navbar">
 					<Link to="/assistance" className="navbar-link">
-						<div className="card">
+						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/assistance-img.svg"
+								src="./src/assets/assistenza-bianco.svg"
 								className="card-img-top"
 								alt="assistance-img"
 							/>
@@ -70,9 +69,9 @@ const Game = () => {
 					</Link>
 
 					<div className="navbar-link logout-link" onClick={openLogoutModal}>
-						<div className="card">
+						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/logout-img.svg"
+								src="./src/assets/logout-bianco.svg"
 								className="card-img-top"
 								alt="logout-img"
 							/>

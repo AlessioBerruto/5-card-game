@@ -84,7 +84,7 @@ function Profile() {
         <>
             <div className="profile-page">
                 <div className="profile-img">
-                    <div className="card">
+                    <div className="card-bg-trasparent">
                         <img
                             src="./src/assets/user-profile-img.svg"
                             className="card-img-top"

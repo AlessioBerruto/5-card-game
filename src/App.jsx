@@ -18,6 +18,12 @@ const App = () => {
 	// Funzione per gestire il login
 	const handleLogin = async (e) => {
 		e.preventDefault();
+
+		if (!email || !password) {
+			setError("Email e password sono obbligatorie");
+			return;
+		}
+
 		try {
 			const response = await axios.post("http://localhost:5000/api/login", {
 				email,
@@ -30,13 +36,20 @@ const App = () => {
 
 			navigate("/game");
 		} catch (err) {
-			setError("Errore nel login: " + err.message);
+			console.log(err.response);
+			setError("Errore nel login: " + err.response?.data?.message || err.message);
 		}
 	};
 
 	// Funzione per gestire la registrazione
 	const handleRegister = async (e) => {
 		e.preventDefault();
+
+		if (!name || !email || !password) {
+			setError("Tutti i campi sono obbligatori");
+			return;
+		}
+
 		try {
 			const response = await axios.post("http://localhost:5000/api/register", {
 				name,
@@ -50,7 +63,8 @@ const App = () => {
 
 			navigate("/game");
 		} catch (err) {
-			setError("Errore nella registrazione: " + err.message);
+			console.log(err.response); 
+			setError("Errore nella registrazione: " + err.response?.data?.message || err.message);
 		}
 	};
 
@@ -60,9 +74,8 @@ const App = () => {
 				<div className="home-container">
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
-						Benvenuto in Cinque, <br /> Registrati o Accedi per scoprire le
-						regole di questo gioco e quanto manca all'uscita della sua versione
-						digitale.
+						Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario ma multigiocatore.
+						<br />Registrati o Accedi per scoprire le regole di questo gioco, in attesa dell'uscita della sua versione digitale.
 					</div>
 					<div className="form-wrapper">
 						<h2>{isRegistering ? "Registrati" : "Accedi"}</h2>
