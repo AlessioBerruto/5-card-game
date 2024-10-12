@@ -6,6 +6,11 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+
+    &.modal-active {
+        filter: blur(5px); 
+        pointer-events: none; 
+    }
 }
 
 .game-window {
@@ -14,14 +19,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid red;
+    border: 3px solid #198908;
     width: 100%;
-    height: 70vh;
+    height: 90vh;
     text-align: center;
-    background-color: black;
+    background-color: #021e07;
 
     h1 {
-        color: green;
+        color: #48FB00;
     }
 
 }
@@ -32,7 +37,17 @@
     align-items: center;
     width: 10vw;
     text-align: center;
+    padding: 1rem;
+
+    .card-body {
+        padding-top: 0.7rem;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        
+    }
 }
+
 
 .left-navbar,
 .right-navbar {    
@@ -45,3 +60,64 @@
     width: 20vw;      
 }
 
+.navbar-link {
+    text-decoration: none;
+    color: black;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.logout-modal-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.logout-modal {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    width: 400px;
+    max-width: 90vw;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .logout-modal-buttons {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+
+        button {
+            width: 6vw;
+            height: 7vh;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &.btn-confirm {
+                background-color: #28a745;
+                color: white;
+            }
+
+            &.btn-cancel {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}

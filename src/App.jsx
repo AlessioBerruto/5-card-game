@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "./slices/authSlice";
+import { setUserData } from "./slices/userSlice";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
-
-import { Link } from "react-router-dom";
 
 const App = () => {
 	const [isRegistering, setIsRegistering] = useState(false);
@@ -11,48 +13,42 @@ const App = () => {
 	const [name, setName] = useState("");
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
+	// Funzione per gestire il login
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch("http://localhost:5000/api/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ email, password }),
+			const response = await axios.post("http://localhost:5000/api/login", {
+				email,
+				password,
 			});
+			const { user, token } = response.data;
 
-			const data = await response.json();
-			if (response.ok) {
-				console.log("Login successful");
-				navigate("/game");
-			} else {
-				setError(data.message || "Errore nel login");
-			}
+			dispatch(login({ token }));
+			dispatch(setUserData(user));
+
+			navigate("/game");
 		} catch (err) {
 			setError("Errore nel login: " + err.message);
 		}
 	};
 
+	// Funzione per gestire la registrazione
 	const handleRegister = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch("http://localhost:5000/api/register", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ name, email, password }),
+			const response = await axios.post("http://localhost:5000/api/register", {
+				name,
+				email,
+				password,
 			});
+			const { user, token } = response.data;
 
-			const data = await response.json();
-			if (response.ok) {
-				console.log("Registrazione avvenuta con successo");
-				navigate("/game");
-			} else {
-				setError(data.message || "Errore nella registrazione");
-			}
+			dispatch(login({ token }));
+			dispatch(setUserData(user));
+
+			navigate("/game");
 		} catch (err) {
 			setError("Errore nella registrazione: " + err.message);
 		}
@@ -64,15 +60,9 @@ const App = () => {
 				<div className="home-container">
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, ad
-						asperiores. Dolorum, laborum rem quae commodi earum error animi
-						saepe itaque veniam laudantium, vero laboriosam necessitatibus
-						ducimus hic nihil beatae.
-						<div>
-							<Link to="/game" className="navbar-link">
-								Game
-							</Link>
-						</div>
+						Benvenuto in Cinque, <br /> Registrati o Accedi per scoprire le
+						regole di questo gioco e quanto manca all'uscita della sua versione
+						digitale.
 					</div>
 					<div className="form-wrapper">
 						<h2>{isRegistering ? "Registrati" : "Accedi"}</h2>
@@ -140,6 +130,11 @@ const App = () => {
 					</div>
 				</div>
 			</div>
+			<footer>
+				<Link to="/game" className="navbar-link">
+					Game
+				</Link>
+			</footer>
 		</>
 	);
 };

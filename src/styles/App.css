@@ -6,6 +6,10 @@
   justify-content: center;
   min-height: 100vh;
 }
+.game-page.modal-active {
+  filter: blur(5px);
+  pointer-events: none;
+}
 
 .game-window {
   margin: 0;
@@ -13,14 +17,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 5px solid red;
+  border: 3px solid #198908;
   width: 100%;
-  height: 70vh;
+  height: 90vh;
   text-align: center;
-  background-color: black;
+  background-color: #021e07;
 }
 .game-window h1 {
-  color: green;
+  color: #48FB00;
 }
 
 .card {
@@ -29,6 +33,13 @@
   align-items: center;
   width: 10vw;
   text-align: center;
+  padding: 1rem;
+}
+.card .card-body {
+  padding-top: 0.7rem;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .left-navbar,
@@ -40,6 +51,62 @@
   gap: 15vh;
   height: 100vh;
   width: 20vw;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: black;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-modal {
+  background-color: lightgrey;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 90vw;
+  text-align: center;
+}
+.logout-modal h2 {
+  margin-bottom: 20px;
+}
+.logout-modal .logout-modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+.logout-modal .logout-modal-buttons button {
+  width: 6vw;
+  height: 7vh;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logout-modal .logout-modal-buttons button.btn-confirm {
+  background-color: #28a745;
+  color: white;
+}
+.logout-modal .logout-modal-buttons button.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+}
+.logout-modal .logout-modal-buttons button:hover {
+  opacity: 0.8;
 }
 
 .profile-page {
@@ -83,6 +150,10 @@
   margin: 3vh 0;
 }
 
+.password-toggle-icon {
+  background-color: aliceblue;
+}
+
 .rules-page {
   background-color: lightblue;
   display: flex;
@@ -97,7 +168,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px;
+  padding: 3rem;
+}
+.description-column p {
+  font-size: 0.9rem;
+}
+.description-column .description-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .assistance-page {
@@ -110,6 +188,7 @@
 }
 
 .contact-section {
+  background-color: #021e07;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,18 +197,27 @@
   width: 75%;
   min-height: 80vh;
   padding: 50px;
-  border: 2px solid red;
+  border: 3px solid #198908;
 }
 .contact-section textarea {
+  background-color: lightgrey;
   width: 50%;
   height: 20vh;
 }
 .contact-section input {
-  margin-top: 3vh;
-  width: 20vw;
+  width: 10vw;
+  margin-top: 2vh;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 .contact-section p {
   margin: 7vh 0;
+  color: #48FB00;
 }
 
 .home-page {
@@ -143,6 +231,7 @@
 
 .home-title {
   margin-bottom: 7vh;
+  font-size: 3rem;
 }
 
 .home-container {
@@ -154,9 +243,9 @@
 }
 
 .home-description {
-  max-width: 400px;
+  max-width: 500px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .form-wrapper {
