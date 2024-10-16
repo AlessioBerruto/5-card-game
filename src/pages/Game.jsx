@@ -53,8 +53,7 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
-					<img src="./src/assets/cinque-game-bg.png" alt="5 Game Background" />
-					{/* <h1>Coming Soon...</h1> */}
+					<img src="./src/assets/cinque-game-bg.png" alt="5 Game Background" />					
 				</div>
 				<div className="right-navbar">
 					<Link to="/assistance" className="navbar-link">
@@ -75,7 +74,7 @@ const Game = () => {
 								className="card-img-top"
 								alt="logout-img"
 							/>
-							<div className="card-body">Logout</div>
+							<div className="card-body"><span>Logout</span></div>
 						</div>
 					</div>
 				</div>

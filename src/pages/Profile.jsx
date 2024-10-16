@@ -1,78 +1,88 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser, deleteUser } from "../slices/userSlice"; 
+import { updateUser, deleteUser } from "../slices/userSlice";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function Profile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector((state) => state.user); 
+    const user = useSelector((state) => state.user.userData); 
     const [formData, setFormData] = useState({
-        name: user.name || "",
-        email: user.email || "",
-        password: "",
+        name: user?.name || "",
+        email: user?.email || "",
+        password: user?.password || "",
     });
     const [message, setMessage] = useState("");
-    const [showPassword, setShowPassword] = useState(false); 
-    const [editMode, setEditMode] = useState(false); 
+    const [showPassword, setShowPassword] = useState(false);
+    const [editMode, setEditMode] = useState(false);
 
-    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    
     useEffect(() => {
-        if (user && user.id) {
+        if (user) {
             setFormData({
                 name: user.name,
                 email: user.email,
-                password: "",
+                password: user.password,
             });
         }
     }, [user]);
 
-    
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    // Modifica i dati utente
     const handleUpdate = async () => {
         try {
-            if (!user.id) {
+            if (!user.email) {
                 setMessage("Effettua prima il login per aggiornare i dati");
                 return;
             }
+    
+            console.log("Dati inviati per l'aggiornamento:", { email: formData.email, ...formData });
+    
             const response = await axios.put(
-                `http://localhost:5000/api/user/${user.id}`,
-                formData
+                `http://localhost:5000/api/user`, 
+                { 
+                    currentEmail: user.email,  // Invia l'email originale per individuare l'utente.
+                    email: formData.email,     // Nuova email (o la stessa se non modificata).
+                    name: formData.name, 
+                    password: formData.password // Password visibile come richiesto.
+                }
             );
+    
+            console.log("Risposta dal server:", response.data);
+    
             setMessage(response.data.message);
-            dispatch(updateUser(response.data.user)); 
-            setEditMode(false); 
+            dispatch(updateUser(response.data.user));
+            setEditMode(false);
         } catch (error) {
+            console.error("Errore durante l'aggiornamento:", error);
+    
             setMessage(
                 error.response?.data.message || "Errore durante l'aggiornamento"
             );
         }
     };
+    
 
-    // Cancellazione utente
     const handleDelete = async () => {
         try {
-            if (!user.id) {
+            if (!user.email) {
                 setMessage("Effettua prima il login per cancellare il profilo");
                 return;
             }
             const response = await axios.delete(
-                `http://localhost:5000/api/user/${user.id}`
+                `http://localhost:5000/api/user`, 
+                { data: { email: user.email } } 
             );
             setMessage(response.data.message);
-            dispatch(deleteUser()); 
-            navigate("/"); 
+            dispatch(deleteUser());
+            navigate("/");
         } catch (error) {
             setMessage(
                 error.response?.data.message || "Errore durante la cancellazione"
@@ -81,73 +91,75 @@ function Profile() {
     };
 
     return (
-        <>
-            <div className="profile-page">
-                <div className="profile-img">
-                    <div className="card-bg-trasparent">
-                        <img
-                            src="./src/assets/user-profile-img.svg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                            <p>Nome Utente</p>
-                        </div>
-                    </div>
-                    <button onClick={() => setEditMode(true)}>Modifica dati</button>
-                    <button onClick={handleDelete}>Elimina Account</button>
-                </div>
-                <div className="profile-details">
-                    <h2>Dati dell'utente</h2>
-                    <p>{message}</p>
-
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Nome"
-                        value={formData.name}
-                        onChange={handleChange}
-                        disabled={!editMode} 
+        <div className="profile-page">
+            <div className="profile-img">
+                <div className="card-bg-trasparent">
+                    <img
+                        src="./src/assets/user-profile-img.svg"
+                        className="card-img-top"
+                        alt="..."
                     />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        disabled={!editMode} 
-                    />
-                    <div className="password-field">
-                        <input
-                            type={showPassword ? "text" : "password"} 
-                            name="password"
-                            placeholder="Password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            disabled={!editMode} 
-                        />
-                        <span
-                            className="password-toggle-icon"
-                            onClick={togglePasswordVisibility}
-                        >
-                            {showPassword ? "👁️" : "🙈"}
-                        </span>
+                    <div className="card-body">
+                        <p>{user?.name || "Nome Utente"}</p>
                     </div>
-
-                    {editMode && (
-                        <>
-                            <button onClick={handleUpdate}>Salva</button>
-                            <button onClick={() => setEditMode(false)}>Annulla</button>
-                        </>
-                    )}
                 </div>
-                <footer>
-                    <Link to="/game" className="navbar-link">
-                        Game
-                    </Link>
-                </footer>
+                <button onClick={() => setEditMode(true)} className="edit-btn">
+                    Modifica dati
+                </button>
+                <button onClick={handleDelete} className="delete-btn">
+                    Elimina Account
+                </button>
             </div>
-        </>
+            <div className="profile-details">
+                <h2>Dati dell'utente</h2>
+                <p>{message}</p>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Nome"
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={!editMode}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={!editMode}
+                />
+                <div className="password-field">
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Password"
+                        value={formData.password} 
+                        onChange={handleChange}
+                        disabled={!editMode}
+                    />
+                    <span
+                        className="password-toggle-icon"
+                        onClick={togglePasswordVisibility}
+                    >
+                        {showPassword ? "👁️" : "🙈"}
+                    </span>
+                </div>
+
+                {editMode && (
+                    <div className="edit-mode-container">
+                        <button onClick={handleUpdate} className="save-btn">Salva</button>
+                        <button onClick={() => setEditMode(false)} className="cancel-btn">Annulla</button>
+                    </div>
+                )}
+            </div>
+            <footer>
+                <Link to="/game" className="footer-link">
+                    ↱ Torna al gioco ↰
+                </Link>
+            </footer>
+        </div>
     );
 }
 

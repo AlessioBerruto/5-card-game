@@ -1,5 +1,5 @@
 .profile-page {
-	background-color: #009E52;
+	background-color: #009e52;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -12,40 +12,70 @@
 	width: 50%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;	
+	justify-content: center;
+
+	h2 {
+		color: aliceblue;
+	}
 }
 
 .profile-img {
-    align-items: center;
+	align-items: center;
 
-    .card-bg-trasparent {
-        width: 17vw;
+	.card-bg-trasparent {
+		width: 17vw;
 
-        p{
-            margin-bottom: 0;
-            color: black;
-            font-weight: 600;
-            font-size: 1.5rem;
-        }
-    }
-
-    button{
-        margin: 1vh 0;
-    }
+		p {
+			margin-bottom: 0;
+			color: black;
+			font-weight: 600;
+			font-size: 1.5rem;
+		}
+	}
 }
 
 .profile-details {
-    align-items: flex-start;
-    text-align: left;
-    padding: 2rem;
+	align-items: flex-start;
+	text-align: left;
+	padding: 2rem;
 
-    input {
-        width: 30vw;
-        height: 6vh;
-        margin: 3vh 0;
-    }
+	input {
+		width: 30vw;
+		height: 6vh;
+		margin: 3vh 0;
+	}
+}
+
+.edit-btn,
+.save-btn,
+.delete-btn,
+.cancel-btn {
+	border: none;
+	color: aliceblue;
+	margin: 1vh 0;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+}
+
+.edit-btn,
+.save-btn {
+	background-color: #000080;
+}
+
+.delete-btn,
+.cancel-btn {
+	background-color: #c13331;
 }
 
 .password-toggle-icon {
-    background-color: white;
+	margin-left: 1vw;
+	cursor: pointer;
+}
+
+.edit-mode-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 2vw;
 }

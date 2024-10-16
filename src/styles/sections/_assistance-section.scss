@@ -1,5 +1,5 @@
 .assistance-page {
-	background-color: #009E52;
+	background-color: #009e52;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -8,7 +8,6 @@
 }
 
 .contact-section {
-    background-color: #1B1B1D;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -17,28 +16,51 @@
 	width: 75%;
 	min-height: 80vh;
 	padding: 50px;
-	border: 3px solid #198908;
+
+	.contact-title {
+		font-size: 1.8rem;
+		color: aliceblue;
+		font-weight: 600;
+		margin-bottom: 6vh;
+	}
+
+	a {
+		color: #000080;
+
+		&:hover {
+			color: #000064;
+		}
+	}
 
 	textarea {
-        background-color: lightgrey;
-		width: 50%;
-		height: 20vh;
+		background-color: lightgrey;
+		width: 75%;
+		height: 40vh;
+		color: black;
+		padding: 5px 8px;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
 
 	input {
-		width: 10vw;
+		width: 20vw;
 		margin-top: 2vh;
 		padding: 0.75rem;
-		background-color: #007bff;
+		background-color: #000080;
 		color: white;
 		border: none;
 		border-radius: 4px;
 		font-size: 1.1rem;
 		cursor: pointer;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+		&:hover {
+			background-color: #000064;
+		}
 	}
 
-	p {
-		margin: 7vh 0;
-        color: #48FB00;
+	.link-p {
+		margin-top: 5vh;
+		font-size: 1.5rem;
+		font-weight: 500;
 	}
 }

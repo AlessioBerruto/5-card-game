@@ -1,5 +1,5 @@
 .game-page {
-  background-color: #1B1B1D;
+  background-color: #1b1b1d;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -57,6 +57,12 @@
   width: 20vw;
 }
 
+.logout-link:hover span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c13331;
+}
+
 .navbar-link {
   text-decoration: none;
   color: black;
@@ -102,11 +108,11 @@
   cursor: pointer;
 }
 .logout-modal .logout-modal-buttons button.btn-confirm {
-  background-color: #28a745;
+  background-color: #009E52;
   color: white;
 }
 .logout-modal .logout-modal-buttons button.btn-cancel {
-  background-color: #dc3545;
+  background-color: #c13331;
   color: white;
 }
 .logout-modal .logout-modal-buttons button:hover {
@@ -114,7 +120,7 @@
 }
 
 .profile-page {
-  background-color: #009E52;
+  background-color: #009e52;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -129,6 +135,10 @@
   flex-direction: column;
   justify-content: center;
 }
+.profile-img h2,
+.profile-details h2 {
+  color: aliceblue;
+}
 
 .profile-img {
   align-items: center;
@@ -142,9 +152,6 @@
   font-weight: 600;
   font-size: 1.5rem;
 }
-.profile-img button {
-  margin: 1vh 0;
-}
 
 .profile-details {
   align-items: flex-start;
@@ -157,8 +164,38 @@
   margin: 3vh 0;
 }
 
+.edit-btn,
+.save-btn,
+.delete-btn,
+.cancel-btn {
+  border: none;
+  color: aliceblue;
+  margin: 1vh 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 3px 8px;
+}
+
+.edit-btn,
+.save-btn {
+  background-color: #000080;
+}
+
+.delete-btn,
+.cancel-btn {
+  background-color: #c13331;
+}
+
 .password-toggle-icon {
-  background-color: white;
+  margin-left: 1vw;
+  cursor: pointer;
+}
+
+.edit-mode-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 2vw;
 }
 
 .rules-page {
@@ -179,14 +216,17 @@
 }
 .description-column p {
   font-size: 0.9rem;
+  font-weight: 500;
 }
 .description-column .description-title {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
+  color: #000080;
+  font-weight: 700;
 }
 
 .assistance-page {
-  background-color: #009E52;
+  background-color: #009e52;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,7 +235,6 @@
 }
 
 .contact-section {
-  background-color: #1B1B1D;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,27 +243,46 @@
   width: 75%;
   min-height: 80vh;
   padding: 50px;
-  border: 3px solid #198908;
+}
+.contact-section .contact-title {
+  font-size: 1.8rem;
+  color: aliceblue;
+  font-weight: 600;
+  margin-bottom: 6vh;
+}
+.contact-section a {
+  color: #000080;
+}
+.contact-section a:hover {
+  color: #000064;
 }
 .contact-section textarea {
   background-color: lightgrey;
-  width: 50%;
-  height: 20vh;
+  width: 75%;
+  height: 40vh;
+  color: black;
+  padding: 5px 8px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 .contact-section input {
-  width: 10vw;
+  width: 20vw;
   margin-top: 2vh;
   padding: 0.75rem;
-  background-color: #007bff;
+  background-color: #000080;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 1.1rem;
   cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-.contact-section p {
-  margin: 7vh 0;
-  color: #48FB00;
+.contact-section input:hover {
+  background-color: #000064;
+}
+.contact-section .link-p {
+  margin-top: 5vh;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .home-page {
@@ -239,7 +297,7 @@
 .home-title {
   margin-bottom: 7vh;
   font-size: 3rem;
-  color: #000080;
+  color: white;
   font-weight: bold;
 }
 
@@ -316,4 +374,14 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+footer .footer-link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #C13331;
+  font-weight: 700;
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.3);
+}
+footer .footer-link:hover {
+  color: #972927;
 }
