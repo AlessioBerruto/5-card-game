@@ -16,6 +16,7 @@ function Profile() {
     const [message, setMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [editMode, setEditMode] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,33 +43,29 @@ function Profile() {
                 setMessage("Effettua prima il login per aggiornare i dati");
                 return;
             }
-    
+
             console.log("Dati inviati per l'aggiornamento:", { email: formData.email, ...formData });
-    
+
             const response = await axios.put(
                 `http://localhost:5000/api/user`, 
                 { 
-                    currentEmail: user.email,  // Invia l'email originale per individuare l'utente.
-                    email: formData.email,     // Nuova email (o la stessa se non modificata).
+                    currentEmail: user.email, 
+                    email: formData.email,     
                     name: formData.name, 
-                    password: formData.password // Password visibile come richiesto.
+                    password: formData.password 
                 }
             );
-    
+
             console.log("Risposta dal server:", response.data);
-    
+
             setMessage(response.data.message);
             dispatch(updateUser(response.data.user));
             setEditMode(false);
         } catch (error) {
             console.error("Errore durante l'aggiornamento:", error);
-    
-            setMessage(
-                error.response?.data.message || "Errore durante l'aggiornamento"
-            );
+            setMessage(error.response?.data.message || "Errore durante l'aggiornamento");
         }
     };
-    
 
     const handleDelete = async () => {
         try {
@@ -84,9 +81,7 @@ function Profile() {
             dispatch(deleteUser());
             navigate("/");
         } catch (error) {
-            setMessage(
-                error.response?.data.message || "Errore durante la cancellazione"
-            );
+            setMessage(error.response?.data.message || "Errore durante la cancellazione");
         }
     };
 
@@ -106,7 +101,7 @@ function Profile() {
                 <button onClick={() => setEditMode(true)} className="edit-btn">
                     Modifica dati
                 </button>
-                <button onClick={handleDelete} className="delete-btn">
+                <button onClick={() => setShowDeleteModal(true)} className="delete-btn">
                     Elimina Account
                 </button>
             </div>
@@ -159,6 +154,26 @@ function Profile() {
                     ↱ Torna al gioco ↰
                 </Link>
             </footer>
+
+            {/* Finestra modale per la conferma dell'eliminazione */}
+            {showDeleteModal && (
+                <div className="logout-modal-overlay">
+                    <div className="logout-modal">
+                        <h2>Sei sicuro di voler eliminare il tuo account?</h2>
+                        <div className="logout-modal-buttons">
+                            <button className="btn-confirm" onClick={() => {
+                                handleDelete();
+                                setShowDeleteModal(false); // Chiudi la finestra di conferma
+                            }}>
+                                Sì
+                            </button>
+                            <button className="btn-cancel" onClick={() => setShowDeleteModal(false)}>
+                                No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

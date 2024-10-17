@@ -5,8 +5,7 @@ import axios from "axios";
 const Game = () => {
 	const navigate = useNavigate();
 	const [showLogoutModal, setShowLogoutModal] = useState(false);
-
-	// Funzione per gestire il logout
+	
 	const handleLogout = async () => {
 		try {
 			await axios.post("http://localhost:5000/api/logout");
@@ -15,13 +14,11 @@ const Game = () => {
 			console.error("Errore nel logout:", error);
 		}
 	};
-
-	// Funzione per mostrare la finestra di conferma del logout
+	
 	const openLogoutModal = () => {
-		setShowLogoutModal(true);
-	};
+		setShowLogoutModal(true);	};
 
-	// Funzione per chiudere la finestra di conferma del logout
+	
 	const closeLogoutModal = () => {
 		setShowLogoutModal(false);
 	};
@@ -80,7 +77,7 @@ const Game = () => {
 				</div>
 			</div>
 
-			{/* Finestra modale per la conferma del logout */}
+			
 			{showLogoutModal && (
 				<div className="logout-modal-overlay">
 					<div className="logout-modal">

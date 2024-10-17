@@ -58,7 +58,7 @@ const App = () => {
 			});
 			const { user, token } = response.data;
 			
-			console.log("User ID:", user._id); // Verifica se l'ID è presente
+			console.log("User ID:", user._id); 
 			dispatch(login({ token }));
 			dispatch(setUserData(user));
 
