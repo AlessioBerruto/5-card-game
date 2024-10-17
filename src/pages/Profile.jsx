@@ -47,7 +47,7 @@ function Profile() {
             console.log("Dati inviati per l'aggiornamento:", { email: formData.email, ...formData });
 
             const response = await axios.put(
-                `http://localhost:5000/api/user`, 
+                `https://five-card-game.onrender.com/api/user`, 
                 { 
                     currentEmail: user.email, 
                     email: formData.email,     
@@ -74,7 +74,7 @@ function Profile() {
                 return;
             }
             const response = await axios.delete(
-                `http://localhost:5000/api/user`, 
+                `https://five-card-game.onrender.com/api/user`, 
                 { data: { email: user.email } } 
             );
             setMessage(response.data.message);
@@ -155,7 +155,7 @@ function Profile() {
                 </Link>
             </footer>
 
-            {/* Finestra modale per la conferma dell'eliminazione */}
+            
             {showDeleteModal && (
                 <div className="logout-modal-overlay">
                     <div className="logout-modal">
@@ -163,7 +163,7 @@ function Profile() {
                         <div className="logout-modal-buttons">
                             <button className="btn-confirm" onClick={() => {
                                 handleDelete();
-                                setShowDeleteModal(false); // Chiudi la finestra di conferma
+                                setShowDeleteModal(false);
                             }}>
                                 Sì
                             </button>

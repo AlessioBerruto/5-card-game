@@ -25,7 +25,7 @@ const App = () => {
 		}
 
 		try {
-			const response = await axios.post("http://localhost:5000/api/login", {
+			const response = await axios.post("https://five-card-game.onrender.com/api/login", {
 				email,
 				password,
 			});
@@ -51,7 +51,7 @@ const App = () => {
 		}
 
 		try {
-			const response = await axios.post("http://localhost:5000/api/register", {
+			const response = await axios.post("https://five-card-game.onrender.com/api/register", {
 				name,
 				email,
 				password,

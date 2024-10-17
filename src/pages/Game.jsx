@@ -8,7 +8,7 @@ const Game = () => {
 	
 	const handleLogout = async () => {
 		try {
-			await axios.post("http://localhost:5000/api/logout");
+			await axios.post("https://five-card-game.onrender.com/api/logout");
 			navigate("/");
 		} catch (error) {
 			console.error("Errore nel logout:", error);

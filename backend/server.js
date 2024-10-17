@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://alessioberruto.github.io"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
@@ -137,5 +137,5 @@ app.post('/api/logout', async (req, res) => {
 
 // Avvio del server
 app.listen(PORT, () => {
-    console.log(`Server in esecuzione su http://localhost:${PORT}`);
+    console.log(`Server in esecuzione su http://localhost:${PORT} o su "https://alessioberruto.github.io"`);
 });
