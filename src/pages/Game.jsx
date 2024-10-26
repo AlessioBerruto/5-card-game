@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import userProfileImg from "../assets/utente-bianco.svg";
+import rulesImg from "../assets/regole-bianco.svg";
+import assistanceImg from "../assets/assistenza-bianco.svg";
+import logoutImg from "../assets/logout-bianco.svg";
+import gameBg from "../assets/cinque-game-bg.png";
+
 
 const Game = () => {
 	const navigate = useNavigate();
@@ -30,7 +36,7 @@ const Game = () => {
 					<Link to="/profile" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/utente-bianco.svg"
+								src={userProfileImg}
 								className="card-img-top"
 								alt="user-profile-img"
 							/>
@@ -41,7 +47,7 @@ const Game = () => {
 					<Link to="/rules" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/regole-bianco.svg"
+								src={rulesImg}
 								className="card-img-top"
 								alt="rules-img"
 							/>
@@ -50,13 +56,13 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
-					<img src="./src/assets/cinque-game-bg.png" alt="5 Game Background" />					
+					<img src={gameBg} alt="5 Game Background" />					
 				</div>
 				<div className="right-navbar">
 					<Link to="/assistance" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/assistenza-bianco.svg"
+								src={assistanceImg}
 								className="card-img-top"
 								alt="assistance-img"
 							/>
@@ -67,7 +73,7 @@ const Game = () => {
 					<div className="navbar-link logout-link" onClick={openLogoutModal}>
 						<div className="card-bg-trasparent">
 							<img
-								src="./src/assets/logout-bianco.svg"
+								src={logoutImg}
 								className="card-img-top"
 								alt="logout-img"
 							/>

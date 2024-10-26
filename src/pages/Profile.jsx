@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser, deleteUser } from "../slices/userSlice";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import userBlackImg from "../assets/utente-nero.svg";
+
 
 function Profile() {
     const dispatch = useDispatch();
@@ -90,7 +92,7 @@ function Profile() {
             <div className="profile-img">
                 <div className="card-bg-trasparent">
                     <img
-                        src="./src/assets/user-profile-img.svg"
+                        src={userBlackImg}
                         className="card-img-top"
                         alt="..."
                     />
