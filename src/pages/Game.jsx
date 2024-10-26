@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import userProfileImg from "/assets/utente-bianco.svg";
-import rulesImg from "/assets/regole-bianco.svg";
-import assistanceImg from "/assets/assistenza-bianco.svg";
-import logoutImg from "/assets/logout-bianco.svg";
-import gameBg from "/assets/cinque-game-bg.png";
+// import userProfileImg from "/assets/utente-bianco.svg";
+// import rulesImg from "/assets/regole-bianco.svg";
+// import assistanceImg from "/assets/assistenza-bianco.svg";
+// import logoutImg from "/assets/logout-bianco.svg";
+// import gameBg from "/assets/cinque-game-bg.png";
 
 
 const Game = () => {
@@ -36,7 +36,7 @@ const Game = () => {
 					<Link to="/profile" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src={userProfileImg}
+								src="/assets/utente-bianco.svg"
 								className="card-img-top"
 								alt="user-profile-img"
 							/>
@@ -47,7 +47,7 @@ const Game = () => {
 					<Link to="/rules" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src={rulesImg}
+								src="/assets/regole-bianco.svg"
 								className="card-img-top"
 								alt="rules-img"
 							/>
@@ -56,13 +56,13 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
-					<img src={gameBg} alt="5 Game Background" />					
+					<img src="/assets/cinque-game-bg.png" alt="5 Game Background" />					
 				</div>
 				<div className="right-navbar">
 					<Link to="/assistance" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src={assistanceImg}
+								src="/assets/assistenza-bianco.svg"
 								className="card-img-top"
 								alt="assistance-img"
 							/>
@@ -73,7 +73,7 @@ const Game = () => {
 					<div className="navbar-link logout-link" onClick={openLogoutModal}>
 						<div className="card-bg-trasparent">
 							<img
-								src={logoutImg}
+								src="/assets/logout-bianco.svg"
 								className="card-img-top"
 								alt="logout-img"
 							/>
