@@ -36,7 +36,7 @@ const Game = () => {
 					<Link to="/profile" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="/assets/utente-bianco.svg"
+								src={`${import.meta.env.BASE_URL}/assets/utente-bianco.svg`}
 								className="card-img-top"
 								alt="user-profile-img"
 							/>
@@ -47,7 +47,7 @@ const Game = () => {
 					<Link to="/rules" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="/assets/regole-bianco.svg"
+								src={`${import.meta.env.BASE_URL}/assets/regole-bianco.svg`}
 								className="card-img-top"
 								alt="rules-img"
 							/>
@@ -56,13 +56,13 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
-					<img src="/assets/cinque-game-bg.png" alt="5 Game Background" />					
+					<img src={`${import.meta.env.BASE_URL}/assets/cinque-game-bg.png`} alt="5 Game Background" />					
 				</div>
 				<div className="right-navbar">
 					<Link to="/assistance" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
-								src="/assets/assistenza-bianco.svg"
+								src={`${import.meta.env.BASE_URL}/assets/assistenza-bianco.svg`}
 								className="card-img-top"
 								alt="assistance-img"
 							/>
@@ -73,7 +73,7 @@ const Game = () => {
 					<div className="navbar-link logout-link" onClick={openLogoutModal}>
 						<div className="card-bg-trasparent">
 							<img
-								src="/assets/logout-bianco.svg"
+								src={`${import.meta.env.BASE_URL}/assets/logout-bianco.svg`}
 								className="card-img-top"
 								alt="logout-img"
 							/>

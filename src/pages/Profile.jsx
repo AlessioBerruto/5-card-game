@@ -92,7 +92,7 @@ function Profile() {
             <div className="profile-img">
                 <div className="card-bg-trasparent">
                     <img
-                        src="/assets/utente-nero.svg"
+                        src={`${import.meta.env.BASE_URL}/assets/utente-nero.svg`}
                         className="card-img-top"
                         alt="..."
                     />
