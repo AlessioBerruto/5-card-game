@@ -1,5 +1,6 @@
 .profile-page {
 	background-color: #009e52;
+	background-image: url("/assets/pattern-bianco.png");
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -69,8 +70,13 @@
 }
 
 .password-toggle-icon {
-	margin-left: 1vw;
+	margin-left: 1vw;	
 	cursor: pointer;
+	
+	img {
+		height: 5vh;	
+		padding-bottom: 3px;	
+	}
 }
 
 .edit-mode-container {

@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import userProfileImg from "/assets/utente-bianco.svg";
-// import rulesImg from "/assets/regole-bianco.svg";
-// import assistanceImg from "/assets/assistenza-bianco.svg";
-// import logoutImg from "/assets/logout-bianco.svg";
-// import gameBg from "/assets/cinque-game-bg.png";
+
 
 
 const Game = () => {

@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser, deleteUser } from "../slices/userSlice";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import userBlackImg from "/assets/utente-nero.svg";
+import ShowIcon from '/assets/fronte-carta.svg';
+import CoverIcon from '/assets/retro-carta.svg';
+
 
 
 function Profile() {
@@ -140,7 +142,7 @@ function Profile() {
                         className="password-toggle-icon"
                         onClick={togglePasswordVisibility}
                     >
-                        {showPassword ? "👁️" : "🙈"}
+                        <img src={showPassword ? ShowIcon : CoverIcon} alt="toggle password visibility" />
                     </span>
                 </div>
 
