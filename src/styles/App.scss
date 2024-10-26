@@ -6,6 +6,7 @@
 
 
 .home-page {  
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   background-color: #009E52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
@@ -17,7 +18,7 @@
 
 .home-title {
   margin-bottom: 7vh;
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: white;
   font-weight: bold;
 }
@@ -27,14 +28,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10vw;
+  gap: 8vw;
 }
 
 .home-description {
-  max-width: 550px;
+  color: #1b1b1d;
+  max-width: 750px;
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 3.3rem;
 }
 
 .form-wrapper {

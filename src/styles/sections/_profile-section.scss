@@ -1,4 +1,5 @@
 .profile-page {
+	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
 	background-color: #009e52;
 	background-image: url("/assets/pattern-bianco.png");
 	display: flex;
@@ -16,12 +17,14 @@
 	justify-content: center;
 
 	h2 {
+		font-size: 2.8rem;
 		color: aliceblue;
 	}
 }
 
 .profile-img {
 	align-items: center;
+	padding-left: 5vw;
 
 	.card-bg-trasparent {
 		width: 17vw;
@@ -30,7 +33,7 @@
 			margin-bottom: 0;
 			color: black;
 			font-weight: 600;
-			font-size: 1.5rem;
+			font-size: 1.8rem;
 		}
 	}
 }
@@ -41,8 +44,11 @@
 	padding: 2rem;
 
 	input {
+		
+		font-size: 1.3rem;
 		width: 30vw;
-		height: 6vh;
+		height: 7vh;
+		padding: 0 1vw;
 		margin: 3vh 0;
 	}
 }
@@ -74,7 +80,7 @@
 	cursor: pointer;
 	
 	img {
-		height: 5vh;	
+		height: 6vh;	
 		padding-bottom: 3px;	
 	}
 }
