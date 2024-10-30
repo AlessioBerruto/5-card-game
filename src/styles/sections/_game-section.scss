@@ -1,6 +1,8 @@
+@import "./variables";
+
 .game-page {
 	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-	background-color: #1b1b1d;
+	background-color: $fifth;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -36,7 +38,7 @@
 	width: 10vw;
 	text-align: center;
 	padding: 1rem;
-	color: white;
+	color: $forth;
 
 	.card-body {
 		font-size: 1.3rem;
@@ -63,13 +65,13 @@
 	span {
 		
 		font-weight: 700;
-		color: #c13331;
+		color: $third;
 	}
 }
 
 .navbar-link {
 	text-decoration: none;
-	color: black;
+	color: $fifth;
 	margin-top: 5px;
 	cursor: pointer;
 	transition: transform 0.5s;
@@ -118,13 +120,13 @@
 			cursor: pointer;
 
 			&.btn-confirm {
-				background-color: #009E52;
-				color: white;
+				background-color: $primary;
+				color: $forth;
 			}
 
 			&.btn-cancel {
-				background-color: #c13331;
-				color: white;
+				background-color: $third;
+				color: $forth;
 			}
 
 			&:hover {

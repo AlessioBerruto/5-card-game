@@ -1,12 +1,15 @@
+@import "./variables";
+
 .assistance-page {
 	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-	background-color: #009e52;
+	background-color: $primary;
 	background-image: url("/assets/pattern-bianco.png");
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	position: relative;	
 }
 
 .contact-section {
@@ -21,16 +24,16 @@
 
 	.contact-title {
 		font-size: 2rem;
-		color: #1b1b1d;
+		color: $fifth;
 		font-weight: 600;
 		margin-bottom: 6vh;
 	}
 
 	a {
-		color: #000080;
+		color: $secondary;
 
 		&:hover {
-			color: #00005c;
+			color: $dark-secondary;
 		}
 	}
 
@@ -42,7 +45,7 @@
 		color: #1b1b1d;
 		padding: 13px 15px;
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-		border: 2px solid #1b1b1d;
+		border: 2px solid $fifth;
 		border-radius: 2px;
 	}
 
@@ -50,8 +53,8 @@
 		width: 20vw;
 		margin-top: 2vh;
 		padding: 0.75rem;
-		background-color: #000080;
-		color: aliceblue;
+		background-color: $secondary;
+		color: $forth;
 		border: none;
 		border-radius: 4px;
 		font-size: 1.1rem;
@@ -64,13 +67,13 @@
 		}
 
 		&:active {
-			background-color: #000064;
+			background-color: $dark-secondary;
 			transform: scale(0.97);
 		}
 	}
 
 	.link-p {
-		color: #1b1b1d;
+		color: $fifth;
 		margin-top: 6vh;
 		font-size: 1.5rem;
 		font-weight: 500;

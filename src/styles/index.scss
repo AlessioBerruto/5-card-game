@@ -1,6 +1,7 @@
+@import "../styles/sections/variables";
 
 :root {
-  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-family: $fonts;
   line-height: 1.5;
   font-weight: 400;
   font-size: 17px;
@@ -10,7 +11,7 @@
   box-sizing: border-box;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #1b1b1d;
+  background-color: $fifth;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
