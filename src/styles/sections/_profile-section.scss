@@ -3,10 +3,16 @@
 	background-color: #009e52;
 	background-image: url("/assets/pattern-bianco.png");
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: center;
 	min-height: 100vh;
 	position: relative;
+}
+
+.page-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .profile-img,
@@ -19,6 +25,7 @@
 	h2 {
 		font-size: 2.8rem;
 		color: aliceblue;
+		text-shadow: 4px 4px 4px rgba(0, 0, 128,0.5);
 	}
 }
 
@@ -68,11 +75,31 @@
 .edit-btn,
 .save-btn {
 	background-color: #000080;
+	transition: transform 0.3s;
+
+	&:hover {
+		transform: scale(1.08);		
+	}
+
+	&:active {
+		background-color: #000064;
+		transform: scale(0.9);
+	}
 }
 
 .delete-btn,
 .cancel-btn {
 	background-color: #c13331;
+	transition: transform 0.3s;
+
+	&:hover {
+		transform: scale(1.08);
+	}
+
+	&:active {
+		background-color: #990300;
+		transform: scale(0.9);
+	}
 }
 
 .password-toggle-icon {

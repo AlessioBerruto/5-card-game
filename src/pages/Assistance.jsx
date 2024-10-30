@@ -10,7 +10,6 @@ const Assistance = () => {
   const user = useSelector((state) => state.user.userData);
   const [contactNumber, setContactNumber] = useState("");
 
-  
   useEffect(() => {
     const randomContactNumber = Math.floor(Math.random() * 9999) + 1;
     setContactNumber(randomContactNumber);
@@ -20,28 +19,33 @@ const Assistance = () => {
     e.preventDefault();
 
     
+    if (!message.trim()) {
+      setFeedback("Per favore, scrivi un messaggio prima di inviare.");
+      setFeedbackColor("red");
+      return;
+    }
+
     const userName = user ? user.name : "Utente Sconosciuto";
     const userEmail = user ? user.email : "Email non fornita";
 
-    
     const templateParams = {
-      user_name: userName,  
-      user_email: userEmail, 
-      message: message,      
-      contact_number: contactNumber, 
+      user_name: userName,
+      user_email: userEmail,
+      message: message,
+      contact_number: contactNumber,
     };
 
     emailjs
       .send(
-        "contact_service",  
-        "contact_form",    
+        "contact_service",
+        "contact_form",
         templateParams,
-        "bMOpUWBSnYE6ynS4K" 
+        "bMOpUWBSnYE6ynS4K"
       )
       .then((response) => {
         setFeedback("Messaggio inviato con successo! ✅");
-        setFeedbackColor("green");
-        setMessage("");
+        setFeedbackColor("blue");
+        setMessage(""); 
       })
       .catch((error) => {
         setFeedback("Errore nell'invio del messaggio. ❌");
@@ -63,6 +67,7 @@ const Assistance = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Scrivi qui le tue richieste..."
+            required
           ></textarea>
           <input
             type="submit"
@@ -84,12 +89,12 @@ const Assistance = () => {
             </a>
           </p>
         </div>
+        <footer>
+          <Link to="/game" className="footer-link">
+            ↱ Torna al gioco ↰
+          </Link>
+        </footer>
       </div>
-      <footer>
-        <Link to="/game" className="footer-link">
-          ↱ Torna al gioco ↰
-        </Link>
-      </footer>
     </>
   );
 };

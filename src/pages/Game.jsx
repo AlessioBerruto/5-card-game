@@ -34,7 +34,7 @@ const Game = () => {
 							<img
 								src={`${import.meta.env.BASE_URL}/assets/utente-bianco.svg`}
 								className="card-img-top"
-								alt="user-profile-img"
+								alt="icona del profilo"
 							/>
 							<div className="card-body">Profilo</div>
 						</div>
@@ -45,7 +45,7 @@ const Game = () => {
 							<img
 								src={`${import.meta.env.BASE_URL}/assets/regole-bianco.svg`}
 								className="card-img-top"
-								alt="rules-img"
+								alt="icona delle regole"
 							/>
 							<div className="card-body">Regole</div>
 						</div>
@@ -60,7 +60,7 @@ const Game = () => {
 							<img
 								src={`${import.meta.env.BASE_URL}/assets/assistenza-bianco.svg`}
 								className="card-img-top"
-								alt="assistance-img"
+								alt="icona dell'assistenza"
 							/>
 							<div className="card-body">Assistenza</div>
 						</div>
@@ -71,7 +71,7 @@ const Game = () => {
 							<img
 								src={`${import.meta.env.BASE_URL}/assets/logout-bianco.svg`}
 								className="card-img-top"
-								alt="logout-img"
+								alt="icona del logout"
 							/>
 							<div className="card-body"><span>Logout</span></div>
 						</div>
