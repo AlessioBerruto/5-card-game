@@ -75,9 +75,9 @@ const App = () => {
 				<div className="home-container">
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
-						Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario ma multigiocatore.
-						<br />Registrati o Accedi per scoprire le regole di questo 
-						gioco, in attesa dell'uscita della sua versione digitale.
+						<p>Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario ma multigiocatore.</p>
+						<p>Registrati o Accedi per scoprire le regole di questo 
+						gioco, in attesa dell'uscita della sua versione digitale.</p>
 					</div>
 					<div className="form-wrapper">
 						<h2>{isRegistering ? "Registrati" : "Accedi"}</h2>

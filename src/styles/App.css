@@ -365,6 +365,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 2rem;
 }
 
 .home-title {
@@ -385,7 +386,7 @@
 
 .home-description {
   color: #1b1b1d;
-  max-width: 750px;
+  max-width: 47vw;
   text-align: center;
   font-size: 1.7rem;
   font-weight: 500;
@@ -471,4 +472,149 @@ footer .footer-link {
 }
 footer .footer-link:hover {
   color: #990300;
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .home-container {
+    flex-direction: column;
+    gap: 5vh;
+  }
+  .home-title {
+    font-size: 3rem;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+  }
+  .home-description {
+    font-size: 1.5rem;
+    max-width: 80vw;
+  }
+  .card-bg-trasparent .card-body {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    gap: 4vh;
+  }
+  .home-title {
+    font-size: 2.5rem;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+  }
+  .home-description {
+    font-size: 1.2rem;
+    max-width: 80vw;
+  }
+  .game-page {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .game-window {
+    margin: 1.5vh;
+  }
+  .left-navbar,
+  .right-navbar {
+    flex-direction: row;
+    height: 100%;
+    width: 100vw;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .card-bg-trasparent {
+    min-width: 70px;
+  }
+  .card-bg-trasparent .card-body {
+    font-size: 1rem;
+  }
+  .profile-img .card-bg-trasparent img {
+    width: 200px;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) and (min-width: 414px) and (max-width: 600px) {
+  .home-container {
+    flex-direction: column;
+    gap: 4vh;
+  }
+  .home-title {
+    font-size: 2.5rem;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+  }
+  .home-description {
+    font-size: 1.2rem;
+    max-width: 80vw;
+  }
+  .game-page {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .game-window {
+    margin: 1.5vh;
+  }
+  .left-navbar,
+  .right-navbar {
+    flex-direction: row;
+    height: 100%;
+    width: 100vw;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .card-bg-trasparent {
+    min-width: 70px;
+  }
+  .card-bg-trasparent .card-body {
+    font-size: 1rem;
+  }
+  .profile-img .card-bg-trasparent img {
+    width: 200px;
+  }
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) and (max-width: 413px) {
+  .home-container {
+    flex-direction: column;
+    gap: 3vh;
+  }
+  .home-title {
+    font-size: 2.3rem;
+    margin-bottom: 2.5vh;
+    margin-top: 2.5vh;
+  }
+  .home-description {
+    font-size: 1rem;
+    max-width: 80vw;
+  }
+  .game-page {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .game-window {
+    margin: 1.5vh;
+  }
+  .left-navbar,
+  .right-navbar {
+    flex-direction: row;
+    height: 100%;
+    width: 100vw;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .card-bg-trasparent {
+    min-width: 70px;
+  }
+  .card-bg-trasparent .card-body {
+    font-size: 1rem;
+  }
+  .profile-img .card-bg-trasparent img {
+    width: 200px;
+  }
 }
