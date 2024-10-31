@@ -1,7 +1,7 @@
 @import "./variables";
 
 .profile-page {
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+	font-family: $fonts;
 	background-color: $primary;
 	background-image: url("/assets/pattern-bianco.png");
 	display: flex;

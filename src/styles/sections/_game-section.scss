@@ -1,7 +1,7 @@
 @import "./variables";
 
 .game-page {
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+	font-family: $fonts;
 	background-color: $fifth;
 	display: flex;
 	flex-direction: row;

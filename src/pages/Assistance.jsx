@@ -21,7 +21,7 @@ const Assistance = () => {
     
     if (!message.trim()) {
       setFeedback("Per favore, scrivi un messaggio prima di inviare.");
-      setFeedbackColor("red");
+      setFeedbackColor("darkred");
       return;
     }
 
@@ -49,7 +49,7 @@ const Assistance = () => {
       })
       .catch((error) => {
         setFeedback("Errore nell'invio del messaggio. ❌");
-        setFeedbackColor("red");
+        setFeedbackColor("darkred");
         console.error("EmailJS error:", error);
       });
   };

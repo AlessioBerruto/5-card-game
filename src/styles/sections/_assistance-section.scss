@@ -1,7 +1,7 @@
 @import "./variables";
 
 .assistance-page {
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+	font-family: $fonts;
 	background-color: $primary;
 	background-image: url("/assets/pattern-bianco.png");
 	display: flex;
@@ -42,7 +42,7 @@
 		background-color: lightgrey;
 		width: 80%;
 		height: 46vh;
-		color: #1b1b1d;
+		color: $fifth;
 		padding: 13px 15px;
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 		border: 2px solid $fifth;
