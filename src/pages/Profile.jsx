@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ShowIcon from "/assets/fronte-carta.svg";
 import CoverIcon from "/assets/retro-carta.svg";
+import { setLoading } from '../slices/loadingSlice';
 
 function Profile() {
 	const dispatch = useDispatch();
