@@ -41,6 +41,7 @@ function Profile() {
 
 	const handleUpdate = async () => {
 		try {
+			
 			if (!user.email) {
 				setMessage("Effettua prima il login per aggiornare i dati");
 				return;
@@ -51,6 +52,7 @@ function Profile() {
 				...formData,
 			});
 
+			dispatch(setLoading(true));
 			const response = await axios.put(
 				`https://five-card-game.onrender.com/api/user`,
 				{
@@ -71,15 +73,20 @@ function Profile() {
 			setMessage(
 				error.response?.data.message || "Errore durante l'aggiornamento"
 			);
+		} finally {
+			dispatch(setLoading(false));
 		}
 	};
 
 	const handleDelete = async () => {
 		try {
+			
 			if (!user.email) {
 				setMessage("Effettua prima il login per cancellare il profilo");
 				return;
 			}
+
+			dispatch(setLoading(true));
 			const response = await axios.delete(
 				`https://five-card-game.onrender.com/api/user`,
 				{ data: { email: user.email } }

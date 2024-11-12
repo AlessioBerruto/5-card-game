@@ -5,6 +5,8 @@ import { setUserData } from "./slices/userSlice";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
+import Loader from "./components/Loader";
+import { setLoading } from './slices/loadingSlice';
 
 const App = () => {
 	const [isRegistering, setIsRegistering] = useState(false);
@@ -25,10 +27,14 @@ const App = () => {
 		}
 
 		try {
-			const response = await axios.post("https://five-card-game.onrender.com/api/login", {
-				email,
-				password,
-			});
+			dispatch(setLoading(true));
+			const response = await axios.post(
+				"https://five-card-game.onrender.com/api/login",
+				{
+					email,
+					password,
+				}
+			);
 			const { user, token } = response.data;
 
 			dispatch(login({ token }));
@@ -37,7 +43,11 @@ const App = () => {
 			navigate("/game");
 		} catch (err) {
 			console.log(err.response);
-			setError("Errore nel login: " + err.response?.data?.message || err.message);
+			setError(
+				"Errore nel login: " + err.response?.data?.message || err.message
+			);
+		} finally {
+			dispatch(setLoading(false));
 		}
 	};
 
@@ -51,33 +61,47 @@ const App = () => {
 		}
 
 		try {
-			const response = await axios.post("https://five-card-game.onrender.com/api/register", {
-				name,
-				email,
-				password,
-			});
+			dispatch(setLoading(true));
+			const response = await axios.post(
+				"https://five-card-game.onrender.com/api/register",
+				{
+					name,
+					email,
+					password,
+				}
+			);
 			const { user, token } = response.data;
-			
-			console.log("User ID:", user._id); 
+
 			dispatch(login({ token }));
 			dispatch(setUserData(user));
 
 			navigate("/game");
 		} catch (err) {
-			console.log(err.response); 
-			setError("Errore nella registrazione: " + err.response?.data?.message || err.message);
+			console.log(err.response);
+			setError(
+				"Errore nella registrazione: " + err.response?.data?.message ||
+					err.message
+			);
+		} finally {
+			dispatch(setLoading(false));
 		}
 	};
 
 	return (
 		<>
+			<Loader />
 			<div className="home-page">
 				<div className="home-container">
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
-						<p>Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario ma multigiocatore.</p>
-						<p>Registrati o Accedi per scoprire le regole di questo 
-						gioco, in attesa dell'uscita della sua versione digitale.</p>
+						<p>
+							Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario
+							ma multigiocatore.
+						</p>
+						<p>
+							Registrati o Accedi per scoprire le regole di questo gioco, in
+							attesa dell'uscita della sua versione digitale.
+						</p>
 					</div>
 					<div className="form-wrapper">
 						<h2>{isRegistering ? "Registrati" : "Accedi"}</h2>

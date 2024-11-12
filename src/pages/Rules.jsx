@@ -1,5 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import inizioPartita from "/assets/cinque-inizio.png";
+import esempioTurno from "/assets/cinque-un-turno.png";
+import manoFinita from "/assets/cinque-mano-finita.png";
+import ultimaMano from "/assets/cinque-ultima-mano.png";
+import partitaFinita from "/assets/cinque-partita-finita.png";
 
 const Rules = () => {
 	return (
@@ -43,10 +48,7 @@ const Rules = () => {
 							coperto e la mano iniziale.
 						</li>
 						<div className="example-img">
-							<img
-								src={`${import.meta.env.BASE_URL}/assets/cinque-inizio.png`}
-								alt="5 inizio partita"
-							/>
+							<img src={inizioPartita} alt="5 inizio partita" />
 						</div>
 						<li>
 							Il giocatore che ha scelto l'ultimo mazzetto inizia per primo
@@ -58,10 +60,7 @@ const Rules = () => {
 							procedimento.
 						</li>
 						<div className="example-img">
-							<img
-								src={`${import.meta.env.BASE_URL}/assets/cinque-un-turno.png`}
-								alt="5 esempio di turno"
-							/>
+							<img src={esempioTurno} alt="5 esempio di turno" />
 						</div>
 						<li>
 							Quando un giocatore termina le carte che ha in mano:
@@ -75,12 +74,7 @@ const Rules = () => {
 							più volte.
 						</li>
 						<div className="example-img">
-							<img
-								src={`${
-									import.meta.env.BASE_URL
-								}/assets/cinque-mano-finita.png`}
-								alt="5 mano finita"
-							/>
+							<img src={manoFinita} alt="5 mano finita" />
 						</div>
 
 						<li>
@@ -91,12 +85,7 @@ const Rules = () => {
 							all'esaurimento del mazzetto.
 						</li>
 						<div className="example-img">
-							<img
-								src={`${
-									import.meta.env.BASE_URL
-								}/assets/cinque-ultima-mano.png`}
-								alt="5 mazzetto finito"
-							/>
+							<img src={ultimaMano} alt="5 mazzetto finito" />
 						</div>
 						<li>
 							Quando il mazzo principale finisce, la pila degli scarti viene
@@ -111,12 +100,7 @@ const Rules = () => {
 							</li>
 						</dd>
 						<div className="example-img">
-							<img
-								src={`${
-									import.meta.env.BASE_URL
-								}/assets/cinque-partita-finita.png`}
-								alt="5 fine partita"
-							/>
+							<img src={partitaFinita} alt="5 fine partita" />
 						</div>
 						<dd>
 							<dt>Regole aggiuntive:</dt>
