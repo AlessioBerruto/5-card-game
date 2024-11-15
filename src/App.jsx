@@ -60,6 +60,11 @@ const App = () => {
 			return;
 		}
 
+		if (password.length < 6) {
+			setError("La password deve avere almeno 6 caratteri");
+			return;
+		}
+
 		try {
 			dispatch(setLoading(true));
 			const response = await axios.post(

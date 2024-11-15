@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ShowIcon from "/assets/fronte-carta.svg";
 import CoverIcon from "/assets/retro-carta.svg";
-import { setLoading } from '../slices/loadingSlice';
+import { setLoading } from "../slices/loadingSlice";
 
 function Profile() {
 	const dispatch = useDispatch();
@@ -42,9 +42,13 @@ function Profile() {
 
 	const handleUpdate = async () => {
 		try {
-			
 			if (!user.email) {
 				setMessage("Effettua prima il login per aggiornare i dati");
+				return;
+			}
+			
+			if (formData.password && formData.password.length < 6) {
+				setMessage("La password deve avere almeno 6 caratteri");
 				return;
 			}
 
@@ -81,7 +85,6 @@ function Profile() {
 
 	const handleDelete = async () => {
 		try {
-			
 			if (!user.email) {
 				setMessage("Effettua prima il login per cancellare il profilo");
 				return;
