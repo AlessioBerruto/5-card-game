@@ -8,6 +8,8 @@ import Profile from './pages/Profile.jsx';
 import Game from './pages/Game.jsx';      
 import Rules from './pages/Rules.jsx';      
 import Assistance from './pages/Assistance.jsx';      
+import Objective from './pages/Objective.jsx';      
+import Community from './pages/Community.jsx';      
 import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
