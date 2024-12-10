@@ -22,6 +22,14 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
+    path: "/objective",  
+    element: <Objective />,
+  },
+  {
+    path: "/community",  
+    element: <Community />,
+  },
+  {
     path: "/game",  
     element: <Game />,
   },

@@ -1,0 +1,13 @@
+@import "./variables";
+
+.community-page {
+	font-family: $fonts;
+	background-color: $primary;
+	background-image: url("/assets/pattern-bianco.png");
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	position: relative;	
+}

@@ -356,6 +356,30 @@
   font-weight: 500;
 }
 
+.objective-page {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  background-color: #009E52;
+  background-image: url("/assets/pattern-bianco.png");
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.community-page {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  background-color: #009E52;
+  background-image: url("/assets/pattern-bianco.png");
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+}
+
 .home-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   background-color: #009E52;

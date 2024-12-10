@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setLoading } from '../slices/loadingSlice';
+import { setLoading } from "../slices/loadingSlice";
 
 const Game = () => {
 	const navigate = useNavigate();
@@ -43,7 +43,35 @@ const Game = () => {
 							<div className="card-body">Profilo</div>
 						</div>
 					</Link>
+					<Link to="/objective" className="navbar-link">
+						<div className="card-bg-trasparent">
+							<img
+								src={`${import.meta.env.BASE_URL}/assets/obiettivi-bianco.svg`}
+								className="card-img-top"
+								alt="icona del profilo"
+							/>
+							<div className="card-body">Obiettivi</div>
+						</div>
+					</Link>
+					<Link to="/community" className="navbar-link">
+						<div className="card-bg-trasparent">
+							<img
+								src={`${import.meta.env.BASE_URL}/assets/community-bianco.svg`}
+								className="card-img-top"
+								alt="icona del profilo"
+							/>
+							<div className="card-body">Community</div>
+						</div>
+					</Link>
+				</div>
+				<div className="game-window">
+					<img
+						src={`${import.meta.env.BASE_URL}/assets/cinque-game-bg.png`}
+						alt="5 Game Background"
+					/>
+				</div>
 
+				<div className="right-navbar">
 					<Link to="/rules" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
@@ -54,14 +82,7 @@ const Game = () => {
 							<div className="card-body">Regole</div>
 						</div>
 					</Link>
-				</div>
-				<div className="game-window">
-					<img
-						src={`${import.meta.env.BASE_URL}/assets/cinque-game-bg.png`}
-						alt="5 Game Background"
-					/>
-				</div>
-				<div className="right-navbar">
+
 					<Link to="/assistance" className="navbar-link">
 						<div className="card-bg-trasparent">
 							<img
