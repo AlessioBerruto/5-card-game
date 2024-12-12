@@ -20,6 +20,8 @@ function Profile() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [editMode, setEditMode] = useState(false);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const [imagePreview, setImagePreview] = useState(null);
+	const [file, setFile] = useState(null);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -33,6 +35,7 @@ function Profile() {
 				email: user.email,
 				password: user.password,
 			});
+			setImagePreview(user.profileImage);
 		}
 	}, [user]);
 
@@ -46,7 +49,7 @@ function Profile() {
 				setMessage("Effettua prima il login per aggiornare i dati");
 				return;
 			}
-			
+
 			if (formData.password && formData.password.length < 6) {
 				setMessage("La password deve avere almeno 6 caratteri");
 				return;
@@ -68,13 +71,10 @@ function Profile() {
 				}
 			);
 
-			console.log("Risposta dal server:", response.data);
-
 			setMessage(response.data.message);
 			dispatch(updateUser(response.data.user));
 			setEditMode(false);
 		} catch (error) {
-			console.error("Errore durante l'aggiornamento:", error);
 			setMessage(
 				error.response?.data.message || "Errore durante l'aggiornamento"
 			);
@@ -105,13 +105,60 @@ function Profile() {
 		}
 	};
 
+	const handleImageChange = (e) => {
+		const selectedFile = e.target.files[0];
+		if (selectedFile) {
+			setFile(selectedFile);
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setImagePreview(reader.result);
+			};
+			reader.readAsDataURL(selectedFile);
+		}
+	};
+
+	const handleImageUpload = async () => {
+		if (!file) {
+			setMessage("Seleziona un'immagine per caricarla.");
+			return;
+		}
+
+		try {
+			const formData = new FormData();
+			formData.append("image", file);
+
+			dispatch(setLoading(true));
+
+			const response = await axios.post(
+				`https://five-card-game.onrender.com/api/upload-profile-image`,
+				formData,
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			);
+
+			setMessage("Immagine caricata con successo!");
+			dispatch(updateUser({ ...user, profileImage: response.data.imageUrl }));
+		} catch (error) {
+			console.error("Errore durante il caricamento dell'immagine:", error);
+			setMessage("Errore durante il caricamento dell'immagine.");
+		} finally {
+			dispatch(setLoading(false));
+		}
+	};
+
 	return (
 		<div className="profile-page">
 			<div className="page-content">
 				<div className="profile-img">
 					<div className="card-bg-trasparent">
 						<img
-							src={`${import.meta.env.BASE_URL}/assets/utente-nero.svg`}
+							src={
+								imagePreview ||
+								`${import.meta.env.BASE_URL}/assets/utente-nero.svg`
+							}
 							className="card-img-top"
 							alt="icona del profilo"
 						/>
@@ -119,6 +166,15 @@ function Profile() {
 							<p>{user?.name || "Nome Utente"}</p>
 						</div>
 					</div>
+					<input
+						type="file"
+						accept="image/*"
+						onChange={handleImageChange}
+						className="upload-img-btn"
+					/>
+					<button onClick={handleImageUpload} className="upload-btn">
+						Carica immagine
+					</button>
 					<button onClick={() => setEditMode(true)} className="edit-btn">
 						Modifica dati
 					</button>

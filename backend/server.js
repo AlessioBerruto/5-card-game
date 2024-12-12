@@ -4,23 +4,36 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import User from "./models/User.js";
 import dotenv from "dotenv";
+import multer from "multer"; 
+import { Storage } from '@google-cloud/storage'; 
 
 dotenv.config();
 
+// Configurazione della connessione a MongoDB
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connessione al database riuscita"))
   .catch((err) => console.error("Connessione al database fallita", err));
 
+// Configurazione Google Cloud Storage
+const storage = new Storage({
+  keyFilename: './config/google-cloud-key.json' 
+});
+const bucket = storage.bucket(process.env.GCLOUD_BUCKET_NAME); 
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(cors({
     origin: ["http://localhost:5173", "https://alessioberruto.github.io"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 app.use(bodyParser.json());
+
+const multerStorage = multer.memoryStorage();
+const upload = multer({ storage: multerStorage });
 
 // Registrazione
 app.post('/api/register', async (req, res) => {
@@ -76,45 +89,13 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Aggiornamento dati utente
-app.put('/api/user', async (req, res) => {
-    const { email, name, password, currentEmail } = req.body;
-
-    try {
-        const user = await User.findOne({ email: currentEmail });
-        if (!user) {
-            return res.status(404).json({ message: 'Utente non trovato' });
-        }
-
-        if (email && email !== user.email) {
-            const emailExists = await User.findOne({ email });
-            if (emailExists) {
-                return res.status(400).json({ message: 'Email già in uso' });
-            }
-            user.email = email;
-        }
-
-        if (name) user.name = name;
-        if (password) user.password = password;
-
-        await user.save();
-
-        res.status(200).json({
-            message: 'Utente aggiornato con successo',
-            user: {
-                name: user.name,
-                email: user.email,
-                password: password
-            }
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Errore durante l\'aggiornamento', error });
-    }
-});
-
-// Eliminazione dell'utente
-app.delete('/api/user', async (req, res) => {
+// Aggiornamento immagine profilo
+app.put('/api/user/profile-image', upload.single('image'), async (req, res) => {
     const { email } = req.body;
+
+    if (!req.file) {
+        return res.status(400).json({ message: 'Nessuna immagine fornita' });
+    }
 
     try {
         const user = await User.findOne({ email });
@@ -122,11 +103,28 @@ app.delete('/api/user', async (req, res) => {
             return res.status(404).json({ message: 'Utente non trovato' });
         }
 
-        await User.deleteOne({ email });
+        const blob = bucket.file(`profile-images/${user._id}-${Date.now()}.jpg`);
+        const blobStream = blob.createWriteStream({
+            resumable: false,
+            contentType: 'image/jpeg'
+        });
 
-        res.status(200).json({ message: 'Utente eliminato con successo' });
+        blobStream.on('error', (err) => {
+            res.status(500).json({ message: 'Errore nel caricamento dell\'immagine', error: err });
+        });
+
+        blobStream.on('finish', async () => {
+            const imageUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+            
+            user.profileImage = imageUrl;
+            await user.save();
+
+            res.status(200).json({ message: 'Immagine aggiornata con successo', imageUrl });
+        });
+
+        blobStream.end(req.file.buffer);
     } catch (error) {
-        res.status(500).json({ message: 'Errore durante l\'eliminazione dell\'utente', error });
+        res.status(500).json({ message: 'Errore durante l\'aggiornamento dell\'immagine', error });
     }
 });
 

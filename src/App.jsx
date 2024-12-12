@@ -174,11 +174,11 @@ const App = () => {
 					</div>
 				</div>
 			</div>
-			{/* <footer>
+			<footer>
 				<Link to="/game" className="navbar-link">
 					Game
 				</Link>
-			</footer> */}
+			</footer>
 		</>
 	);
 };
