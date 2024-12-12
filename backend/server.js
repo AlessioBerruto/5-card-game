@@ -19,7 +19,7 @@ mongoose
 const storage = new Storage({
   keyFilename: './config/google-cloud-key.json' 
 });
-const bucket = storage.bucket(process.env.GCLOUD_BUCKET_NAME); 
+const bucket = storage.bucket("5-cardgame-bucket");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
