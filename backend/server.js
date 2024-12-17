@@ -84,6 +84,10 @@ app.post("/api/upload-profile-image", upload.single("image"), async (req, res) =
   try {
     const file = req.file;
     const userEmail = req.body.email;
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    if (!allowedTypes.includes(file.mimetype)) {
+      return res.status(400).json({ message: 'Tipo di file non supportato. Carica solo immagini JPEG o PNG.' });
+    }
     const fileName = `${userEmail}-${Date.now()}.jpg`;
     const blob = bucket.file(fileName);
     const blobStream = blob.createWriteStream({
@@ -92,6 +96,8 @@ app.post("/api/upload-profile-image", upload.single("image"), async (req, res) =
     });
 
     blobStream.on("error", (err) => {
+        console.error("Errore durante il caricamento:", err); // Aggiungi log per l'errore
+
       res.status(500).json({
         message: "Errore durante il caricamento dell'immagine",
         error: err,
@@ -110,6 +116,8 @@ app.post("/api/upload-profile-image", upload.single("image"), async (req, res) =
 
     blobStream.end(file.buffer);
   } catch (error) {
+    console.error("Errore generale durante il caricamento:", error); // Aggiungi log per l'errore
+
     res.status(500).json({ message: "Errore durante il caricamento dell'immagine", error });
   }
 });
