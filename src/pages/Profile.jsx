@@ -74,6 +74,7 @@ function Profile() {
             setMessage(response.data.message);
             dispatch(updateUser(response.data.user));
 
+            // Aggiornamento immagine del profilo se l'email cambia
             if (formData.email !== user.email) {
                 await axios.put(
                     `https://five-card-game.onrender.com/api/update-profile-image`,
@@ -169,10 +170,7 @@ function Profile() {
                 <div className="profile-img">
                     <div className="card-bg-trasparent">
                         <img
-                            src={
-                                imagePreview ||
-                                `${import.meta.env.BASE_URL}/assets/utente-nero.svg`
-                            }
+                            src={imagePreview || `${import.meta.env.BASE_URL}/assets/utente-nero.svg`}
                             className="card-img-top"
                             alt="icona del profilo"
                         />
