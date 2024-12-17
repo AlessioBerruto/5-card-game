@@ -89,42 +89,65 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Aggiornamento immagine profilo
-app.put('/api/user/profile-image', upload.single('image'), async (req, res) => {
-    const { email } = req.body;
-
-    if (!req.file) {
-        return res.status(400).json({ message: 'Nessuna immagine fornita' });
-    }
-
+// Caricamento immagine profilo
+app.post('/api/upload-profile-image', upload.single('image'), async (req, res) => {
     try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(404).json({ message: 'Utente non trovato' });
-        }
-
-        const blob = bucket.file(`profile-images/${user._id}-${Date.now()}.jpg`);
+        const file = req.file;
+        const userEmail = req.body.email;
+        const fileName = `${userEmail}-${Date.now()}.jpg`;
+        const blob = bucket.file(fileName);
         const blobStream = blob.createWriteStream({
             resumable: false,
-            contentType: 'image/jpeg'
+            contentType: file.mimetype,
         });
 
         blobStream.on('error', (err) => {
-            res.status(500).json({ message: 'Errore nel caricamento dell\'immagine', error: err });
+            res.status(500).json({ message: 'Errore durante il caricamento dell\'immagine', error: err });
         });
 
         blobStream.on('finish', async () => {
-            const imageUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-            
-            user.profileImage = imageUrl;
-            await user.save();
+            const imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+            const user = await User.findOneAndUpdate({ email: userEmail }, { profileImage: imageUrl });
 
-            res.status(200).json({ message: 'Immagine aggiornata con successo', imageUrl });
+            res.status(200).json({ message: 'Immagine caricata con successo', imageUrl });
         });
 
-        blobStream.end(req.file.buffer);
+        blobStream.end(file.buffer);
     } catch (error) {
-        res.status(500).json({ message: 'Errore durante l\'aggiornamento dell\'immagine', error });
+        res.status(500).json({ message: 'Errore durante il caricamento dell\'immagine', error });
+    }
+});
+
+// Aggiornamento email utente e immagine profilo
+app.put('/api/user', async (req, res) => {
+    try {
+        const userEmail = req.body.email;
+        const user = await User.findOneAndUpdate({ email: req.user.email }, { email: userEmail });
+
+        if (user.profileImage) {
+            const fileName = `${userEmail}-${Date.now()}.jpg`;
+            const blob = bucket.file(fileName);
+            const blobStream = blob.createWriteStream({
+                resumable: false,
+                contentType: 'image/jpeg',
+            });
+
+            blobStream.on('error', (err) => {
+                res.status(500).json({ message: 'Errore durante l\'aggiornamento dell\'immagine', error: err });
+            });
+
+            blobStream.on('finish', async () => {
+                const imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+                user.profileImage = imageUrl;
+                await user.save();
+            });
+
+            blobStream.end(user.profileImage.buffer);
+        }
+
+        res.status(200).json({ message: 'Mail aggiornata con successo' });
+    } catch (error) {
+        res.status(500).json({ message: 'Errore durante l\'aggiornamento della mail', error });
     }
 });
 
