@@ -132,18 +132,28 @@ function Profile() {
     };
 
     const handleImageUpload = async () => {
-        if (!file) {
-            setMessage("Seleziona un'immagine per caricarla.");
+        if (!file || !["image/jpeg", "image/png"].includes(file.type)) {
+            setMessage("Seleziona un'immagine JPEG o PNG.");
+            return;
+          }
+          
+    
+        // Verifica che il file sia di tipo immagine
+        const allowedTypes = ["image/jpeg", "image/png"];
+        if (!allowedTypes.includes(file.type)) {
+            setMessage("Carica un'immagine JPEG o PNG.");
             return;
         }
-
+    
         try {
             const formData = new FormData();
             formData.append("image", file);
             formData.append("email", user.email);
-
+    
+            console.log("FormData prima della richiesta:", formData);
+    
             dispatch(setLoading(true));
-
+    
             const response = await axios.post(
                 `https://five-card-game.onrender.com/api/upload-profile-image`,
                 formData,
@@ -153,16 +163,28 @@ function Profile() {
                     },
                 }
             );
-
+    
+            // Verifica la risposta del server
+            console.log("Risposta server:", response.data);
+    
             setMessage("Immagine caricata con successo!");
             dispatch(updateUser({ ...user, profileImage: response.data.imageUrl }));
         } catch (error) {
-            console.error("Errore durante il caricamento dell'immagine:", error);
-            setMessage("Errore durante il caricamento dell'immagine.");
+            // Log completo dell'errore
+            console.error("Errore durante il caricamento dell'immagine:", error.response || error.message);
+    
+            if (error.response) {
+                // Se il server ha inviato un errore
+                setMessage(`Errore durante il caricamento dell'immagine: ${error.response.data.message || error.message}`);
+            } else {
+                // Se l'errore è dovuto a problemi di rete o altro
+                setMessage("Errore di rete o problema con il server.");
+            }
         } finally {
             dispatch(setLoading(false));
         }
     };
+    
 
     return (
         <div className="profile-page">
