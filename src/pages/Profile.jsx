@@ -74,7 +74,7 @@ function Profile() {
             setMessage(response.data.message);
             dispatch(updateUser(response.data.user));
 
-            // Aggiornamento immagine del profilo se l'email cambia
+            
             if (formData.email !== user.email) {
                 await axios.put(
                     `https://five-card-game.onrender.com/api/update-profile-image`,
@@ -138,7 +138,7 @@ function Profile() {
           }
           
     
-        // Verifica che il file sia di tipo immagine
+        
         const allowedTypes = ["image/jpeg", "image/png"];
         if (!allowedTypes.includes(file.type)) {
             setMessage("Carica un'immagine JPEG o PNG.");
@@ -166,9 +166,12 @@ function Profile() {
     
             // Verifica la risposta del server
             console.log("Risposta server:", response.data);
-    
+
+            const imageUrl = response.data.imageUrl;
+            setImagePreview(imageUrl);
+
             setMessage("Immagine caricata con successo!");
-            dispatch(updateUser({ ...user, profileImage: response.data.imageUrl }));
+            dispatch(updateUser({ ...user, profileImage: imageUrl }));
         } catch (error) {
             // Log completo dell'errore
             console.error("Errore durante il caricamento dell'immagine:", error.response || error.message);

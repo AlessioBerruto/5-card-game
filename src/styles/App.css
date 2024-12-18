@@ -159,6 +159,9 @@
 .profile-img .card-bg-trasparent {
   width: 17vw;
 }
+.profile-img .card-bg-trasparent img {
+  width: 100%;
+}
 .profile-img .card-bg-trasparent p {
   margin-bottom: 0;
   color: black;

@@ -1,4 +1,3 @@
-// Importazioni iniziali
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -94,9 +93,12 @@ app.post("/api/upload-profile-image", upload.single("image"), async (req, res) =
       const userEmail = req.body.email;
   
       // Log per vedere cosa arriva nel file
-      console.log("File ricevuto:", req.file);
-      console.log("File ricevuto:", file);
+      console.log("File ricevuto:", req.file);      
       console.log("Email utente:", userEmail);
+
+      if (!file) {
+        return res.status(400).json({ message: 'Nessun file caricato.' });
+    }
   
       // Controllo del tipo di file
       const allowedTypes = ['image/jpeg', 'image/png'];
@@ -122,8 +124,17 @@ app.post("/api/upload-profile-image", upload.single("image"), async (req, res) =
       blobStream.on("finish", async () => {
         const imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
         console.log("Immagine caricata con successo:", imageUrl);
-        await User.findOneAndUpdate({ email: userEmail }, { profileImage: imageUrl });
   
+        // Aggiorna il profilo dell'utente con l'URL dell'immagine
+        const updatedUser = await User.findOneAndUpdate(
+          { email: userEmail },
+          { profileImage: imageUrl },
+          { new: true } // Ritorna l'utente aggiornato
+        );
+  
+        if (!updatedUser) {
+          return res.status(404).json({ message: "Utente non trovato" });
+        }
         res.status(200).json({
           message: "Immagine caricata con successo",
           imageUrl,
