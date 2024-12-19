@@ -9,5 +9,95 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-	position: relative;	
+	position: relative;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.community-title {
+	font-size: 3.5rem;
+	color: $secondary;
+	font-weight: bold;
+	text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.5);
+	margin-bottom: 5vh;
+}
+
+.community-content {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-left: 3rem;
+	gap: 2vh;
+	text-align: center;
+
+	.discord-button {
+		background-color: $secondary;
+		transition: transform 0.3s;
+		margin-bottom: 0.5rem;
+
+		&:hover {
+			transform: scale(1.08);
+		}
+
+		&:active {
+			background-color: $dark-secondary;
+			transform: scale(0.9);
+		}
+	}
+
+	textarea {
+		font-size: 1.1rem;
+		background-color: lightgrey;
+		width: 80%;
+		height: 10vh;
+		color: $fifth;
+		padding: 13px 15px;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+		border: 2px solid $fifth;
+		border-radius: 2px;
+	}
+
+	input {
+		width: 13vw;
+		margin-top: 2vh;
+		padding: 0.75rem;
+		background-color: $secondary;
+		color: $forth;
+		border: none;
+		border-radius: 4px;
+		font-size: 1.1rem;
+		cursor: pointer;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+		transition: transform 0.3s;
+
+		&:hover {
+			transform: scale(1.05);
+		}
+
+		&:active {
+			background-color: $dark-secondary;
+			transform: scale(0.97);
+		}
+	}
+
+	p {
+		margin: 0;
+		padding: 0.7rem 0;
+	}
+}
+
+.community-img {
+	width: 50%;
+	height: 100vh;
+	display: flex;
+	justify-content: flex-start;
+	padding: 5rem;
+
+	.front-card-img {
+		height: 100%;
+		margin: 0;
+		padding-left: 3rem;
+	}
 }

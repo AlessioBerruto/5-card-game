@@ -364,11 +364,36 @@
   background-color: #009E52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   position: relative;
+  padding: 4rem;
+  gap: 4vh;
+}
+
+.objective-title {
+  font-size: 3.5rem;
+  color: #000080;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.5);
+}
+
+.objective-description {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: #1b1b1d;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 10vh;
+  color: aliceblue;
+  padding: 0.5rem 1.2rem;
+}
+.objective-description .trophy-img {
+  height: 100%;
+  margin-right: 1rem;
 }
 
 .community-page {
@@ -381,6 +406,87 @@
   justify-content: center;
   min-height: 100vh;
   position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.community-title {
+  font-size: 3.5rem;
+  color: #000080;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.5);
+  margin-bottom: 5vh;
+}
+
+.community-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3rem;
+  gap: 2vh;
+  text-align: center;
+}
+.community-content .discord-button {
+  background-color: #000080;
+  transition: transform 0.3s;
+  margin-bottom: 0.5rem;
+}
+.community-content .discord-button:hover {
+  transform: scale(1.08);
+}
+.community-content .discord-button:active {
+  background-color: #000064;
+  transform: scale(0.9);
+}
+.community-content textarea {
+  font-size: 1.1rem;
+  background-color: lightgrey;
+  width: 80%;
+  height: 10vh;
+  color: #1b1b1d;
+  padding: 13px 15px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid #1b1b1d;
+  border-radius: 2px;
+}
+.community-content input {
+  width: 13vw;
+  margin-top: 2vh;
+  padding: 0.75rem;
+  background-color: #000080;
+  color: aliceblue;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+.community-content input:hover {
+  transform: scale(1.05);
+}
+.community-content input:active {
+  background-color: #000064;
+  transform: scale(0.97);
+}
+.community-content p {
+  margin: 0;
+  padding: 0.7rem 0;
+}
+
+.community-img {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  padding: 5rem;
+}
+.community-img .front-card-img {
+  height: 100%;
+  margin: 0;
+  padding-left: 3rem;
 }
 
 .home-page {
