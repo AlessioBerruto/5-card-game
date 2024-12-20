@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import multer from "multer";
 import { Storage } from "@google-cloud/storage";
 import fs from "fs";
-import mailgun from "mailgun-js";
+import Mailgun from "mailgun.js";
 
 dotenv.config();
 
@@ -45,9 +45,10 @@ const multerStorage = multer.memoryStorage();
 const upload = multer({ storage: multerStorage });
 
 // Mailgun
-const mg = mailgun({
-	apiKey: process.env.MAILGUN_API_KEY,
-	domain: process.env.MAILGUN_DOMAIN,
+const mailgun = new Mailgun();
+const client = mailgun.client({
+	username: 'api',
+	key: process.env.MAILGUN_API_KEY,	
 });
 
 // Registrazione
@@ -121,30 +122,26 @@ app.post("/api/subscribe-newsletter", async (req, res) => {
 		user.isSubscribedToNewsletter = true;
 		await user.save();
 
-		const data = {
+		const messageData = {
 			from: "newsletter@five-card-game.com",
 			to: user.email,
 			subject: "Benvenuto nella nostra newsletter!",
 			text: "Grazie per esserti iscritto alla nostra newsletter! Riceverai aggiornamenti e novità sul gioco.",
 		};
 
-		mg.messages().send(data, (error, body) => {
-			if (error) {
-				return res
-					.status(500)
-					.json({ message: "Errore nell'invio dell'email", error });
-			}
-
-			res
-				.status(200)
-				.json({ message: "Iscrizione alla newsletter avvenuta con successo" });
-		});
+		client.messages
+			.create(process.env.MAILGUN_DOMAIN, messageData)
+			.then(() => {
+				res.status(200).json({ message: "Iscrizione alla newsletter avvenuta con successo" });
+			})
+			.catch((error) => {
+				res.status(500).json({ message: "Errore nell'invio dell'email", error });
+			});
 	} catch (error) {
-		res
-			.status(500)
-			.json({ message: "Errore durante l'iscrizione alla newsletter", error });
+		res.status(500).json({ message: "Errore durante l'iscrizione alla newsletter", error });
 	}
 });
+
 
 // Caricamento immagine profilo
 app.post(
