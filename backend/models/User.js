@@ -26,6 +26,13 @@ const userSchema = new mongoose.Schema(
 			type: Boolean, 
 			default: false 
 		},
+		achievements: [
+			{
+				id: Number,
+				text: String,
+				unlocked: { type: Boolean, default: false },
+			},
+		],
 	},
 	{
 		timestamps: true,

@@ -7,6 +7,7 @@ const initialState = {
 		password: "",
 		profileImage: "",
 		isSubscribed: false,
+		achievements: [],
 	},
 };
 
@@ -32,6 +33,9 @@ const userSlice = createSlice({
 		setSubscriptionStatus: (state, action) => {
 			state.userData.isSubscribedToNewsletter = action.payload;
 		},
+		updateAchievements: (state, action) => {
+			state.userData.achievements = action.payload; 
+		},
 	},
 });
 
@@ -42,5 +46,6 @@ export const {
 	updateProfileImage,
 	deleteUser,
 	setSubscriptionStatus,
+	updateAchievements,
 } = userSlice.actions;
 export default userSlice.reducer;
