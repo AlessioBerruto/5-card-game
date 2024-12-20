@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import multer from "multer";
 import { Storage } from "@google-cloud/storage";
 import fs from "fs";
+import mailgun from "mailgun-js";
 
 dotenv.config();
 
@@ -43,7 +44,11 @@ app.use(bodyParser.json());
 const multerStorage = multer.memoryStorage();
 const upload = multer({ storage: multerStorage });
 
-// Resto del codice invariato (API di registrazione, login, caricamento immagine, ecc.)
+// Mailgun
+const mg = mailgun({
+	apiKey: process.env.MAILGUN_API_KEY,
+	domain: process.env.MAILGUN_DOMAIN,
+});
 
 // Registrazione
 app.post("/api/register", async (req, res) => {
@@ -97,6 +102,50 @@ app.post("/api/login", async (req, res) => {
 	}
 });
 
+// Iscrizione alla newsletter
+app.post("/api/subscribe-newsletter", async (req, res) => {
+	const { email } = req.body;
+
+	try {
+		const user = await User.findOne({ email });
+		if (!user) {
+			return res.status(404).json({ message: "Utente non trovato" });
+		}
+
+		if (user.isSubscribedToNewsletter) {
+			return res
+				.status(400)
+				.json({ message: "Sei già iscritto alla newsletter" });
+		}
+
+		user.isSubscribedToNewsletter = true;
+		await user.save();
+
+		const data = {
+			from: "newsletter@five-card-game.com",
+			to: user.email,
+			subject: "Benvenuto nella nostra newsletter!",
+			text: "Grazie per esserti iscritto alla nostra newsletter! Riceverai aggiornamenti e novità sul gioco.",
+		};
+
+		mg.messages().send(data, (error, body) => {
+			if (error) {
+				return res
+					.status(500)
+					.json({ message: "Errore nell'invio dell'email", error });
+			}
+
+			res
+				.status(200)
+				.json({ message: "Iscrizione alla newsletter avvenuta con successo" });
+		});
+	} catch (error) {
+		res
+			.status(500)
+			.json({ message: "Errore durante l'iscrizione alla newsletter", error });
+	}
+});
+
 // Caricamento immagine profilo
 app.post(
 	"/api/upload-profile-image",
@@ -110,15 +159,12 @@ app.post(
 				return res.status(400).json({ message: "Nessun file caricato." });
 			}
 
-			// Controllo del tipo di file
 			const allowedTypes = ["image/jpeg", "image/png"];
 			if (!allowedTypes.includes(file.mimetype)) {
-				return res
-					.status(400)
-					.json({
-						message:
-							"Tipo di file non supportato. Carica solo immagini JPEG o PNG.",
-					});
+				return res.status(400).json({
+					message:
+						"Tipo di file non supportato. Carica solo immagini JPEG o PNG.",
+				});
 			}
 
 			const fileName = `${userEmail}-${Date.now()}.jpg`;
@@ -157,12 +203,10 @@ app.post(
 			blobStream.end(file.buffer);
 		} catch (error) {
 			console.error("Errore generale durante il caricamento:", error);
-			res
-				.status(500)
-				.json({
-					message: "Errore durante il caricamento dell'immagine",
-					error,
-				});
+			res.status(500).json({
+				message: "Errore durante il caricamento dell'immagine",
+				error,
+			});
 		}
 	}
 );
