@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setSubscriptionStatus } from "../slices/userSlice";
+import emailjs from "emailjs-com";
 
 const Community = () => {
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.user.userData.email);
+  const userName = useSelector((state) => state.user.userData.name); // Aggiunto per ottenere il nome dell'utente
   const isSubscribed = useSelector((state) => state.user.userData.isSubscribedToNewsletter);
   const [isChecked, setIsChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,9 +21,9 @@ const Community = () => {
   }, [isSubscribed]);
 
   const handleSubscribe = async () => {
-    if (!userEmail) {
-      setError("L'utente non è loggato o non ha un'email associata.");
-      console.error("Email mancante:", userEmail);
+    if (!userEmail || !userName) {
+      setError("L'utente non è loggato o non ha un nome/email associato.");
+      console.error("Dati mancanti:", { userEmail, userName });
       return;
     }
 
@@ -29,12 +31,27 @@ const Community = () => {
     setError("");
 
     try {
+      
       const response = await axios.post("https://five-card-game.onrender.com/api/subscribe-newsletter", { email: userEmail });
 
       if (response.data.message === "Iscrizione alla newsletter avvenuta con successo") {
         dispatch(setSubscriptionStatus(true));
         setIsChecked(true);
-        alert("Iscrizione alla newsletter completata!");
+
+        
+        const emailParams = {
+          user_name: userName,
+          user_email: userEmail,
+        };
+
+        await emailjs.send(
+          "contact_service",
+          "newsletter_template",
+          emailParams,
+          "bMOpUWBSnYE6ynS4K"
+        );
+
+        alert("Iscrizione alla newsletter completata e mail inviata!");
       }
     } catch (err) {
       setError("Si è verificato un errore durante l'iscrizione.");

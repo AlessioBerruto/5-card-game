@@ -6,7 +6,7 @@ const initialState = {
 		email: "",
 		password: "",
 		profileImage: "",
-		isSubscribed: false,
+		isSubscribedToNewsletter: false,
 		achievements: [],
 	},
 };

@@ -141,60 +141,35 @@ app.post("/api/login", async (req, res) => {
 // Iscrizione alla newsletter
 app.post("/api/subscribe-newsletter", async (req, res) => {
 	const { email } = req.body;
-
+  
 	if (!email) {
-		return res.status(400).json({ message: "Email mancante" });
+	  return res.status(400).json({ message: "Email mancante" });
 	}
-
+  
 	console.log("Ricevuto email:", email);
-
+  
 	try {
-		const user = await User.findOne({ email });
-
-		if (!user) {
-			return res.status(400).json({ message: "Utente non trovato" });
-		}
-
-		if (user.isSubscribedToNewsletter) {
-			return res
-				.status(400)
-				.json({ message: "Utente già iscritto alla newsletter" });
-		}
-
-		user.isSubscribedToNewsletter = true;
-		await user.save();
-
-		const emailParams = {
-			user_name: user.name,
-			user_email: email,
-		};
-
-		emailjs
-			.send(
-				"contact_service",
-				"newsletter_template",
-				emailParams,
-				"bMOpUWBSnYE6ynS4K"
-			)
-			.then(
-				(response) => {
-					console.log("Email inviata con successo:", response);
-				},
-				(error) => {
-					console.error("Errore nell'invio dell'email:", error);
-				}
-			);
-
-		res
-			.status(200)
-			.json({ message: "Iscrizione alla newsletter avvenuta con successo" });
+	  const user = await User.findOne({ email });
+  
+	  if (!user) {
+		return res.status(400).json({ message: "Utente non trovato" });
+	  }
+  
+	  if (user.isSubscribedToNewsletter) {
+		return res.status(400).json({ message: "Utente già iscritto alla newsletter" });
+	  }
+  
+	  user.isSubscribedToNewsletter = true;
+	  await user.save();
+  
+	  res.status(200).json({ message: "Iscrizione alla newsletter avvenuta con successo" });
 	} catch (error) {
-		console.error("Errore durante l'iscrizione alla newsletter:", error);
-		res
-			.status(500)
-			.json({ message: "Errore durante l'iscrizione alla newsletter", error });
+	  console.error("Errore durante l'iscrizione alla newsletter:", error);
+	  res.status(500).json({ message: "Errore durante l'iscrizione alla newsletter", error });
 	}
-});
+  });
+  
+
 
 // Caricamento immagine profilo
 app.post(
