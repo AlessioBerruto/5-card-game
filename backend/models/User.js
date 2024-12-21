@@ -25,14 +25,7 @@ const userSchema = new mongoose.Schema(
 		isSubscribedToNewsletter: { 
 			type: Boolean, 
 			default: false 
-		},
-		achievements: [
-			{
-				id: Number,
-				text: String,
-				unlocked: { type: Boolean, default: false },
-			},
-		],
+		},		
 	},
 	{
 		timestamps: true,

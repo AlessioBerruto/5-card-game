@@ -43,9 +43,16 @@ const Assistance = () => {
         "bMOpUWBSnYE6ynS4K"
       )
       .then((response) => {
-        setFeedback("Messaggio inviato con successo! ✅");
-        setFeedbackColor("blue");
-        setMessage(""); 
+        if (response.status === 200) {
+          setFeedback("Messaggio inviato con successo! ✅");
+          setFeedbackColor("blue");
+          setMessage(""); 
+        } else {
+          setFeedback(
+            `Qualcosa è andato storto (codice: ${response.status}). Riprova più tardi.`
+          );
+          setFeedbackColor("darkred");
+        }
       })
       .catch((error) => {
         setFeedback("Errore nell'invio del messaggio. ❌");

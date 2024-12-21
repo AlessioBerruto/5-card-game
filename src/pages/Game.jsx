@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoading } from "../slices/loadingSlice";
+import { setRegistrationGoalUnlocked } from "../slices/userSlice";
 
 const Game = () => {
 	const navigate = useNavigate();
 	const [showLogoutModal, setShowLogoutModal] = useState(false);
 	const dispatch = useDispatch();
+
+	const { registrationGoalUnlocked } = useSelector(
+		(state) => state.user.userData
+	);
+
+	useEffect(() => {
+		if (registrationGoalUnlocked) {
+			setTimeout(() => {
+				dispatch(setRegistrationGoalUnlocked(false));
+			}, 3000);
+		}
+	}, [registrationGoalUnlocked, dispatch]);
 
 	const handleLogout = async () => {
 		try {
@@ -122,6 +135,22 @@ const Game = () => {
 							</button>
 						</div>
 					</div>
+				</div>
+			)}
+
+			{registrationGoalUnlocked && (
+				<div className="popup">
+					<img
+						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
+						className="trophy-img"
+						alt="trofeo"
+					/>
+					<p>Obiettivo Sbloccato</p>
+					<img
+						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
+						className="trophy-img"
+						alt="trofeo"
+					/>
 				</div>
 			)}
 		</>

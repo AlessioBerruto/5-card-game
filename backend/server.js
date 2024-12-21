@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import multer from "multer";
 import { Storage } from "@google-cloud/storage";
 import fs from "fs";
-import emailjs from "emailjs-com";
+
 
 dotenv.config();
 
@@ -52,47 +52,13 @@ app.post("/api/register", async (req, res) => {
 		const existingUser = await User.findOne({ email });
 		if (existingUser) {
 			return res.status(400).json({ message: "Utente già esistente" });
-		}
-
-		const defaultAchievements = [
-			{
-				id: 1,
-				text: "Benvenuto in 5 - The Card Game : effettua la Registrazione al sito",
-				unlocked: true,
-			},
-			{ id: 2, text: "Prima volta : Gioca una partita", unlocked: false },
-			{
-				id: 3,
-				text: "Che soddisfazione! : Vinci una partita",
-				unlocked: false,
-			},
-			{
-				id: 4,
-				text: "Sei più forte tu : Ottieni una sconfitta",
-				unlocked: false,
-			},
-			{ id: 5, text: "Niente da fare : Ottieni un pareggio", unlocked: false },
-			{ id: 6, text: "Dammi il 5! : Vinci 5 partite", unlocked: false },
-			{
-				id: 7,
-				text: "Che combo : Attacca 5 carte in un turno",
-				unlocked: false,
-			},
-			{ id: 8, text: "5x5 = 25 : Vinci 25 partite", unlocked: false },
-			{
-				id: 9,
-				text: "Infermabile : Attacca 10 carte in un turno",
-				unlocked: false,
-			},
-			{ id: 10, text: "Campione di 5 : Vinci 50 partite", unlocked: false },
-		];
+		}				
 
 		const newUser = new User({
 			name,
 			email,
 			password,
-			profileImage: null,
-			achievements: defaultAchievements,
+			profileImage: null,			
 			isSubscribedToNewsletter: false,
 		});
 		await newUser.save();
@@ -104,8 +70,7 @@ app.post("/api/register", async (req, res) => {
 				name,
 				email,
 				password,
-				profileImage: newUser.profileImage,
-				achievements: newUser.achievements,
+				profileImage: newUser.profileImage				
 			},
 		});
 	} catch (error) {
@@ -129,8 +94,7 @@ app.post("/api/login", async (req, res) => {
 				name: user.name,
 				email,
 				password,
-				profileImage: user.profileImage || null,
-				achievements: user.achievements,
+				profileImage: user.profileImage || null				
 			},
 		});
 	} catch (error) {

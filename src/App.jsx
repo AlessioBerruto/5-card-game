@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./slices/authSlice";
-import { setUserData, updateAchievements } from "./slices/userSlice";
+import { setUserData } from "./slices/userSlice";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
@@ -14,16 +14,8 @@ const App = () => {
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
 	const [error, setError] = useState(null);
-	const [showAchievementPopup, setShowAchievementPopup] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
-	const showAchievementNotification = () => {
-		setShowAchievementPopup(true);
-		setTimeout(() => {
-			setShowAchievementPopup(false);
-		}, 5000);
-	};
 
 	// Funzione per gestire il login
 	const handleLogin = async (e) => {
@@ -47,7 +39,6 @@ const App = () => {
 
 			dispatch(login({ token }));
 			dispatch(setUserData(user));
-			dispatch(updateAchievements(user.achievements));
 
 			navigate("/game");
 		} catch (err) {
@@ -86,14 +77,11 @@ const App = () => {
 			);
 			const { user, token } = response.data;
 
-			const updatedAchievements = [...user.achievements];
-
 			dispatch(login({ token }));
-			dispatch(setUserData({ ...user, achievements: updatedAchievements }));
-			dispatch(updateAchievements(updatedAchievements));
+			dispatch(setUserData(user));
+			dispatch(setRegistrationGoalUnlocked(true));
 
 			navigate("/game");
-			showAchievementNotification();
 		} catch (err) {
 			console.log(err.response);
 			setError(
@@ -108,23 +96,6 @@ const App = () => {
 	return (
 		<>
 			<Loader />
-
-			{showAchievementPopup && (
-				<div className="achievement-popup">
-					<img
-						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
-						className="trophy-img"
-						alt="trofeo"
-					/>
-					<p> Obiettivo Sbloccato! </p>
-					<img
-						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
-						className="trophy-img"
-						alt="trofeo"
-					/>
-				</div>
-			)}
-
 			<div className="home-page">
 				<div className="home-container">
 					<div className="home-description">
