@@ -32,8 +32,9 @@ const Community = () => {
 		}
 
 		setIsSubmitting(true);
+    setFeedback("");
 		setError("");
-		setFeedback("");
+		
 
 		try {
 			const response = await axios.post(
