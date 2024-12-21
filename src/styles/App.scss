@@ -212,6 +212,39 @@ footer {
 		}
 	}
 
+	.objective-description {
+		font-size: 1.2rem;
+	}
+
+	.community-page {
+		font-size: 1.1rem;
+
+		.community-title {
+			font-size: 3.2rem;
+		}
+
+		.community-content {
+			gap: 3vh;
+
+			.discord-button {
+				font-size: 0.9rem;
+			}
+
+			.subscribe-button {
+				font-size: 1rem;
+			}
+		}
+
+		.community-img {
+			height: 75vh;
+			padding: 3rem;
+
+			.front-card-img {
+				padding-left: 2rem;
+			}
+		}
+	}
+
 	.description-title {
 		font-size: 3rem;
 	}
@@ -340,6 +373,53 @@ footer {
 			height: 40px;
 			padding: 0 5px;
 			margin: 2vh 0;
+		}
+	}
+
+	.objective-description {
+		font-size: 1.1rem;
+	}
+
+	.community-page {
+		font-size: 1.1rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 3.2rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+			gap: 3vh;
+
+			.discord-button {
+				font-size: 0.9rem;
+				margin-bottom: 2.5vh;
+				height: 6vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 1rem;
+			}
+		}
+
+		.community-img {
+			width: 100%;
+			height: 65vh;
+			padding: 3rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
 		}
 	}
 
@@ -500,6 +580,53 @@ footer {
 		}
 	}
 
+	.objective-description {
+		font-size: 0.9rem;
+	}
+
+	.community-page {
+		font-size: 1rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 3rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+			gap: 1rem;
+
+			.discord-button {
+				font-size: 0.9rem;
+				margin-bottom: 2vh;
+				height: 5vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 0.9rem;
+			}
+		}
+
+		.community-img {
+			width: 75%;
+			height: 50vh;
+			padding: 3rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
+		}
+	}
+
 	.rules-page {
 		padding: 2rem;
 		font-size: 0.7rem;
@@ -654,6 +781,52 @@ footer {
 			height: 40px;
 			padding: 0 5px;
 			margin: 2vh 0;
+		}
+	}
+
+	.objective-description {
+		font-size: 0.9rem;
+	}
+
+	.community-page {
+		font-size: 0.9rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 2.7rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+
+			.discord-button {
+				font-size: 0.8rem;
+				margin-bottom: 2vh;
+				height: 5vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 0.8rem;
+			}
+		}
+
+		.community-img {
+			width: 75%;
+			height: 50vh;
+			padding: 3.5rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
 		}
 	}
 

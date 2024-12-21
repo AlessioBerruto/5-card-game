@@ -10,7 +10,7 @@ const Objective = () => {
 								src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
 								className="trophy-img"
 								alt="trofeo"
-							/>Benvenuto in 5 - The Card Game : effettua la Registrazione al sito</div>
+							/>Benvenuto in 5 : effettua la Registrazione al sito</div>
 				<div className="objective-description"><img
 								src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
 								className="trophy-img"
