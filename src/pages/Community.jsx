@@ -21,6 +21,7 @@ const Community = () => {
   const handleSubscribe = async () => {
     if (!userEmail) {
       setError("L'utente non è loggato o non ha un'email associata.");
+      console.error("Email mancante:", userEmail);
       return;
     }
 
