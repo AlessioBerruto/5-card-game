@@ -36,10 +36,11 @@
 		height: 100%;
 		margin-right: 1rem;
 	}
+	
+}
 
-	.unlocked {
-		background-color: green;
-		color: black;
-		font-weight: bold;
-	}
+.unlocked {
+	background-color: $primary;
+	color: $fifth;
+	border: 2px solid $fifth;
 }

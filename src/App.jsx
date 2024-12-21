@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
 import Loader from "./components/Loader";
 import { setLoading } from "./slices/loadingSlice";
+import { setRegistrationGoalUnlocked } from "./slices/userSlice"; 
+
 
 const App = () => {
 	const [isRegistering, setIsRegistering] = useState(false);
@@ -83,7 +85,8 @@ const App = () => {
 
 			navigate("/game");
 		} catch (err) {
-			console.log(err.response);
+			console.log(err);
+			const errorMessage = err?.response?.data?.message || err.message || "Errore sconosciuto";
 			setError(
 				"Errore nella registrazione: " + err.response?.data?.message ||
 					err.message

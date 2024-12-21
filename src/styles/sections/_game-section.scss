@@ -138,19 +138,33 @@
 }
 
 .popup {
+	height: 10vh;
+	width: 25vw;
 	position: fixed;
-	bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	bottom: 5.8vh;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: #4caf50;
+	background-color: $primary;
 	color: white;
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: 18px;
+	padding: 0.5rem 0.5rem;
+	border-radius: 5px;	
 	z-index: 1000;
+	border: 2px solid $fifth;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	opacity: 1;
 	transition: opacity 0.3s ease;
+
+	img {
+		height: 100%;
+	}
+
+	p {		
+		margin: 0 1vw;
+	}
 }
 
 .popup.hidden {

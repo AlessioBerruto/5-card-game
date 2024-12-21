@@ -18,7 +18,7 @@ const Game = () => {
 		if (registrationGoalUnlocked) {
 			setTimeout(() => {
 				dispatch(setRegistrationGoalUnlocked(false));
-			}, 3000);
+			}, 9995000);
 		}
 	}, [registrationGoalUnlocked, dispatch]);
 
