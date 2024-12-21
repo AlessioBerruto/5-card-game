@@ -80,9 +80,7 @@ const Community = () => {
 						console.error("EmailJS error:", error);
 					});
 			}
-		} catch (err) {			
-			setFeedback("Si è verificato un errore durante l'iscrizione. ❌");
-			setFeedbackColor("darkred");
+		} catch (err) {					
       setError("Sei già iscritto alla newsletter.");
 			console.error(err);
 		} finally {
