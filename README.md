@@ -23,11 +23,13 @@ Lo sviluppo del sito web è precedente alla fine della produzione del gioco in q
 Il sito web è suddiviso nelle seguenti sezioni:
 
 1. **Landing Page**: Pagina web in cui l'utente può effettuare la registrazione o il Login al sito web.
-2. **Schermata di Gioco**: In questa pagina sarà presente il gioco digitale, inoltre attraverso le barre laterali si può accedere alle altre sezioni del sito o al Logout per tornare alla Landing Page                              .
+2. **Schermata di Gioco**: In questa pagina sarà presente il gioco digitale, inoltre attraverso le barre laterali si può accedere alle altre sezioni del sito o al Logout per tornare alla Landing Page             
 3. **Profilo**: L'utente può visualizzare i propri dati inseriti durante la registazione e modificarli a proprio piacimento oppure cancellare il proprio profilo.
-4. **Regole**: In questa sezione si possono leggere le regole del gioco con relativi esempi, ed eventualmente provare il gioco cartaceo a casa.
-5. **Assistenza**: Grazie a questa parte, l'utente può inviare un messaggio direttamente a me per eventuali domande o dubbi. Inoltre tramite il link diretto, può visualizzare il mio sito web e dare un'occhiata ai miei lavori o contattarmi sulle mie pagine social.
-
+4. **Obiettivi**: L'utente può visualizzare gli obiettivi sbloccati e da sbloccare.
+5. **Community**: In questa sezione è possibile collegarsi al canale Discord dedicato e iscriversi alla newsletter.
+6. **Regole**: In questa sezione si possono leggere le regole del gioco con relativi esempi, ed eventualmente provare il gioco cartaceo a casa.
+7. **Assistenza**: Grazie a questa parte, l'utente può inviare un messaggio direttamente a me per eventuali domande o dubbi. Inoltre tramite il link diretto, può visualizzare il mio sito web e dare un'occhiata ai miei lavori o contattarmi sulle mie pagine social.
+8. **Logout**: Permette all'utente di uscire dal gioco e tornare alla Landing Page.
 
 ## Accesso
 
