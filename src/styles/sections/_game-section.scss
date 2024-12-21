@@ -139,12 +139,13 @@
 
 .popup {
 	height: 10vh;
-	width: 25vw;
+	width: 35vw;
 	position: fixed;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.5rem;
+	text-align: center;
+	font-size: 1.2rem;
 	bottom: 6.5vh;
 	left: 50%;
 	transform: translateX(-50%);
@@ -157,6 +158,13 @@
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
 	opacity: 1;
 	transition: opacity 0.3s ease;
+
+	.trophy-img-left{
+		margin-right: 3rem;
+	}
+	.trophy-img-right{
+		margin-left: 3rem;
+	}
 
 	img {
 		height: 100%;

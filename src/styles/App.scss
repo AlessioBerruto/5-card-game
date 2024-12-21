@@ -152,6 +152,20 @@ footer {
   
 
 // MEDIA QUERIES
+@media (min-width: 992px) and (max-width: 1200px) {
+	.popup {
+		width: 40vw;
+
+		.trophy-img-left{
+			margin-right: 1.5rem;
+		}
+		.trophy-img-right{
+			margin-left: 1.5rem;
+		}
+	}
+
+}
+
 @media (min-width: 769px) and (max-width: 992px) {
 	.home-container {
 		flex-direction: column;
@@ -209,6 +223,18 @@ footer {
 			height: 40px;
 			padding: 0 5px;
 			margin: 2vh 0;
+		}
+	}
+
+	.popup {
+		font-size: 1rem;
+		width: 40vw;
+
+		.trophy-img-left{
+			margin-right: 1rem;
+		}
+		.trophy-img-right{
+			margin-left: 1rem;
 		}
 	}
 
@@ -314,6 +340,19 @@ footer {
 
 	.game-window {
 		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 40vw;
+		height: 9vh;
+
+		.trophy-img-left{
+			margin-right: 0.3rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.3rem;
+		}
 	}
 
 	.left-navbar,
@@ -502,6 +541,19 @@ footer {
 
 	.game-window {
 		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 55vw;
+		height: 9vh;
+
+		.trophy-img-left{
+			margin-right: 0.3rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.3rem;
+		}
 	}
 
 	.left-navbar,
@@ -706,6 +758,19 @@ footer {
 
 	.game-window {
 		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 60vw;
+		height: 7vh;
+
+		.trophy-img-left{
+			margin-right: 0.2rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.2rem;
+		}
 	}
 
 	.left-navbar,

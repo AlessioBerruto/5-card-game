@@ -142,13 +142,13 @@ const Game = () => {
 				<div className="popup">
 					<img
 						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
-						className="trophy-img"
+						className="trophy-img-left"
 						alt="trofeo"
 					/>
 					<p>Obiettivo Sbloccato</p>
 					<img
 						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
-						className="trophy-img"
+						className="trophy-img-right"
 						alt="trofeo"
 					/>
 				</div>

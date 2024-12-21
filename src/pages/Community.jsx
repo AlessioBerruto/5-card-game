@@ -79,10 +79,10 @@ const Community = () => {
 						console.error("EmailJS error:", error);
 					});
 			}
-		} catch (err) {
-			setError("Si è verificato un errore durante l'iscrizione.");
+		} catch (err) {			
 			setFeedback("Si è verificato un errore durante l'iscrizione. ❌");
 			setFeedbackColor("darkred");
+      setError("Sei già iscritto alla newsletter.");
 			console.error(err);
 		} finally {
 			setIsSubmitting(false);
