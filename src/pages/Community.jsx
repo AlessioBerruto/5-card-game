@@ -8,7 +8,7 @@ import emailjs from "emailjs-com";
 const Community = () => {
 	const dispatch = useDispatch();
 	const userEmail = useSelector((state) => state.user.userData.email);
-	const userName = useSelector((state) => state.user.userData.name); // Aggiunto per ottenere il nome dell'utente
+	const userName = useSelector((state) => state.user.userData.name); 
 	const isSubscribed = useSelector(
 		(state) => state.user.userData.isSubscribedToNewsletter
 	);
@@ -94,18 +94,21 @@ const Community = () => {
 			<div className="community-content">
 				<h1 className="community-title">COMMUNITY</h1>
 				<p>
-					Connettiti con la community per condividere i tuoi risultati e
-					obiettivi, o anche solo per fare due parole con gli altri giocatori di
-					questo fantastico gioco.
+					Connettiti con la community per condividere<br /> i tuoi pensieri, risultati o obiettivi.
 				</p>
 				<button
 					onClick={() => window.open("https://discord.gg/BT4wQHZKhd", "_blank")}
-					className="btn btn-primary"
+					className="discord-button"
 				>
+          <img
+					src={`${import.meta.env.BASE_URL}/assets/discord-logo.svg`}
+					className="discord-logo-img"
+					alt="logo discord"
+				/>
 					Unisciti al nostro gruppo Discord
 				</button>
 				<p>
-					Iscriviti alla nostra newsletter e rimani sempre aggiornato sulle
+					Iscriviti alla nostra newsletter <br />e rimani sempre aggiornato sulle
 					novità.
 				</p>
 				<div>
@@ -124,7 +127,7 @@ const Community = () => {
 					<button
 						disabled={!isChecked || isSubmitting || !userEmail}
 						onClick={handleSubscribe}
-						className="btn btn-primary"
+						className="subscribe-button"
 					>
 						Iscriviti
 					</button>
@@ -139,6 +142,13 @@ const Community = () => {
 						{feedback}
 					</div>
 				)}
+			</div>
+			<div className="community-img">
+				<img
+					src={`${import.meta.env.BASE_URL}/assets/fronte-carta.svg`}
+					className="front-card-img"
+					alt="fronte carta 5"
+				/>
 			</div>
 			<footer>
 				<Link to="/game" className="footer-link">

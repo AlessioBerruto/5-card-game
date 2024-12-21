@@ -34,6 +34,7 @@
 .profile-img {
 	align-items: center;
 	padding-left: 5vw;
+	padding-bottom: 2vh;
 
 	.card-bg-trasparent {
 		width: 17vw;
@@ -69,7 +70,8 @@
 .edit-btn,
 .save-btn,
 .delete-btn,
-.cancel-btn {
+.cancel-btn,
+.upload-btn {
 	border: none;
 	color: $forth;
 	margin: 1vh 0;
@@ -79,7 +81,8 @@
 }
 
 .edit-btn,
-.save-btn {
+.save-btn,
+.upload-btn {
 	background-color: $secondary;
 	transition: transform 0.3s;
 
@@ -123,4 +126,17 @@
     width: 100%;
     flex-direction: row;
     gap: 2vw;
+}
+
+.upload-img-btn {
+	margin-bottom: 1vh;
+	background-color: grey;
+	border: 2px solid $fifth;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+.message-field {
+	font-size: 1.2rem;
+	font-weight: bold;
 }

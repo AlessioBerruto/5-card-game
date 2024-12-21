@@ -135,8 +135,7 @@ function Profile() {
         if (!file || !["image/jpeg", "image/png"].includes(file.type)) {
             setMessage("Seleziona un'immagine JPEG o PNG.");
             return;
-          }
-          
+          }          
     
         
         const allowedTypes = ["image/jpeg", "image/png"];
@@ -148,9 +147,8 @@ function Profile() {
         try {
             const formData = new FormData();
             formData.append("image", file);
-            formData.append("email", user.email);
-    
-            console.log("FormData prima della richiesta:", formData);
+            formData.append("email", user.email);   
+            
     
             dispatch(setLoading(true));
     
@@ -162,25 +160,18 @@ function Profile() {
                         "Content-Type": "multipart/form-data",
                     },
                 }
-            );
-    
-            // Verifica la risposta del server
-            console.log("Risposta server:", response.data);
-
+            );     
+            
             const imageUrl = response.data.imageUrl;
             setImagePreview(imageUrl);
 
             setMessage("Immagine caricata con successo!");
             dispatch(updateUser({ ...user, profileImage: imageUrl }));
-        } catch (error) {
-            // Log completo dell'errore
-            console.error("Errore durante il caricamento dell'immagine:", error.response || error.message);
-    
-            if (error.response) {
-                // Se il server ha inviato un errore
+        } catch (error) {            
+            console.error("Errore durante il caricamento dell'immagine:", error.response || error.message);    
+            if (error.response) {                
                 setMessage(`Errore durante il caricamento dell'immagine: ${error.response.data.message || error.message}`);
-            } else {
-                // Se l'errore è dovuto a problemi di rete o altro
+            } else {                
                 setMessage("Errore di rete o problema con il server.");
             }
         } finally {
@@ -224,7 +215,7 @@ function Profile() {
                 </div>
                 <div className="profile-details">
                     <h2>Dati dell'utente</h2>
-                    <p>{message}</p>
+                    <p className="message-field">{message}</p>
 
                     <input
                         type="text"
