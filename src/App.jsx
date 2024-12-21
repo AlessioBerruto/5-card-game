@@ -86,14 +86,7 @@ const App = () => {
 			);
 			const { user, token } = response.data;
 
-			const updatedAchievements = [
-				{
-					id: "1",
-					text: "Benvenuto in 5 - The Card Game : effettua la Registrazione al sito",
-					unlocked: true,
-				},
-				...user.achievements,
-			];
+			const updatedAchievements = [...user.achievements];
 
 			dispatch(login({ token }));
 			dispatch(setUserData({ ...user, achievements: updatedAchievements }));

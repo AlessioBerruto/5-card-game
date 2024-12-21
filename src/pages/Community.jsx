@@ -1,48 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux"; 
-import { setSubscriptionStatus } from "../slices/userSlice"; 
+import { useSelector, useDispatch } from "react-redux";
+import { setSubscriptionStatus } from "../slices/userSlice";
 
 const Community = () => {
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.user.userData.email); 
-  const isSubscribed = useSelector((state) => state.user.userData.isSubscribed); 
+  const userEmail = useSelector((state) => state.user.userData.email);
+  const isSubscribed = useSelector((state) => state.user.userData.isSubscribedToNewsletter);
   const [isChecked, setIsChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  
+
   useEffect(() => {
     if (isSubscribed) {
-      setIsChecked(true); 
+      setIsChecked(true);
     }
   }, [isSubscribed]);
-  
+
   const handleSubscribe = async () => {
-	if (!userEmail) {
-	  setError("L'utente non è loggato o non ha un'email associata.");
-	  return;
-	}
-  
-	setIsSubmitting(true);
-	setError("");
-  
-	try {
-	  const response = await axios.post("https://five-card-game.onrender.com/api/subscribe-newsletter", { email: userEmail });
-  
-	  if (response.data.message === "Iscrizione alla newsletter avvenuta con successo") {
-		dispatch(setSubscriptionStatus(true));
-		setIsChecked(true); 
-		alert("Iscrizione alla newsletter completata!");
-	  }
-	} catch (err) {
-	  setError("Si è verificato un errore durante l'invio dell'email.");
-	  console.error(err);
-	} finally {
-	  setIsSubmitting(false);
-	}
+    if (!userEmail) {
+      setError("L'utente non è loggato o non ha un'email associata.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await axios.post("https://five-card-game.onrender.com/api/subscribe-newsletter", { email: userEmail });
+
+      if (response.data.message === "Iscrizione alla newsletter avvenuta con successo") {
+        dispatch(setSubscriptionStatus(true));
+        setIsChecked(true);
+        alert("Iscrizione alla newsletter completata!");
+      }
+    } catch (err) {
+      setError("Si è verificato un errore durante l'iscrizione.");
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-  
 
   return (
     <div className="community-page">
@@ -69,12 +68,12 @@ const Community = () => {
             id="subscribeCheckbox"
             checked={isChecked}
             onChange={() => setIsChecked(!isChecked)}
-            disabled={isSubscribed} 
+            disabled={isSubscribed}
           />
           <label htmlFor="subscribeCheckbox"> Iscriviti alla newsletter</label>
         </div>
         {isSubscribed ? (
-          <p>Iscrizione già effettuata</p> 
+          <p>Iscrizione già effettuata</p>
         ) : (
           <button
             disabled={!isChecked || isSubmitting || !userEmail}

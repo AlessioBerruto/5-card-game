@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@google-cloud/storage": "^7.14.0",
     "backend": "file:",
     "bcrypt": "^5.1.1",

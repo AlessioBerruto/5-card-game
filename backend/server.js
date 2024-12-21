@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import multer from "multer";
 import { Storage } from "@google-cloud/storage";
 import fs from "fs";
-import Mailgun from "mailgun.js";
+import emailjs from "emailjs-com";
 
 dotenv.config();
 
@@ -44,13 +44,6 @@ app.use(bodyParser.json());
 const multerStorage = multer.memoryStorage();
 const upload = multer({ storage: multerStorage });
 
-// Mailgun
-const mailgun = new Mailgun();
-const client = mailgun.client({
-	username: "api",
-	key: process.env.MAILGUN_API_KEY,
-	domain: process.env.MAILGUN_DOMAIN,	
-});
 
 // Registrazione
 app.post("/api/register", async (req, res) => {
@@ -63,17 +56,36 @@ app.post("/api/register", async (req, res) => {
 		}
 
 		const defaultAchievements = [
-			{ id: 1, text: "Benvenuto in 5 - The Card Game : effettua la Registrazione al sito", unlocked: true },
+			{
+				id: 1,
+				text: "Benvenuto in 5 - The Card Game : effettua la Registrazione al sito",
+				unlocked: true,
+			},
 			{ id: 2, text: "Prima volta : Gioca una partita", unlocked: false },
-			{ id: 3, text: "Che soddisfazione! : Vinci una partita", unlocked: false },
-			{ id: 4, text: "Sei più forte tu : Ottieni una sconfitta", unlocked: false },
-			{ id: 5, text: "Niente da fare : Ottieni un pareggio", unlocked: false },			
+			{
+				id: 3,
+				text: "Che soddisfazione! : Vinci una partita",
+				unlocked: false,
+			},
+			{
+				id: 4,
+				text: "Sei più forte tu : Ottieni una sconfitta",
+				unlocked: false,
+			},
+			{ id: 5, text: "Niente da fare : Ottieni un pareggio", unlocked: false },
 			{ id: 6, text: "Dammi il 5! : Vinci 5 partite", unlocked: false },
-			{ id: 7, text: "Che combo : Attacca 5 carte in un turno", unlocked: false },
+			{
+				id: 7,
+				text: "Che combo : Attacca 5 carte in un turno",
+				unlocked: false,
+			},
 			{ id: 8, text: "5x5 = 25 : Vinci 25 partite", unlocked: false },
-			{ id: 9, text: "Infermabile : Attacca 10 carte in un turno", unlocked: false },
+			{
+				id: 9,
+				text: "Infermabile : Attacca 10 carte in un turno",
+				unlocked: false,
+			},
 			{ id: 10, text: "Campione di 5 : Vinci 50 partite", unlocked: false },
-			
 		];
 
 		const newUser = new User({
@@ -130,49 +142,47 @@ app.post("/api/login", async (req, res) => {
 // Iscrizione alla newsletter
 app.post("/api/subscribe-newsletter", async (req, res) => {
 	const { email } = req.body;
-
+  
 	try {
-		const user = await User.findOne({ email });
-		if (!user) {
-			return res.status(404).json({ message: "Utente non trovato" });
+	  const user = await User.findOne({ email });
+  
+	  if (!user) {
+		return res.status(400).json({ message: "Utente non trovato" });
+	  }
+  
+	  if (user.isSubscribedToNewsletter) {
+		return res.status(400).json({ message: "Utente già iscritto alla newsletter" });
+	  }  
+	  
+	  user.isSubscribedToNewsletter = true;
+	  await user.save();  
+	  
+	  const emailParams = {
+		user_name: user.name, 
+		user_email: email, 
+	  };  
+	  
+	  emailjs.send(
+		"contact_service", 
+		"newsletter_template", 
+		emailParams,
+		"bMOpUWBSnYE6ynS4K" 
+	  ).then(
+		(response) => {
+		  console.log("Email inviata con successo:", response);
+		},
+		(error) => {
+		  console.error("Errore nell'invio dell'email:", error);
 		}
-
-		if (user.isSubscribedToNewsletter) {
-			return res
-				.status(400)
-				.json({ message: "Sei già iscritto alla newsletter" });
-		}
-
-		user.isSubscribedToNewsletter = true;
-		await user.save();
-
-		const messageData = {
-			from: "newsletter@five-card-game.com",
-			to: user.email,
-			subject: "Benvenuto nella nostra newsletter!",
-			text: "Grazie per esserti iscritto alla nostra newsletter! Riceverai aggiornamenti e novità sul gioco.",
-		};
-
-		client.messages
-			.create(process.env.MAILGUN_DOMAIN, messageData)
-			.then(() => {
-				res
-					.status(200)
-					.json({
-						message: "Iscrizione alla newsletter avvenuta con successo",
-					});
-			})
-			.catch((error) => {
-				res
-					.status(500)
-					.json({ message: "Errore nell'invio dell'email", error });
-			});
+	  );
+  
+	  res.status(200).json({ message: "Iscrizione alla newsletter avvenuta con successo" });
 	} catch (error) {
-		res
-			.status(500)
-			.json({ message: "Errore durante l'iscrizione alla newsletter", error });
+	  console.error("Errore durante l'iscrizione alla newsletter:", error);
+	  res.status(500).json({ message: "Errore durante l'iscrizione alla newsletter", error });
 	}
-});
+  });  
+
 
 // Caricamento immagine profilo
 app.post(

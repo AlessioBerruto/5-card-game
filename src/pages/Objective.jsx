@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Objective = () => {
+	const user = useSelector((state) => state.user);
+	const [achievements, setAchievements] = useState([]);
 
-	const user = useSelector((state) => state.user); 
-	const achievements = user?.achievements || [];
+	useEffect(() => {
+		if (user && user.achievements) {
+		  setAchievements(user.achievements);
+		}
+	  }, [user]);
 
 	return (
 		<div className="objective-page">
 			<h1 className="objective-title">OBIETTIVI</h1>
-			{achievements.map((achievement) => (
+			{achievements && achievements.length > 0 && achievements.map((achievement) => (
 				<div
 					key={achievement.id}
-					className={`objective-description ${achievement.unlocked ? "unlocked" : ""}`}
+					className={`objective-description ${
+						achievement.unlocked ? "unlocked" : ""
+					}`}
 				>
 					<img
 						src={`${import.meta.env.BASE_URL}/assets/trofeo.svg`}
