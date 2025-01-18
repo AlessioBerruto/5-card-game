@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "concurrently \"npm run start-backend\" \"vite\"",
-    "start-backend": "cd backend && node server.js",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-backend": "cd ../backend && node server.js",
+    "start-frontend": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
