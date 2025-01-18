@@ -8,7 +8,7 @@ import emailjs from "emailjs-com";
 const Community = () => {
 	const dispatch = useDispatch();
 	const userEmail = useSelector((state) => state.user.userData.email);
-	const userName = useSelector((state) => state.user.userData.name); 
+	const userName = useSelector((state) => state.user.userData.name);
 	const isSubscribed = useSelector(
 		(state) => state.user.userData.isSubscribedToNewsletter
 	);
@@ -32,9 +32,8 @@ const Community = () => {
 		}
 
 		setIsSubmitting(true);
-    setFeedback("");
+		setFeedback("");
 		setError("");
-		
 
 		try {
 			const response = await axios.post(
@@ -80,8 +79,15 @@ const Community = () => {
 						console.error("EmailJS error:", error);
 					});
 			}
-		} catch (err) {					
-      setError("Sei già iscritto alla newsletter.");
+		} catch (err) {
+			if (
+				err.response &&
+				err.response.data.message === "Utente già iscritto alla newsletter"
+			) {
+				setError("Sei già iscritto alla newsletter.");
+			} else {
+				setError("Si è verificato un errore durante l'iscrizione.");
+			}
 			console.error(err);
 		} finally {
 			setIsSubmitting(false);
@@ -93,22 +99,23 @@ const Community = () => {
 			<div className="community-content">
 				<h1 className="community-title">COMMUNITY</h1>
 				<p>
-					Connettiti con la community per condividere<br /> i tuoi pensieri, risultati o obiettivi.
+					Connettiti con la community per condividere
+					<br /> i tuoi pensieri, risultati o obiettivi.
 				</p>
 				<button
 					onClick={() => window.open("https://discord.gg/BT4wQHZKhd", "_blank")}
 					className="discord-button"
 				>
-          <img
-					src={`${import.meta.env.BASE_URL}/assets/discord-logo.svg`}
-					className="discord-logo-img"
-					alt="logo discord"
-				/>
+					<img
+						src={`${import.meta.env.BASE_URL}/assets/discord-logo.svg`}
+						className="discord-logo-img"
+						alt="logo discord"
+					/>
 					Unisciti al nostro gruppo Discord
 				</button>
 				<p>
-					Iscriviti alla nostra newsletter <br />e rimani sempre aggiornato sulle
-					novità.
+					Iscriviti alla nostra newsletter <br />e rimani sempre aggiornato
+					sulle novità.
 				</p>
 				<div>
 					<input
