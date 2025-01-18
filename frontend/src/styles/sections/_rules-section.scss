@@ -1,0 +1,54 @@
+@import "./variables";
+
+.rules-page {
+	font-family: $fonts;
+	background-color: $primary;
+	background-image: url("/assets/pattern-bianco.png");
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+	padding: 2rem 5rem;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.description-title {
+	font-size: 3.5rem;
+	margin: 0;
+	padding: 0;
+	color: $secondary;
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 1.5rem;
+	text-shadow: 3px 3px 3px rgba(255,255,255,0.5);
+}
+
+.description-column {	
+
+	margin-bottom: 2rem;
+
+
+	dt {
+		font-size: 1.3rem;
+		font-weight: 800;
+	}
+
+	dd,
+	li {
+		margin: 1rem 0;
+	}
+
+	.example-img {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		margin: 3rem 0;
+
+		img {
+			width: 50%;
+			border: 2px solid $fifth;
+			box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+		}
+	}
+}
