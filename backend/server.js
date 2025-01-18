@@ -8,7 +8,7 @@ import multer from "multer";
 // Import dei controller
 import { registerUser, loginUser } from "./controllers/authController.js";
 import { subscribeToNewsletter } from "./controllers/newsletterController.js";
-import { updateUser } from "./controllers/userController.js";
+import { updateUser, deleteUser } from "./controllers/userController.js";
 import { handleProfileImageUpload } from "./controllers/imageController.js";
 
 dotenv.config();
@@ -39,6 +39,7 @@ app.post("/api/register", registerUser);
 app.post("/api/login", loginUser);
 app.post("/api/subscribe-newsletter", subscribeToNewsletter);
 app.put("/api/user", updateUser);
+app.delete("/api/user", deleteUser);
 app.post("/api/upload-profile-image", upload.single("image"), handleProfileImageUpload);
 
 // Logout
