@@ -1,0 +1,951 @@
+@import "../styles/sections/game-section";
+@import "../styles/sections/profile-section";
+@import "../styles/sections/rules-section";
+@import "../styles/sections/assistance-section";
+@import "../styles/sections/variables";
+@import "../styles/sections/objective-section";
+@import "../styles/sections/community-section";
+
+.home-page {
+	font-family: $fonts;
+	background-color: $primary;
+	background-image: url("/assets/pattern-bianco.png");
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 2rem;
+}
+
+.home-title {
+	margin-bottom: 7vh;
+	font-size: 3.5rem;
+	color: $forth;
+	font-weight: bold;
+	text-shadow: 4px 4px 4px rgba(0, 0, 128, 0.5);
+}
+
+.home-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 8vw;
+}
+
+.home-description {
+	color: $fifth;
+	max-width: 47vw;
+	text-align: center;
+	font-size: 1.7rem;
+	font-weight: 500;
+	line-height: 3.3rem;
+}
+
+.form-wrapper {
+	width: 400px;
+	background-color: lightgrey;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+	p {
+		margin-top: 2vh;
+		margin-bottom: 0;
+		text-align: center;
+	}
+}
+
+.input-field {
+	margin-bottom: 1rem;
+}
+
+.input-field label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+}
+
+.input-field input {
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 1rem;
+}
+
+.submit-btn {
+	width: 100%;
+	margin-top: 2vh;
+	padding: 0.75rem;
+	background-color: $secondary;
+	color: $forth;
+	border: none;
+	border-radius: 4px;
+	font-size: 1.1rem;
+	cursor: pointer;
+	transition: transform 0.3s;
+
+	&:hover {
+		transform: scale(1.04);
+	}
+
+	&:active {
+		background-color: $dark-secondary;
+		transform: scale(0.97);
+	}
+}
+
+.toggle-form {
+	color: $secondary;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.error-message {
+	color: $third;
+	margin-bottom: 1rem;
+}
+
+footer {
+	padding: 10px;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	.footer-link {
+		text-decoration: none;
+		font-size: 1.5rem;
+		color: $third;
+		font-weight: 700;
+		text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.3);
+
+		&:hover {
+			color: $dark-third;
+		}
+	}
+}
+
+.achievement-popup {
+	position: fixed;   
+	bottom: 5vh;      
+	left: 50%;        
+	transform: translateX(-50%);
+	background-color: $fifth;
+	color: $forth;      
+	padding: 10px 20px; 
+	border-radius: 5px; 
+	font-size: 18px;   
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+	z-index: 9999;     
+	opacity: 0;        
+	transition: opacity 0.3s ease-in-out; 
+  }
+  
+  .achievement-popup.show {
+	opacity: 1; 
+  }
+  
+
+// MEDIA QUERIES
+@media (min-width: 992px) and (max-width: 1200px) {
+	.popup {
+		width: 40vw;
+
+		.trophy-img-left{
+			margin-right: 1.5rem;
+		}
+		.trophy-img-right{
+			margin-left: 1.5rem;
+		}
+	}
+
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+	.home-container {
+		flex-direction: column;
+		gap: 5vh;
+	}
+
+	.home-title {
+		font-size: 3rem;
+		margin-bottom: 4vh;
+		margin-top: 4vh;
+	}
+
+	.home-description {
+		font-size: 1.5rem;
+		max-width: 80vw;
+	}
+
+	.card-bg-trasparent {
+		.card-body {
+			font-size: 1rem;
+		}
+	}
+
+	.logout-modal {
+
+		h2 {
+			font-size: 1.7rem;
+		}
+
+		.logout-modal-buttons {
+			button {
+				width: 70px;
+				height: 45px;
+			}
+		}
+	}
+	
+
+	.profile-img {
+		.card-bg-trasparent {
+			p {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	.profile-details {
+		h2 {
+			font-size: 2.1rem;
+		}
+
+		input {
+			font-size: 1rem;
+			width: 280px;
+			height: 40px;
+			padding: 0 5px;
+			margin: 2vh 0;
+		}
+	}
+
+	.popup {
+		font-size: 1rem;
+		width: 40vw;
+
+		.trophy-img-left{
+			margin-right: 1rem;
+		}
+		.trophy-img-right{
+			margin-left: 1rem;
+		}
+	}
+
+	.objective-description {
+		font-size: 1.2rem;
+	}
+
+	.community-page {
+		font-size: 1.1rem;
+
+		.community-title {
+			font-size: 3.2rem;
+		}
+
+		.community-content {
+			gap: 3vh;
+
+			.discord-button {
+				font-size: 0.9rem;
+			}
+
+			.subscribe-button {
+				font-size: 1rem;
+			}
+		}
+
+		.community-img {
+			height: 75vh;
+			padding: 3rem;
+
+			.front-card-img {
+				padding-left: 2rem;
+			}
+		}
+	}
+
+	.description-title {
+		font-size: 3rem;
+	}
+
+	.description-column {
+		.example-img {
+			margin: 2rem 0;
+
+			img {
+				width: 400px;
+			}
+		}
+	}
+
+	.contact-section {
+		width: 90%;
+		padding: 30px;
+
+		.contact-title {
+			font-size: 1.7rem;
+			margin-bottom: 4vh;
+		}
+
+		textarea {
+			font-size: 1rem;
+		}
+
+		input {
+			width: 200px;
+		}		
+
+		.link-p {
+			margin-top: 4vh;
+			font-size: 1.3rem;		
+		}
+	}
+
+	footer {
+		.footer-link{
+			font-size: 1.3rem;
+		}
+	}
+	
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+	.home-container {
+		flex-direction: column;
+		gap: 4vh;
+	}
+
+	.home-title {
+		font-size: 2.5rem;
+		margin-bottom: 3vh;
+		margin-top: 3vh;
+	}
+
+	.home-description {
+		font-size: 1.2rem;
+		max-width: 80vw;
+	}
+
+	.game-page {
+		flex-direction: column;
+		padding: 1rem;
+	}
+
+	.game-window {
+		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 40vw;
+		height: 9vh;
+
+		.trophy-img-left{
+			margin-right: 0.3rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.3rem;
+		}
+	}
+
+	.left-navbar,
+	.right-navbar {
+		flex-direction: row;
+		height: 100%;
+		width: 100vw;
+		gap: 0;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.card-bg-trasparent {
+		min-width: 70px;
+
+		.card-body {
+			font-size: 1rem;
+		}
+	}
+
+	.logout-modal {
+
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		.logout-modal-buttons {
+			button {
+				width: 70px;
+				height: 45px;
+			}
+		}
+	}
+
+	.profile-img {
+		padding-left: 0;
+
+		.card-bg-trasparent {
+			img {
+				width: 100px;
+			}
+
+			p {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	.profile-details {
+		h2 {
+			font-size: 2rem;
+		}
+
+		input {
+			font-size: 1rem;
+			width: 280px;
+			height: 40px;
+			padding: 0 5px;
+			margin: 2vh 0;
+		}
+	}
+
+	.objective-description {
+		font-size: 1.1rem;
+	}
+
+	.community-page {
+		font-size: 1.1rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 3.2rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+			gap: 3vh;
+
+			.discord-button {
+				font-size: 0.9rem;
+				margin-bottom: 2.5vh;
+				height: 6vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 1rem;
+			}
+		}
+
+		.community-img {
+			width: 100%;
+			height: 65vh;
+			padding: 3rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.rules-page {
+		padding: 2rem;
+		font-size: 0.8rem;
+	}
+
+	.description-title {
+		font-size: 2.7rem;
+		margin-bottom: 0;
+	}
+
+	.description-column {
+		dt {
+			font-size: 1.1rem;
+		}
+
+		.example-img {
+			margin: 1.8rem 0;
+
+			img {
+				width: 400px;
+			}
+		}
+	}
+
+	.contact-section {
+		width: 100%;
+		padding: 20px;
+
+		.contact-title {
+			font-size: 1.5rem;
+			margin-bottom: 3vh;
+		}
+
+		textarea {
+			font-size: 0.9rem;
+		}
+
+		input {
+			width: 180px;
+			height: 50px;
+		}		
+
+		.link-p {
+			margin-top: 3vh;
+			font-size: 1.1rem;		
+		}
+	}
+
+	footer {
+		.footer-link{
+			font-size: 1.1rem;
+		}
+	}
+}
+
+@media (min-width: 414px) and (max-width: 600px) {
+	.home-container {
+		flex-direction: column;
+		gap: 4vh;
+	}
+
+	.home-title {
+		font-size: 2.5rem;
+		margin-bottom: 3vh;
+		margin-top: 3vh;
+	}
+
+	.home-description {
+		font-size: 1.2rem;
+		max-width: 80vw;
+	}
+
+	.game-page {
+		flex-direction: column;
+		padding: 1rem;
+	}
+
+	.game-window {
+		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 55vw;
+		height: 9vh;
+
+		.trophy-img-left{
+			margin-right: 0.3rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.3rem;
+		}
+	}
+
+	.left-navbar,
+	.right-navbar {
+		flex-direction: row;
+		height: 100%;
+		width: 100vw;
+		gap: 0;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.card-bg-trasparent {
+		min-width: 70px;
+
+		.card-body {
+			font-size: 1rem;
+		}
+	}
+
+	.logout-modal {
+
+		width: 300px;
+
+		h2 {
+			font-size: 1.3rem;
+		}
+
+		.logout-modal-buttons {
+			button {
+				width: 60px;
+				height: 40px;
+			}
+		}
+	}
+
+	.page-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.profile-img {
+		padding-left: 0;
+
+		.card-bg-trasparent {
+			img {
+				width: 100px;
+			}
+
+			p {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	.profile-details {
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		text-align: center;
+		margin-top: 2rem;
+
+		h2 {
+			font-size: 2rem;
+		}
+
+		input {
+			font-size: 1rem;
+			width: 280px;
+			height: 40px;
+			padding: 0 5px;
+			margin: 2vh 0;
+		}
+	}
+
+	.objective-description {
+		font-size: 0.9rem;
+	}
+
+	.community-page {
+		font-size: 1rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 3rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+			gap: 1rem;
+
+			.discord-button {
+				font-size: 0.9rem;
+				margin-bottom: 2vh;
+				height: 5vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 0.9rem;
+			}
+		}
+
+		.community-img {
+			width: 75%;
+			height: 50vh;
+			padding: 3rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.rules-page {
+		padding: 2rem;
+		font-size: 0.7rem;
+	}
+
+	.description-title {
+		font-size: 2.5rem;
+		margin-bottom: 0;
+	}
+
+	.description-column {
+		dt {
+			font-size: 1rem;
+		}
+
+		.example-img {
+			margin: 1.5rem 0;
+
+			img {
+				width: 350px;
+			}
+		}
+	}
+
+	.contact-section {
+		width: 100%;
+		padding: 15px;
+
+		.contact-title {
+			font-size: 1.2rem;
+			margin-bottom: 3vh;
+		}
+
+		textarea {
+			font-size: 0.9rem;
+		}
+
+		input {
+			width: 170px;
+			height: 50px;
+		}		
+
+		.link-p {
+			margin-top: 3vh;
+			font-size: 1rem;		
+		}
+	}
+
+	footer {
+		.footer-link{
+			font-size: 1rem;
+		}
+	}
+}
+
+@media (max-width: 413px) {
+	.home-container {
+		flex-direction: column;
+		gap: 3vh;
+	}
+
+	.home-title {
+		font-size: 2.3rem;
+		margin-bottom: 2.5vh;
+		margin-top: 2.5vh;
+	}
+
+	.home-description {
+		font-size: 1rem;
+		max-width: 80vw;
+	}
+
+	.game-page {
+		flex-direction: column;
+		padding: 1rem;
+	}
+
+	.game-window {
+		margin: 1.5vh;
+	}
+
+	.popup {
+		font-size: 0.8rem;
+		width: 60vw;
+		height: 7vh;
+
+		.trophy-img-left{
+			margin-right: 0.2rem;
+		}
+		.trophy-img-right{
+			margin-left: 0.2rem;
+		}
+	}
+
+	.left-navbar,
+	.right-navbar {
+		flex-direction: row;
+		height: 100%;
+		width: 100vw;
+		gap: 0;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.card-bg-trasparent {
+		min-width: 70px;
+
+		.card-body {
+			font-size: 1rem;
+		}
+	}
+
+	.logout-modal {
+
+		width: 250px;
+
+		h2 {
+			font-size: 1.1rem;
+		}
+
+		.logout-modal-buttons {
+			button {
+				width: 55px;
+				height: 35px;
+			}
+		}
+	}
+
+	.page-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.profile-img {
+		padding-left: 0;
+
+		.card-bg-trasparent {
+			img {
+				width: 100px;
+			}
+
+			p {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	.profile-details {
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		text-align: center;
+		margin-top: 2rem;
+
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		input {
+			font-size: 1rem;
+			width: 280px;
+			height: 40px;
+			padding: 0 5px;
+			margin: 2vh 0;
+		}
+	}
+
+	.objective-description {
+		font-size: 0.9rem;
+	}
+
+	.community-page {
+		font-size: 0.9rem;
+		flex-direction: column;
+
+		.community-title {
+			font-size: 2.7rem;
+		}
+
+		.community-content {			
+			width: 100%;
+			padding-left: 0;
+
+			.discord-button {
+				font-size: 0.8rem;
+				margin-bottom: 2vh;
+				height: 5vh;
+
+				img {					
+					padding-left: 0.2rem;
+					padding-right: 0.4rem;
+					padding-bottom: 0.3rem;
+					padding-top: 0.1rem;
+				}
+			}
+
+			.subscribe-button {
+				font-size: 0.8rem;
+			}
+		}
+
+		.community-img {
+			width: 75%;
+			height: 50vh;
+			padding: 3.5rem;
+			justify-content: center;
+
+			.front-card-img {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.rules-page {
+		padding: 1.5rem;
+		font-size: 0.7rem;
+	}
+
+	.description-title {
+		font-size: 2rem;
+		margin-bottom: 0;
+	}
+
+	.description-column {
+		dt {
+			font-size: 1rem;
+		}
+
+		.example-img {
+			margin: 1rem 0;
+
+			img {
+				width: 300px;
+			}
+		}
+	}
+
+	.contact-section {
+		width: 100%;
+		padding: 15px;
+
+		.contact-title {
+			font-size: 1.2rem;
+			margin-bottom: 3vh;
+		}
+
+		textarea {
+			font-size: 0.9rem;			
+		}
+
+		input {
+			width: 170px;
+			height: 50px;
+		}		
+
+		.link-p {
+			margin-top: 3vh;
+			font-size: 1rem;		
+		}
+	}
+
+	footer {
+		.footer-link{
+			font-size: 1rem;
+		}
+	}
+}
