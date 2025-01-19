@@ -25,15 +25,16 @@ const Community = () => {
 	}, [isSubscribed]);
 
 	const handleSubscribe = async () => {
+		setError("");
+		setFeedback("");
+		setFeedbackColor("");
+		setIsSubmitting(true);
+
 		if (!userEmail || !userName) {
 			setError("L'utente non è loggato o non ha un nome/email associato.");
-			console.error("Dati mancanti:", { userEmail, userName });
+			setIsSubmitting(false);
 			return;
 		}
-
-		setIsSubmitting(true);
-		setFeedback("");
-		setError("");
 
 		try {
 			const response = await axios.post(
@@ -41,18 +42,13 @@ const Community = () => {
 				{ email: userEmail }
 			);
 
-			if (
-				response.data.message ===
-				"Iscrizione alla newsletter avvenuta con successo"
-			) {
-				dispatch(setSubscriptionStatus(true));
+			const { status, message } = response.data;
+
+			if (status === "success") {
+				dispatch(setSubscriptionStatus(true)); 
 				setIsChecked(true);
-
-				const emailParams = {
-					user_name: userName,
-					user_email: userEmail,
-				};
-
+				
+				const emailParams = { user_name: userName, user_email: userEmail };
 				await emailjs
 					.send(
 						"contact_service",
@@ -68,26 +64,22 @@ const Community = () => {
 							setFeedbackColor("blue");
 						} else {
 							setFeedback(
-								`Qualcosa è andato storto con l'invio dell'email (codice: ${response.status}). Riprova più tardi.`
+								`Iscrizione completata, ma qualcosa è andato storto con l'invio dell'email (codice: ${response.status}).`
 							);
 							setFeedbackColor("darkred");
 						}
 					})
-					.catch((error) => {
-						setFeedback("Errore nell'invio dell'email. ❌");
+					.catch(() => {
+						setFeedback(
+							"Iscrizione completata, ma errore nell'invio dell'email."
+						);
 						setFeedbackColor("darkred");
-						console.error("EmailJS error:", error);
 					});
+			} else if (status === "already_subscribed") {
+				setError("Sei già iscritto alla newsletter.");
 			}
 		} catch (err) {
-			if (
-				err.response &&
-				err.response.data.message === "Utente già iscritto alla newsletter"
-			) {
-				setError("Sei già iscritto alla newsletter.");
-			} else {
-				setError("Si è verificato un errore durante l'iscrizione.");
-			}
+			setError("Errore durante l'iscrizione alla newsletter.");
 			console.error(err);
 		} finally {
 			setIsSubmitting(false);
