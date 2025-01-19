@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoading } from "../slices/loadingSlice";
-import { setRegistrationGoalUnlocked } from "../slices/userSlice";
+import { setRegistrationGoalUnlocked, setIsLoggedIn } from "../slices/userSlice";
 
 const Game = () => {
 	const navigate = useNavigate();
@@ -26,6 +26,7 @@ const Game = () => {
 		try {
 			dispatch(setLoading(true));
 			await axios.post("https://five-card-game.onrender.com/api/logout");
+			dispatch(setIsLoggedIn(false));
 			navigate("/");
 		} catch (error) {
 			console.error("Errore nel logout:", error);

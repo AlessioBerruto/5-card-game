@@ -8,6 +8,7 @@ const initialState = {
 		profileImage: "",
 		isSubscribedToNewsletter: false,
 		registrationGoalUnlocked: false,
+		isLoggedIn: false,
 	},
 };
 
@@ -36,6 +37,9 @@ const userSlice = createSlice({
 		setRegistrationGoalUnlocked: (state, action) => {
 			state.userData.registrationGoalUnlocked = action.payload;
 		},
+		setIsLoggedIn: (state, action) => {
+			state.userData.isLoggedIn = action.payload;
+		},
 	},
 });
 
@@ -47,5 +51,6 @@ export const {
 	deleteUser,
 	setSubscriptionStatus,
 	setRegistrationGoalUnlocked,
+	setIsLoggedIn,
 } = userSlice.actions;
 export default userSlice.reducer;

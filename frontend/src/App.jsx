@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
 import Loader from "./components/Loader";
 import { setLoading } from "./slices/loadingSlice";
-import { setRegistrationGoalUnlocked } from "./slices/userSlice"; 
+import { setRegistrationGoalUnlocked, setIsLoggedIn } from "./slices/userSlice"; 	
 
 
 const App = () => {
@@ -41,6 +41,7 @@ const App = () => {
 
 			dispatch(login({ token }));
 			dispatch(setUserData(user));
+			dispatch(setIsLoggedIn(true));
 
 			navigate("/game");
 		} catch (err) {

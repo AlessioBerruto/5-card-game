@@ -12,6 +12,7 @@ const Community = () => {
 	const isSubscribed = useSelector(
 		(state) => state.user.userData.isSubscribedToNewsletter
 	);
+	const isLoggedIn = useSelector((state) => state.user.userData.isLoggedIn);
 	const [isChecked, setIsChecked] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [error, setError] = useState("");
@@ -75,7 +76,7 @@ const Community = () => {
 						);
 						setFeedbackColor("darkred");
 					});
-			} else if (status === "already_subscribed") {
+			} else if (status === "already_subscribed" && isLoggedIn) {
 				setError("Sei già iscritto alla newsletter.");
 			}
 		} catch (err) {
