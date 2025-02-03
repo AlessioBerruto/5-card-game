@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoading } from "../slices/loadingSlice";
-import { setRegistrationGoalUnlocked, setIsLoggedIn } from "../slices/userSlice";
+import {
+	setRegistrationGoalUnlocked,
+	setIsLoggedIn,
+} from "../slices/userSlice";
 
 const Game = () => {
 	const navigate = useNavigate();
@@ -43,6 +46,53 @@ const Game = () => {
 		setShowLogoutModal(false);
 	};
 
+	const [timeLeft, setTimeLeft] = useState("");
+
+	useEffect(() => {
+		const targetDate = new Date("2025-09-30T00:00:00").getTime();
+		const savedTimestamp = localStorage.getItem("countdownTimestamp");
+	
+		if (!savedTimestamp) {
+			localStorage.setItem("countdownTimestamp", targetDate);
+		}
+	
+		const updateCountdown = () => {
+			const now = new Date();
+			const endDate = new Date(parseInt(localStorage.getItem("countdownTimestamp")));
+	
+			if (now >= endDate) {
+				setTimeLeft("00 mesi, 00 giorni, 00:00:00");
+				clearInterval(interval);
+				localStorage.removeItem("countdownTimestamp");
+				return;
+			}	
+			
+			let monthsDiff = (endDate.getFullYear() - now.getFullYear()) * 12 + (endDate.getMonth() - now.getMonth());			
+			let nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1); 
+			let daysRemaining = Math.floor((nextMonth - now) / (1000 * 60 * 60 * 24)); 	
+			
+			const remainingTime = endDate - now;
+			const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+	
+			setTimeLeft(
+				`${monthsDiff.toString().padStart(2, "0")} mesi, ` +
+				`${daysRemaining.toString().padStart(2, "0")} giorni, ` +
+				`${hours.toString().padStart(2, "0")}:` +
+				`${minutes.toString().padStart(2, "0")}:` +
+				`${seconds.toString().padStart(2, "0")}`
+			);
+		};
+	
+		const interval = setInterval(updateCountdown, 1000);
+		updateCountdown();
+	
+		return () => clearInterval(interval);
+	}, []);
+	
+	
+
 	return (
 		<>
 			<div className={`game-page ${showLogoutModal ? "modal-active" : ""}`}>
@@ -79,10 +129,14 @@ const Game = () => {
 					</Link>
 				</div>
 				<div className="game-window">
+					<div className="countdown">Countdown: {timeLeft}</div>
 					<img
 						src={`${import.meta.env.BASE_URL}/assets/cinque-game-bg.png`}
 						alt="5 Game Background"
 					/>
+					<Link to="/matches">
+						<button className="matches-button">Segnapunti</button>
+					</Link>
 				</div>
 
 				<div className="right-navbar">

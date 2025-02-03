@@ -1,0 +1,40 @@
+@import "./variables";
+
+.matches-page {
+	font-family: $fonts;
+	background-color: $primary;
+	background-image: url("/assets/pattern-bianco.png");
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	font-size: 1.4rem;
+	color: $forth;
+	width: 100%;
+	height: 100vh;
+
+	.tables-container {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: row;		
+	}
+
+	.score-container,
+	.report-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 50%;
+	}
+
+    .result-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+}

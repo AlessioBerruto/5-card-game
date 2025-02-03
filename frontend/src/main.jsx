@@ -10,6 +10,7 @@ import Rules from './pages/Rules.jsx';
 import Assistance from './pages/Assistance.jsx';      
 import Objective from './pages/Objective.jsx';      
 import Community from './pages/Community.jsx';      
+import Matches from './pages/Matches.jsx';      
 import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/game",  
     element: <Game />,
+  },
+  {
+    path: "/matches",  
+    element: <Matches />,
   },
   {
     path: "/rules",  
