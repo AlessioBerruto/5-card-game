@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -9,10 +8,10 @@ const Matches = () => {
 	const [opponent, setOpponent] = useState("");
 	const [result, setResult] = useState("");
 	const [matches, setMatches] = useState([]);
-	const [leaderboard, setLeaderboard] = useState([]);
+	const [report, setReport] = useState(null);
 
 	useEffect(() => {
-		if (user?.email) {
+		if (user?.name) {
 			fetchMatches();
 			fetchLeaderboard();
 		}
@@ -29,15 +28,14 @@ const Matches = () => {
 		}
 	};
 
-	const fetchLeaderboard = async () => {
+	const fetchMatchReport = async () => {
 		try {
 			const response = await axios.get(
-				"https://five-card-game.onrender.com/api/leaderboard"
+				`https://five-card-game.onrender.com/api/matches/${user.name}/report`
 			);
-			console.log(response.data);
-			setLeaderboard(response.data);
+			setReport(response.data);
 		} catch (error) {
-			console.error("Errore nel caricamento della classifica", error);
+			console.error("Errore nel caricamento del report", error);
 		}
 	};
 
@@ -47,8 +45,7 @@ const Matches = () => {
 			return;
 		}
 
-		try {		
-
+		try {
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
 				player: user.name,
 				opponent,
@@ -59,12 +56,9 @@ const Matches = () => {
 			setOpponent("");
 			setResult("");
 			fetchMatches();
-			fetchLeaderboard();
+			fetchMatchReport();
 		} catch (error) {
-			console.error(
-				"Errore nel salvataggio della partita",
-				error.response?.data || error.message
-			);
+			console.error("Errore nel salvataggio della partita", error);
 		}
 	};
 
@@ -76,7 +70,8 @@ const Matches = () => {
 						<div className="result-input">
 							<h2>Inserisci una nuova partita</h2>
 							<p>
-								Giocatore: <strong>{user?.name || "Nome non disponibile"}</strong>
+								Giocatore:{" "}
+								<strong>{user?.name || "Nome non disponibile"}</strong>
 							</p>
 							<input
 								type="text"
@@ -124,24 +119,37 @@ const Matches = () => {
 							<ul>
 								{matches.map((match) => (
 									<li key={match._id}>
-										{user?.name} vs {match.opponent} - {match.result.toUpperCase()} (
+										{user?.name} vs {match.opponent} -{" "}
+										{match.result.toUpperCase()} (
 										{new Date(match.date).toLocaleString()})
 									</li>
 								))}
 							</ul>
 						</div>
 					</div>
-					<div className="report-container">
-  <h2>Classifica</h2>
-  <ul>
-    {leaderboard.map((player, index) => (
-      <li key={player._id}>
-        {index + 1}. {player._id} - {player.wins} Vittorie, {player.draws} Pareggi, {player.losses} Sconfitte
-      </li>
-    ))}
-  </ul>
-</div>
 
+					<div className="report-container">
+						<h3>Resoconto delle Partite</h3>
+						{report ? (
+							<div>
+								<p>
+									<strong>{user.name}</strong> - Vittorie: {report.totalWins},
+									Pareggi: {report.totalDraws}, Sconfitte: {report.totalLosses}
+								</p>
+								<h4>Avversari Affrontati:</h4>
+								<ul>
+									{report.opponents.map((opp) => (
+										<li key={opp.name}>
+											{opp.name} - Vittorie: {opp.wins}, Pareggi: {opp.draws},
+											Sconfitte: {opp.losses}
+										</li>
+									))}
+								</ul>
+							</div>
+						) : (
+							<p>Nessun dato disponibile.</p>
+						)}
+					</div>
 				</div>
 
 				<footer>
