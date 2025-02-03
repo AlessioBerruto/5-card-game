@@ -47,8 +47,10 @@ const Matches = () => {
 		}
 
 		try {
+			console.log({ player: user.email, opponent, result });
+
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
-				player: user.email,
+				player: user.name,
 				opponent,
 				result,
 			});
@@ -58,7 +60,10 @@ const Matches = () => {
 			fetchMatches();
 			fetchLeaderboard();
 		} catch (error) {
-			console.error("Errore nel salvataggio della partita", error);
+			console.error(
+				"Errore nel salvataggio della partita",
+				error.response?.data || error.message
+			);
 		}
 	};
 
@@ -70,7 +75,7 @@ const Matches = () => {
 						<div className="result-input">
 							<h2>Inserisci una nuova partita</h2>
 							<p>
-								Giocatore: <strong>{user?.email}</strong>
+								Giocatore: <strong>{user?.name}</strong>
 							</p>
 							<input
 								type="text"
@@ -126,17 +131,15 @@ const Matches = () => {
 						</div>
 					</div>
 					<div className="report-container">
-						
-							<h2>Classifica</h2>
-							<ul>
-								{leaderboard.map((player, index) => (
-									<li key={player._id}>
-										{index + 1}. {player._id} - {player.wins} Vittorie,{" "}
-										{player.draws} Pareggi, {player.losses} Sconfitte
-									</li>
-								))}
-							</ul>
-						
+						<h2>Classifica</h2>
+						<ul>
+							{leaderboard.map((player, index) => (
+								<li key={player._id}>
+									{index + 1}. {player._id} - {player.wins} Vittorie,{" "}
+									{player.draws} Pareggi, {player.losses} Sconfitte
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 
