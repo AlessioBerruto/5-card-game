@@ -58,7 +58,14 @@ export const getMatchReport = async (req, res) => {
 			if (match.result === "loss") report.opponents[match.opponent].losses++;
 		});
 
-		res.status(200).json(report);
+    const opponentsArray = Object.values(report.opponents);
+
+		res.status(200).json({
+			totalWins: report.totalWins,
+			totalDraws: report.totalDraws,
+			totalLosses: report.totalLosses,
+			opponents: opponentsArray, 
+		});
 	} catch (error) {
 		res.status(500).json({ message: "Errore nel server", error });
 	}
