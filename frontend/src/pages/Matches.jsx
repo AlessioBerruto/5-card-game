@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Matches = () => {
-	const user = useSelector((state) => state.user);
+	const user = useSelector((state) => state.user.userData);
 	const [opponent, setOpponent] = useState("");
 	const [result, setResult] = useState("");
 	const [matches, setMatches] = useState([]);
@@ -21,7 +21,7 @@ const Matches = () => {
 	const fetchMatches = async () => {
 		try {
 			const response = await axios.get(
-				`https://five-card-game.onrender.com/api/matches/${user.email}`
+				`https://five-card-game.onrender.com/api/matches/${user.name}`
 			);
 			setMatches(response.data);
 		} catch (error) {
@@ -34,6 +34,7 @@ const Matches = () => {
 			const response = await axios.get(
 				"https://five-card-game.onrender.com/api/leaderboard"
 			);
+			console.log(response.data);
 			setLeaderboard(response.data);
 		} catch (error) {
 			console.error("Errore nel caricamento della classifica", error);
@@ -46,13 +47,13 @@ const Matches = () => {
 			return;
 		}
 
-		try {
-			console.log({ player: user.email, opponent, result });
+		try {		
 
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
 				player: user.name,
 				opponent,
 				result,
+				date: new Date().toISOString(),
 			});
 
 			setOpponent("");
@@ -75,7 +76,7 @@ const Matches = () => {
 						<div className="result-input">
 							<h2>Inserisci una nuova partita</h2>
 							<p>
-								Giocatore: <strong>{user?.name}</strong>
+								Giocatore: <strong>{user?.name || "Nome non disponibile"}</strong>
 							</p>
 							<input
 								type="text"
@@ -123,7 +124,7 @@ const Matches = () => {
 							<ul>
 								{matches.map((match) => (
 									<li key={match._id}>
-										{match.opponent} - {match.result.toUpperCase()} (
+										{user?.name} vs {match.opponent} - {match.result.toUpperCase()} (
 										{new Date(match.date).toLocaleString()})
 									</li>
 								))}
@@ -131,16 +132,16 @@ const Matches = () => {
 						</div>
 					</div>
 					<div className="report-container">
-						<h2>Classifica</h2>
-						<ul>
-							{leaderboard.map((player, index) => (
-								<li key={player._id}>
-									{index + 1}. {player._id} - {player.wins} Vittorie,{" "}
-									{player.draws} Pareggi, {player.losses} Sconfitte
-								</li>
-							))}
-						</ul>
-					</div>
+  <h2>Classifica</h2>
+  <ul>
+    {leaderboard.map((player, index) => (
+      <li key={player._id}>
+        {index + 1}. {player._id} - {player.wins} Vittorie, {player.draws} Pareggi, {player.losses} Sconfitte
+      </li>
+    ))}
+  </ul>
+</div>
+
 				</div>
 
 				<footer>

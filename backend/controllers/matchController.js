@@ -34,19 +34,47 @@ export const getLeaderboard = async (req, res) => {
   try {
     const leaderboard = await Match.aggregate([
       {
-        $group: {
-          _id: "$player",
-          wins: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } },
-          draws: { $sum: { $cond: [{ $eq: ["$result", "draw"] }, 1, 0] } },
-          losses: { $sum: { $cond: [{ $eq: ["$result", "loss"] }, 1, 0] } },
-          totalGames: { $sum: 1 }
+        $facet: {
+          playerStats: [
+            {
+              $group: {
+                _id: "$player",
+                wins: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } },
+                draws: { $sum: { $cond: [{ $eq: ["$result", "draw"] }, 1, 0] } },
+                losses: { $sum: { $cond: [{ $eq: ["$result", "loss"] }, 1, 0] } },
+                totalGames: { $sum: 1 }
+              }
+            }
+          ],
+          opponentStats: [
+            {
+              $group: {
+                _id: "$opponent",
+                wins: { $sum: { $cond: [{ $eq: ["$result", "loss"] }, 1, 0] } },  // L'avversario vince se il player perde
+                draws: { $sum: { $cond: [{ $eq: ["$result", "draw"] }, 1, 0] } },
+                losses: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } }, // L'avversario perde se il player vince
+                totalGames: { $sum: 1 }
+              }
+            }
+          ]
         }
       },
-      { $sort: { wins: -1, draws: -1 } }
+      { $unwind: "$playerStats" },
+      { $unwind: "$opponentStats" },
+      {
+        $group: {
+          _id: { $cond: [{ $gt: [{ $size: "$playerStats" }, 0] }, "$playerStats", "$opponentStats"] },
+          wins: { $sum: "$wins" },
+          draws: { $sum: "$draws" },
+          losses: { $sum: "$losses" },
+          totalGames: { $sum: "$totalGames" }
+        }
+      },
+      { $sort: { wins: -1, draws: -1, totalGames: -1 } }
     ]);
-
     res.status(200).json(leaderboard);
   } catch (error) {
     res.status(500).json({ message: "Errore nel server", error });
   }
 };
+
