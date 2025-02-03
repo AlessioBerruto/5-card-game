@@ -13,7 +13,7 @@ const Matches = () => {
 	useEffect(() => {
 		if (user?.name) {
 			fetchMatches();
-			fetchLeaderboard();
+			fetchMatchReport();
 		}
 	}, [user]);
 
