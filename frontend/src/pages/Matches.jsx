@@ -11,7 +11,7 @@ const Matches = () => {
 	const [report, setReport] = useState(null);
 
 	useEffect(() => {
-		if (user?.name) {
+		if (user?.email) {
 			fetchMatches();
 			fetchMatchReport();
 		}
@@ -20,7 +20,7 @@ const Matches = () => {
 	const fetchMatches = async () => {
 		try {
 			const response = await axios.get(
-				`https://five-card-game.onrender.com/api/matches/${user.name}`
+				`https://five-card-game.onrender.com/api/matches/${user.email}`
 			);
 			setMatches(response.data);
 		} catch (error) {
@@ -31,7 +31,7 @@ const Matches = () => {
 	const fetchMatchReport = async () => {
 		try {
 			const response = await axios.get(
-				`https://five-card-game.onrender.com/api/matches/${user.name}/report`
+				`https://five-card-game.onrender.com/api/matches/${user.email}/report`
 			);
 			setReport(response.data);
 		} catch (error) {
@@ -47,7 +47,7 @@ const Matches = () => {
 
 		try {
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
-				player: user.name,
+				player: user.email,
 				opponent,
 				result,
 				date: new Date().toISOString(),
@@ -113,7 +113,20 @@ const Matches = () => {
 							</div>
 							<button onClick={handleAddMatch}>Conferma</button>
 						</div>
+					</div>
 
+					<div className="report-container">
+						<h3>Resoconto delle Partite</h3>
+						{report ? (
+							<div>
+								<p>Vittorie: {report.totalWins}</p>
+								<p>Pareggi: {report.totalDraws}</p>
+								<p>Sconfitte: {report.totalLosses}</p>
+							</div>
+						) : (
+							<p>Caricamento dati...</p>
+						)}
+						
 						<div className="match-history">
 							<h3>Storico Partite</h3>
 							<ul>
@@ -126,29 +139,6 @@ const Matches = () => {
 								))}
 							</ul>
 						</div>
-					</div>
-
-					<div className="report-container">
-						<h3>Resoconto delle Partite</h3>
-						{report ? (
-							<div>
-								<p>
-									<strong>{user.name}</strong> - Vittorie: {report.totalWins},
-									Pareggi: {report.totalDraws}, Sconfitte: {report.totalLosses}
-								</p>
-								<h4>Avversari Affrontati:</h4>
-								<ul>
-									{report.opponents.map((opp) => (
-										<li key={opp.name}>
-											{opp.name} - Vittorie: {opp.wins}, Pareggi: {opp.draws},
-											Sconfitte: {opp.losses}
-										</li>
-									))}
-								</ul>
-							</div>
-						) : (
-							<p>Nessun dato disponibile.</p>
-						)}
 					</div>
 				</div>
 
