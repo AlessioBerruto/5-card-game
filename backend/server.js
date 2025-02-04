@@ -10,7 +10,7 @@ import { registerUser, loginUser } from "./controllers/authController.js";
 import { subscribeToNewsletter } from "./controllers/newsletterController.js";
 import { updateUser, deleteUser } from "./controllers/userController.js";
 import { handleProfileImageUpload } from "./controllers/imageController.js";
-import { addMatch, getMatches, getMatchReport } from "./controllers/matchController.js";
+import { addMatch, getMatches, getMatchReport, deleteLastMatch } from "./controllers/matchController.js";
 
 dotenv.config();
 
@@ -37,6 +37,7 @@ const multerStorage = multer.memoryStorage();
 const upload = multer({ storage: multerStorage });
 
 // Rotte API
+app.delete("/api/matches/:playerEmail/last", deleteLastMatch);
 app.post("/api/matches", addMatch);
 app.get("/api/matches/:playerEmail/report", getMatchReport);
 app.get("/api/matches/:playerEmail", getMatches);

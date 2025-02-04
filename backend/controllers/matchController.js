@@ -53,3 +53,20 @@ export const getMatchReport = async (req, res) => {
     res.status(500).json({ message: "Errore nel server", error });
   }
 };
+
+export const deleteLastMatch = async (req, res) => {
+  const { playerEmail } = req.params;
+
+  try {
+    const lastMatch = await Match.findOne({ playerEmail }).sort({ date: -1 });
+
+    if (!lastMatch) {
+      return res.status(404).json({ message: "Nessuna partita da eliminare" });
+    }
+
+    await Match.findByIdAndDelete(lastMatch._id);
+    res.status(200).json({ message: "Ultima partita eliminata con successo" });
+  } catch (error) {
+    res.status(500).json({ message: "Errore durante l'eliminazione", error });
+  }
+};

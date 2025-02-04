@@ -64,6 +64,18 @@ const Matches = () => {
 		}
 	};
 
+	const handleDeleteLastMatch = async () => {
+		try {
+		  await axios.delete(`https://five-card-game.onrender.com/api/matches/${user.email}/last`);
+		  fetchMatches(); 
+		  fetchMatchReport(); 
+		} catch (error) {
+		  console.error("Errore nell'eliminazione dell'ultima partita", error);
+		}
+	  };
+	  
+	  
+	  
 	const filteredMatches = matches.filter((match) =>
 		(match.opponent || "").toLowerCase().includes(searchQuery.toLowerCase())
 	);
@@ -119,6 +131,8 @@ const Matches = () => {
 								</label>
 							</div>
 							<button onClick={handleAddMatch}>Conferma</button>
+							<button onClick={handleDeleteLastMatch}>Elimina Ultima Partita</button>	  
+
 						</div>
 						<h3>Resoconto delle Partite</h3>
 						{report ? (
