@@ -38,8 +38,8 @@ const upload = multer({ storage: multerStorage });
 
 // Rotte API
 app.post("/api/matches", addMatch);
-app.get("/api/matches/:player", getMatches);
-app.get("/api/matches/:player/report", getMatchReport);
+app.get("/api/matches/:playerEmail/report", getMatchReport);
+app.get("/api/matches/:playerEmail", getMatches);
 app.post("/api/register", registerUser);
 app.post("/api/login", loginUser);
 app.post("/api/subscribe-newsletter", subscribeToNewsletter);

@@ -2,14 +2,14 @@ import Match from "../models/Match.js";
 
 // Nuova partita
 export const addMatch = async (req, res) => {
-  const { playerEmail, playerName, result } = req.body;
+  const { playerEmail, playerName, opponent, result, date } = req.body;
 
-  if (!playerEmail || !playerName || !result) {
+  if (!playerEmail || !playerName || !opponent || !result || !date) {
     return res.status(400).json({ message: "Tutti i campi sono obbligatori" });
   }
 
   try {
-    const newMatch = new Match({ playerEmail, playerName, result });
+    const newMatch = new Match({ playerEmail, playerName, opponent, result, date });
     await newMatch.save();
     res.status(201).json({ message: "Partita salvata con successo", match: newMatch });
   } catch (error) {

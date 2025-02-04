@@ -9,6 +9,7 @@ const Matches = () => {
 	const [result, setResult] = useState("");
 	const [matches, setMatches] = useState([]);
 	const [report, setReport] = useState(null);
+	const [searchQuery, setSearchQuery] = useState("");
 
 	useEffect(() => {
 		if (user?.email) {
@@ -47,7 +48,8 @@ const Matches = () => {
 
 		try {
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
-				player: user.email,
+				playerEmail: user.email,
+				playerName: user.name,
 				opponent,
 				result,
 				date: new Date().toISOString(),
@@ -61,6 +63,10 @@ const Matches = () => {
 			console.error("Errore nel salvataggio della partita", error);
 		}
 	};
+
+	const filteredMatches = matches.filter((match) =>
+		match.opponent.toLowerCase().includes(searchQuery.toLowerCase())
+	);
 
 	return (
 		<>
@@ -113,9 +119,6 @@ const Matches = () => {
 							</div>
 							<button onClick={handleAddMatch}>Conferma</button>
 						</div>
-					</div>
-
-					<div className="report-container">
 						<h3>Resoconto delle Partite</h3>
 						{report ? (
 							<div>
@@ -126,17 +129,31 @@ const Matches = () => {
 						) : (
 							<p>Caricamento dati...</p>
 						)}
-						
+					</div>
+
+					<div className="report-container">
+						<div className="search-bar">
+							<input
+								type="text"
+								placeholder="Cerca per nome avversario"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+							/>
+						</div>
 						<div className="match-history">
 							<h3>Storico Partite</h3>
 							<ul>
-								{matches.map((match) => (
-									<li key={match._id}>
-										{user?.name} vs {match.opponent} -{" "}
-										{match.result.toUpperCase()} (
-										{new Date(match.date).toLocaleString()})
-									</li>
-								))}
+								{filteredMatches.length > 0 ? (
+									filteredMatches.map((match) => (
+										<li key={match._id}>
+											{user?.name} vs {match.opponent} -{" "}
+											{match.result.toUpperCase()} (
+											{new Date(match.date).toLocaleString()})
+										</li>
+									))
+								) : (
+									<p>Nessuna partita trovata.</p>
+								)}
 							</ul>
 						</div>
 					</div>
