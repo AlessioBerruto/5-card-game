@@ -65,8 +65,9 @@ const Matches = () => {
 	};
 
 	const filteredMatches = matches.filter((match) =>
-		match.opponent.toLowerCase().includes(searchQuery.toLowerCase())
+		(match.opponent || "").toLowerCase().includes(searchQuery.toLowerCase())
 	);
+	
 
 	return (
 		<>
@@ -90,8 +91,8 @@ const Matches = () => {
 									<input
 										type="radio"
 										name="result"
-										value="win"
-										checked={result === "win"}
+										value="vittoria"
+										checked={result === "vittoria"}
 										onChange={(e) => setResult(e.target.value)}
 									/>
 									Vittoria
@@ -100,8 +101,8 @@ const Matches = () => {
 									<input
 										type="radio"
 										name="result"
-										value="draw"
-										checked={result === "draw"}
+										value="pareggio"
+										checked={result === "pareggio"}
 										onChange={(e) => setResult(e.target.value)}
 									/>
 									Pareggio
@@ -110,8 +111,8 @@ const Matches = () => {
 									<input
 										type="radio"
 										name="result"
-										value="loss"
-										checked={result === "loss"}
+										value="sconfitta"
+										checked={result === "sconfitta"}
 										onChange={(e) => setResult(e.target.value)}
 									/>
 									Sconfitta

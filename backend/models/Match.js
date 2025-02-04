@@ -4,7 +4,7 @@ const matchSchema = new mongoose.Schema({
   playerEmail: { type: String, required: true },
   playerName: { type: String, required: true },  
   opponent: { type: String, required: true },
-  result: { type: String, enum: ["win", "draw", "loss"], required: true },
+  result: { type: String, enum: ["vittoria", "pareggio", "sconfitta"], required: true },
   date: { type: Date, default: Date.now },
 });
 

@@ -43,9 +43,9 @@ export const getMatchReport = async (req, res) => {
     };
 
     matches.forEach((match) => {
-      if (match.result === "win") report.totalWins++;
-      if (match.result === "draw") report.totalDraws++;
-      if (match.result === "loss") report.totalLosses++;
+      if (match.result === "vittoria") report.totalWins++;
+      if (match.result === "pareggio") report.totalDraws++;
+      if (match.result === "sconfitta") report.totalLosses++;
     });
 
     res.status(200).json(report);
