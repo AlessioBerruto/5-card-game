@@ -105,10 +105,9 @@ const App = () => {
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
 						<p>
-							Benvenuto in Cinque, un nuovo gioco di carte ispirato a Solitario
+							Benvenuto in <strong>Cinque</strong>, un nuovo gioco di carte ispirato a Solitario
 							ma multigiocatore.
-						</p>
-						<p>
+							<br /><br />						
 							Registrati o Accedi per scoprire le regole di questo gioco, in
 							attesa dell'uscita della sua versione digitale.
 						</p>

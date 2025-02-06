@@ -18,44 +18,79 @@
 .game-window {
 	margin: 0;	
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	flex-direction: column;	
 	align-items: center;
+	justify-content: center;
 	width: 100vw;
-	height: 100vh;
+	height: 100vh;	
+	background-color: $primary;
+	background-image: url("/assets/pattern-bianco.png");
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: center; 
+	background-clip: content-box; 
+	overflow: hidden;
+
+	.arrow {
+		font-size: 5rem;
+		margin: 0;
+		font-weight: bold;
+		color: $secondary;
+		text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);;
+	}
+
+	.game-text,
+	.scores-text {
+		width: 90%;
+		background-color: #40b67d;
+		border-radius: 10px;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+		border: 2px solid $fifth;
+		text-align: center;
+		font-size: 1.8rem;
+		font-weight: bold;
+		padding: 2vh 2vw;
+		margin-top: 10vh;
+		margin-bottom: 0;
+		color: $fifth;
+	}
+
+	.scores-text {
+		background-color: $forth;
+		color: $fifth;	
+		margin-top: 10vh;
+		font-size: 1.1rem;	
+	}
+	
 
 	.countdown {
 		display: flex;
-		width: 100%;
-		height: 7vh;
-		background-color: #40B67D;
+		width: 90%;
+		height: 7vh;				
+		background-color: #40b67d;
 		justify-content: center;
 		align-items: center;
 		font-size: 2rem;
-		color: $fifth;
-		font-weight: 600;
-		border: 2px solid $forth;
-		
+		color: $forth;
+		font-weight: 600;		
+		border-radius: 10px;
+		box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);		
 	}
 
 	.matches-button {
-		width: 20vw;
-		position: fixed;
-		padding: 0.75rem;
+		width: 25vw;		
+		padding: 0.75rem;		
 		background-color: $secondary;
 		color: $forth;
 		border: none;
-		border-radius: 4px;
-		font-size: 1.1rem;
+		border-radius: 8px;
+		font-size: 1.3rem;
 		cursor: pointer;
-		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-		bottom: 6.5vh;
-		left: 50%;
-		transform: translateX(-50%);		
+		box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);		
+		
 
 		&:hover {
 			background-color: $dark-secondary;
-			// filter: drop-shadow(0 0 2em #f2e4e8);
 		}
 
 		&:active {
@@ -63,7 +98,6 @@
 			bottom: 6vh;
 			margin-left: 3px;
 			box-shadow: none;
-			// filter: drop-shadow(0 0 2em $dark-secondary);
 		}
 	}
 

@@ -35,13 +35,21 @@
 	gap: 8vw;
 }
 
-.home-description {
+.home-description {	
 	color: $fifth;
 	max-width: 47vw;
 	text-align: center;
 	font-size: 1.7rem;
 	font-weight: 500;
 	line-height: 3.3rem;
+	
+	p{
+		padding: 0.5rem;
+		background-color: #40b67d;
+		border-radius: 10px;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+		border: 2px solid $fifth;
+	}
 }
 
 .form-wrapper {
@@ -49,7 +57,7 @@
 	background-color: lightgrey;
 	padding: 2rem;
 	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 
 	p {
 		margin-top: 2vh;
@@ -132,39 +140,67 @@ footer {
 }
 
 .achievement-popup {
-	position: fixed;   
-	bottom: 5vh;      
-	left: 50%;        
+	position: fixed;
+	bottom: 5vh;
+	left: 50%;
 	transform: translateX(-50%);
 	background-color: $fifth;
-	color: $forth;      
-	padding: 10px 20px; 
-	border-radius: 5px; 
-	font-size: 18px;   
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
-	z-index: 9999;     
-	opacity: 0;        
-	transition: opacity 0.3s ease-in-out; 
-  }
-  
-  .achievement-popup.show {
-	opacity: 1; 
-  }
-  
+	color: $forth;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 18px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+	z-index: 9999;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.achievement-popup.show {
+	opacity: 1;
+}
 
 // MEDIA QUERIES
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) and (max-width: 1250px) {
 	.popup {
 		width: 40vw;
 
-		.trophy-img-left{
+		.trophy-img-left {
 			margin-right: 1.5rem;
 		}
-		.trophy-img-right{
+		.trophy-img-right {
 			margin-left: 1.5rem;
 		}
 	}
 
+	.matches-page {
+		font-size: 1rem;
+
+		.match-history {
+			font-size: 1rem;
+		}
+
+		.input-container {
+			.players {
+				gap: 0.7rem;
+			}
+		}
+
+		.report-container {
+			.search-bar {
+				.delete-button {
+					font-size: 0.9rem;
+				}
+			}
+		}
+
+		.scores {
+			padding: 1.2rem 1.5rem 1rem 1.5rem;
+
+			p {
+				margin-bottom: 1.5vh;
+			}
+		}
+	}
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
@@ -191,7 +227,6 @@ footer {
 	}
 
 	.logout-modal {
-
 		h2 {
 			font-size: 1.7rem;
 		}
@@ -203,7 +238,6 @@ footer {
 			}
 		}
 	}
-	
 
 	.profile-img {
 		.card-bg-trasparent {
@@ -231,10 +265,10 @@ footer {
 		font-size: 1rem;
 		width: 40vw;
 
-		.trophy-img-left{
+		.trophy-img-left {
 			margin-right: 1rem;
 		}
-		.trophy-img-right{
+		.trophy-img-right {
 			margin-left: 1rem;
 		}
 	}
@@ -301,20 +335,72 @@ footer {
 
 		input {
 			width: 200px;
-		}		
+		}
 
 		.link-p {
 			margin-top: 4vh;
-			font-size: 1.3rem;		
+			font-size: 1.3rem;
 		}
 	}
 
 	footer {
-		.footer-link{
+		.footer-link {
 			font-size: 1.3rem;
 		}
 	}
-	
+
+	.matches-page {
+		font-size: 1rem;
+
+		h1 {
+			font-size: 2.5rem;
+		}
+
+		.tables-container {
+			h3 {
+				font-size: 1.3rem;
+				margin-top: 1vh;
+			}
+		}
+
+		.match-history {
+			font-size: 0.8rem;
+		}
+
+		.input-container {
+			.players {
+				gap: 0.5rem;
+			}
+		}
+
+		.report-container {
+			margin: 2rem 1rem;
+			.search-bar {
+				
+				img {
+					width: 25px;
+				}
+
+				.delete-button {
+					font-size: 0.8rem;
+				}
+			}
+		}
+
+		.scores {
+			padding: 1.2rem 1.5rem 1rem 1.5rem;
+
+			p {
+				margin-bottom: 1.5vh;
+			}
+		}
+
+		.result-container {
+			p {
+				margin-bottom: 2vh;
+			}
+		}
+	}
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
@@ -348,10 +434,10 @@ footer {
 		width: 40vw;
 		height: 9vh;
 
-		.trophy-img-left{
+		.trophy-img-left {
 			margin-right: 0.3rem;
 		}
-		.trophy-img-right{
+		.trophy-img-right {
 			margin-left: 0.3rem;
 		}
 	}
@@ -375,7 +461,6 @@ footer {
 	}
 
 	.logout-modal {
-
 		h2 {
 			font-size: 1.5rem;
 		}
@@ -428,7 +513,7 @@ footer {
 			font-size: 3.2rem;
 		}
 
-		.community-content {			
+		.community-content {
 			width: 100%;
 			padding-left: 0;
 			gap: 3vh;
@@ -438,7 +523,7 @@ footer {
 				margin-bottom: 2.5vh;
 				height: 6vh;
 
-				img {					
+				img {
 					padding-left: 0.2rem;
 					padding-right: 0.4rem;
 					padding-bottom: 0.3rem;
@@ -503,22 +588,73 @@ footer {
 		input {
 			width: 180px;
 			height: 50px;
-		}		
+		}
 
 		.link-p {
 			margin-top: 3vh;
-			font-size: 1.1rem;		
+			font-size: 1.1rem;
 		}
 	}
 
 	footer {
-		.footer-link{
+		.footer-link {
 			font-size: 1.1rem;
+		}
+	}
+
+	.matches-page {
+		font-size: 0.9rem;
+
+		h1 {
+			font-size: 2.3rem;
+		}
+
+		.tables-container {
+			h3 {
+				font-size: 1.2rem;
+				margin-top: 1vh;
+			}
+		}
+
+		.match-history {
+			font-size: 0.8rem;
+		}
+
+		.input-container {
+			.players {
+				gap: 0.5rem;
+			}
+		}
+
+		.report-container {
+			margin: 2rem 0.5rem;
+			.search-bar {
+
+				img {
+					width: 25px;
+				}
+
+				.delete-button {
+					font-size: 0.7rem;
+				}
+			}
+		}
+
+		.scores {
+			padding: 1.2rem 1.5rem 1rem 1.5rem;
+
+			p {
+				margin-bottom: 1.5vh;
+			}
+		}
+
+		.score-container {
+			margin: 2rem 0.5rem;
 		}
 	}
 }
 
-@media (min-width: 414px) and (max-width: 600px) {
+@media (min-width: 413px) and (max-width: 600px) {
 	.home-container {
 		flex-direction: column;
 		gap: 4vh;
@@ -549,10 +685,10 @@ footer {
 		width: 55vw;
 		height: 9vh;
 
-		.trophy-img-left{
+		.trophy-img-left {
 			margin-right: 0.3rem;
 		}
-		.trophy-img-right{
+		.trophy-img-right {
 			margin-left: 0.3rem;
 		}
 	}
@@ -576,7 +712,6 @@ footer {
 	}
 
 	.logout-modal {
-
 		width: 300px;
 
 		h2 {
@@ -645,7 +780,7 @@ footer {
 			font-size: 3rem;
 		}
 
-		.community-content {			
+		.community-content {
 			width: 100%;
 			padding-left: 0;
 			gap: 1rem;
@@ -655,7 +790,7 @@ footer {
 				margin-bottom: 2vh;
 				height: 5vh;
 
-				img {					
+				img {
 					padding-left: 0.2rem;
 					padding-right: 0.4rem;
 					padding-bottom: 0.3rem;
@@ -720,17 +855,92 @@ footer {
 		input {
 			width: 170px;
 			height: 50px;
-		}		
+		}
 
 		.link-p {
 			margin-top: 3vh;
-			font-size: 1rem;		
+			font-size: 1rem;
 		}
 	}
 
 	footer {
-		.footer-link{
+		.footer-link {
 			font-size: 1rem;
+		}
+	}
+
+	.matches-page {
+		font-size: 0.9rem;
+		height: 100%;
+
+		h1 {
+			font-size: 2.3rem;
+		}
+
+		.tables-container {
+			flex-direction: column;
+			align-items: center;
+
+			.opponent-input-left {
+				width: 28vw;
+			}
+
+			h3 {
+				font-size: 1.2rem;
+				margin-top: 1vh;
+			}
+		}
+
+		.match-history {
+			font-size: 0.8rem;
+			width: 70vw;
+		}
+
+		.input-container {
+			width: 70vw;
+			.players {
+				gap: 1rem;
+			}
+		}
+
+		.report-container {
+			margin: 0.5rem;
+			height: 50%;
+			width: 80%;
+			.search-bar {
+
+				img {
+					width: 25px;
+				}
+
+				.opponent-input-right {
+					width: 28vw;
+				}
+				.delete-button {
+					width: 28vw;
+					font-size: 0.7rem;
+				}
+			}
+		}
+
+		.scores {
+			padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+			width: 70vw;
+
+			p {
+				margin-bottom: 1.5vh;
+			}
+		}
+
+		.score-container {
+			height: 50%;
+			width: 80%;
+			margin: 0.5rem;
+		}
+
+		footer {
+			position: relative; 
+			margin-top: auto; 
 		}
 	}
 }
@@ -766,10 +976,10 @@ footer {
 		width: 60vw;
 		height: 7vh;
 
-		.trophy-img-left{
+		.trophy-img-left {
 			margin-right: 0.2rem;
 		}
-		.trophy-img-right{
+		.trophy-img-right {
 			margin-left: 0.2rem;
 		}
 	}
@@ -793,7 +1003,6 @@ footer {
 	}
 
 	.logout-modal {
-
 		width: 250px;
 
 		h2 {
@@ -862,7 +1071,7 @@ footer {
 			font-size: 2.7rem;
 		}
 
-		.community-content {			
+		.community-content {
 			width: 100%;
 			padding-left: 0;
 
@@ -871,7 +1080,7 @@ footer {
 				margin-bottom: 2vh;
 				height: 5vh;
 
-				img {					
+				img {
 					padding-left: 0.2rem;
 					padding-right: 0.4rem;
 					padding-bottom: 0.3rem;
@@ -930,23 +1139,98 @@ footer {
 		}
 
 		textarea {
-			font-size: 0.9rem;			
+			font-size: 0.9rem;
 		}
 
 		input {
 			width: 170px;
 			height: 50px;
-		}		
+		}
 
 		.link-p {
 			margin-top: 3vh;
-			font-size: 1rem;		
+			font-size: 1rem;
 		}
 	}
 
 	footer {
-		.footer-link{
+		.footer-link {
 			font-size: 1rem;
+		}
+	}
+
+	.matches-page {
+		font-size: 0.9rem;
+		height: 100%;
+
+		h1 {
+			font-size: 2.3rem;
+		}
+
+		.tables-container {
+			flex-direction: column;
+			align-items: center;
+
+			.opponent-input-left {
+				width: 28vw;
+			}
+
+			h3 {
+				font-size: 1.2rem;
+				margin-top: 1vh;
+			}
+		}
+
+		.match-history {
+			font-size: 0.8rem;
+			width: 70vw;
+		}
+
+		.input-container {
+			width: 70vw;
+			.players {
+				gap: 1rem;
+			}
+		}
+
+		.report-container {
+			margin: 0.5rem;
+			height: 50%;
+			width: 80%;
+			.search-bar {
+
+				img {
+					width: 25px;
+				}
+
+				.opponent-input-right {
+					width: 28vw;
+				}
+				.delete-button {
+					width: 28vw;
+					font-size: 0.7rem;
+				}
+			}
+		}
+
+		.scores {
+			padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+			width: 70vw;
+
+			p {
+				margin-bottom: 1.5vh;
+			}
+		}
+
+		.score-container {
+			height: 50%;
+			width: 80%;
+			margin: 0.5rem;
+		}
+
+		footer {
+			position: relative; 
+			margin-top: auto; 
 		}
 	}
 }

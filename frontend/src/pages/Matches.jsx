@@ -66,38 +66,41 @@ const Matches = () => {
 
 	const handleDeleteLastMatch = async () => {
 		try {
-		  await axios.delete(`https://five-card-game.onrender.com/api/matches/${user.email}/last`);
-		  fetchMatches(); 
-		  fetchMatchReport(); 
+			await axios.delete(
+				`https://five-card-game.onrender.com/api/matches/${user.email}/last`
+			);
+			fetchMatches();
+			fetchMatchReport();
 		} catch (error) {
-		  console.error("Errore nell'eliminazione dell'ultima partita", error);
+			console.error("Errore nell'eliminazione dell'ultima partita", error);
 		}
-	  };
-	  
-	  
-	  
+	};
+
 	const filteredMatches = matches.filter((match) =>
 		(match.opponent || "").toLowerCase().includes(searchQuery.toLowerCase())
 	);
-	
 
 	return (
 		<>
 			<div className="matches-page">
+				<h1>Partite e Punteggi</h1>
 				<div className="tables-container">
 					<div className="score-container">
-						<div className="result-input">
-							<h2>Inserisci una nuova partita</h2>
-							<p>
-								Giocatore:{" "}
-								<strong>{user?.name || "Nome non disponibile"}</strong>
-							</p>
-							<input
-								type="text"
-								placeholder="Nome avversario"
-								value={opponent}
-								onChange={(e) => setOpponent(e.target.value)}
-							/>
+						<h3>Inserisci una nuova partita</h3>
+						<div className="input-container">
+							<div className="players">
+								<p>									
+									<strong>{user?.name || "Nome non disponibile"}</strong>
+								</p>
+								<p>VS</p>
+								<input
+									type="text"
+									placeholder="Nome avversario"
+									className="opponent-input-left"
+									value={opponent}
+									onChange={(e) => setOpponent(e.target.value)}
+								/>
+							</div>
 							<div className="result-options">
 								<label>
 									<input
@@ -130,33 +133,48 @@ const Matches = () => {
 									Sconfitta
 								</label>
 							</div>
-							<button onClick={handleAddMatch}>Conferma</button>
-							<button onClick={handleDeleteLastMatch}>Elimina Ultima Partita</button>	  
-
+							<button className="confirm-button" onClick={handleAddMatch}>Conferma</button>
 						</div>
 						<h3>Resoconto delle Partite</h3>
-						{report ? (
-							<div>
-								<p>Vittorie: {report.totalWins}</p>
-								<p>Pareggi: {report.totalDraws}</p>
-								<p>Sconfitte: {report.totalLosses}</p>
-							</div>
-						) : (
-							<p>Caricamento dati...</p>
-						)}
+						<div className="result-container">
+							{report ? (
+								<div className="scores">
+									<p>Vittorie: {report.totalWins}</p>
+									<p>Pareggi: {report.totalDraws}</p>
+									<p>Sconfitte: {report.totalLosses}</p>
+								</div>
+							) : (
+								<p>Caricamento dati...</p>
+							)}
+						</div>
 					</div>
 
 					<div className="report-container">
+						<h3>Storico Partite</h3>
 						<div className="search-bar">
+							<img
+								src={`${import.meta.env.BASE_URL}/assets/lens-icon-white.svg`}
+								className="card-img-top"
+								alt="icona della lente"
+							/>
 							<input
 								type="text"
-								placeholder="Cerca per nome avversario"
+								placeholder="Nome avversario"
+								className="opponent-input-right"
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 							/>
+							<img
+								src={`${import.meta.env.BASE_URL}/assets/bin-icon-white.svg`}
+								className="card-img-top"
+								alt="icona del cestino"
+							/>
+							<button className="delete-button" onClick={handleDeleteLastMatch}>
+								Elimina Ultima Partita
+							</button>
 						</div>
+
 						<div className="match-history">
-							<h3>Storico Partite</h3>
 							<ul>
 								{filteredMatches.length > 0 ? (
 									filteredMatches.map((match) => (
