@@ -39,12 +39,12 @@
 	color: $fifth;
 	max-width: 47vw;
 	text-align: center;
-	font-size: 1.7rem;
+	font-size: 1.6rem;
 	font-weight: 500;
 	line-height: 3.3rem;
 	
 	p{
-		padding: 0.5rem;
+		padding: 1rem;
 		background-color: #40b67d;
 		border-radius: 10px;
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
@@ -161,6 +161,11 @@ footer {
 
 // MEDIA QUERIES
 @media (min-width: 992px) and (max-width: 1250px) {
+
+	.home-description {
+		font-size: 1.4rem;
+	}
+
 	.popup {
 		width: 40vw;
 
@@ -201,6 +206,28 @@ footer {
 			}
 		}
 	}
+
+	.game-window {
+		.arrow {
+			font-size: 4rem;
+		}
+
+		.game-text {
+			font-size: 1.2rem;
+		}
+
+		.scores-text {
+			font-size: 1rem;
+		}
+
+		.countdown {
+			font-size: 1.5rem;
+		}
+
+		.matches-button {
+			font-size: 1rem;
+		}
+	}
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
@@ -218,6 +245,28 @@ footer {
 	.home-description {
 		font-size: 1.5rem;
 		max-width: 80vw;
+	}
+
+	.game-window {
+		.arrow {
+			font-size: 3.5rem;
+		}
+
+		.game-text {
+			font-size: 1rem;
+		}
+
+		.scores-text {
+			font-size: 0.9rem;
+		}
+
+		.countdown {
+			font-size: 1.3rem;
+		}
+
+		.matches-button {
+			font-size: 0.9rem;
+		}
 	}
 
 	.card-bg-trasparent {
@@ -426,8 +475,27 @@ footer {
 	}
 
 	.game-window {
-		margin: 1.5vh;
-	}
+		.arrow {
+			font-size: 3.5rem;
+		}
+
+		.game-text {
+			font-size: 1rem;
+		}
+
+		.scores-text {
+			font-size: 0.9rem;
+		}
+
+		.countdown {
+			font-size: 1.3rem;
+		}
+
+		.matches-button {
+			width: 200px;
+			font-size: 0.9rem;
+		}
+	}	
 
 	.popup {
 		font-size: 0.8rem;
@@ -677,8 +745,27 @@ footer {
 	}
 
 	.game-window {
-		margin: 1.5vh;
-	}
+		.arrow {
+			font-size: 3rem;
+		}
+
+		.game-text {
+			font-size: 0.9rem;
+		}
+
+		.scores-text {
+			font-size: 0.7rem;
+		}
+
+		.countdown {
+			font-size: 1rem;
+		}
+
+		.matches-button {
+			width: 200px;
+			font-size: 0.9rem;
+		}
+	}		
 
 	.popup {
 		font-size: 0.8rem;
@@ -968,8 +1055,27 @@ footer {
 	}
 
 	.game-window {
-		margin: 1.5vh;
-	}
+		.arrow {
+			font-size: 3rem;
+		}
+
+		.game-text {
+			font-size: 0.9rem;
+		}
+
+		.scores-text {
+			font-size: 0.7rem;
+		}
+
+		.countdown {
+			font-size: 0.9rem;
+		}
+
+		.matches-button {
+			width: 200px;
+			font-size: 0.9rem;
+		}
+	}	
 
 	.popup {
 		font-size: 0.8rem;

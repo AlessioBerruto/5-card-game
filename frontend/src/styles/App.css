@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: #009E52;
   background-image: url("/assets/pattern-bianco.png");
@@ -31,6 +31,7 @@
 .game-window .arrow {
   font-size: 5rem;
   margin: 0;
+  padding: 0;
   font-weight: bold;
   color: #000080;
   text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);
@@ -38,23 +39,23 @@
 .game-window .game-text,
 .game-window .scores-text {
   width: 90%;
-  background-color: #40b67d;
   border-radius: 10px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
   border: 2px solid #1b1b1d;
   text-align: center;
-  font-size: 1.8rem;
   font-weight: bold;
-  padding: 2vh 2vw;
-  margin-top: 10vh;
-  margin-bottom: 0;
   color: #1b1b1d;
+}
+.game-window .game-text {
+  background-color: #40b67d;
+  font-size: 1.5rem;
+  padding: 2rem;
 }
 .game-window .scores-text {
   background-color: aliceblue;
-  color: #1b1b1d;
-  margin-top: 10vh;
   font-size: 1.1rem;
+  margin-top: 6vh;
+  padding: 1rem;
 }
 .game-window .countdown {
   display: flex;
@@ -63,11 +64,15 @@
   background-color: #40b67d;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  text-shadow: 3px 3px 3px rgba(0, 0, 128, 0.5);
   color: aliceblue;
   font-weight: 600;
   border-radius: 10px;
   box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);
+  margin-bottom: 6vh;
+  padding: 1rem;
+  text-align: center;
 }
 .game-window .matches-button {
   width: 25vw;
@@ -79,15 +84,15 @@
   font-size: 1.3rem;
   cursor: pointer;
   box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);
+  background-color: #000080;
+  transition: transform 0.3s;
 }
 .game-window .matches-button:hover {
-  background-color: #000064;
+  transform: scale(1.08);
 }
 .game-window .matches-button:active {
-  background-color: #00004b;
-  bottom: 6vh;
-  margin-left: 3px;
-  box-shadow: none;
+  background-color: #000064;
+  transform: scale(0.9);
 }
 .game-window img {
   width: 100%;
@@ -826,12 +831,12 @@
   color: #1b1b1d;
   max-width: 47vw;
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: 500;
   line-height: 3.3rem;
 }
 .home-description p {
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: #40b67d;
   border-radius: 10px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
@@ -940,6 +945,9 @@ footer .footer-link:hover {
 }
 
 @media (min-width: 992px) and (max-width: 1250px) {
+  .home-description {
+    font-size: 1.4rem;
+  }
   .popup {
     width: 40vw;
   }
@@ -967,6 +975,21 @@ footer .footer-link:hover {
   .matches-page .scores p {
     margin-bottom: 1.5vh;
   }
+  .game-window .arrow {
+    font-size: 4rem;
+  }
+  .game-window .game-text {
+    font-size: 1.2rem;
+  }
+  .game-window .scores-text {
+    font-size: 1rem;
+  }
+  .game-window .countdown {
+    font-size: 1.5rem;
+  }
+  .game-window .matches-button {
+    font-size: 1rem;
+  }
 }
 @media (min-width: 769px) and (max-width: 992px) {
   .home-container {
@@ -981,6 +1004,21 @@ footer .footer-link:hover {
   .home-description {
     font-size: 1.5rem;
     max-width: 80vw;
+  }
+  .game-window .arrow {
+    font-size: 3.5rem;
+  }
+  .game-window .game-text {
+    font-size: 1rem;
+  }
+  .game-window .scores-text {
+    font-size: 0.9rem;
+  }
+  .game-window .countdown {
+    font-size: 1.3rem;
+  }
+  .game-window .matches-button {
+    font-size: 0.9rem;
   }
   .card-bg-trasparent .card-body {
     font-size: 1rem;
@@ -1123,8 +1161,21 @@ footer .footer-link:hover {
     flex-direction: column;
     padding: 1rem;
   }
-  .game-window {
-    margin: 1.5vh;
+  .game-window .arrow {
+    font-size: 3.5rem;
+  }
+  .game-window .game-text {
+    font-size: 1rem;
+  }
+  .game-window .scores-text {
+    font-size: 0.9rem;
+  }
+  .game-window .countdown {
+    font-size: 1.3rem;
+  }
+  .game-window .matches-button {
+    width: 200px;
+    font-size: 0.9rem;
   }
   .popup {
     font-size: 0.8rem;
@@ -1308,8 +1359,21 @@ footer .footer-link:hover {
     flex-direction: column;
     padding: 1rem;
   }
-  .game-window {
-    margin: 1.5vh;
+  .game-window .arrow {
+    font-size: 3rem;
+  }
+  .game-window .game-text {
+    font-size: 0.9rem;
+  }
+  .game-window .scores-text {
+    font-size: 0.7rem;
+  }
+  .game-window .countdown {
+    font-size: 1rem;
+  }
+  .game-window .matches-button {
+    width: 200px;
+    font-size: 0.9rem;
   }
   .popup {
     font-size: 0.8rem;
@@ -1535,8 +1599,21 @@ footer .footer-link:hover {
     flex-direction: column;
     padding: 1rem;
   }
-  .game-window {
-    margin: 1.5vh;
+  .game-window .arrow {
+    font-size: 3rem;
+  }
+  .game-window .game-text {
+    font-size: 0.9rem;
+  }
+  .game-window .scores-text {
+    font-size: 0.7rem;
+  }
+  .game-window .countdown {
+    font-size: 0.9rem;
+  }
+  .game-window .matches-button {
+    width: 200px;
+    font-size: 0.9rem;
   }
   .popup {
     font-size: 0.8rem;

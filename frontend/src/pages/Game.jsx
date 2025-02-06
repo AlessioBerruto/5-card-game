@@ -138,7 +138,7 @@ const Game = () => {
 					<div className="countdown">Countdown: {timeLeft}</div>
 					<p className="game-text">
 						5 - The Card Game sarà disponibile al termine del countdown. <br /><br />
-						In attesa dell'uscita potrai scoprire le regole, esercitarti e segnare i tuoi punteggi tramite il pulsante qui sotto.
+						In attesa dell'uscita potrai scoprire le Regole ed esercitarti, oppure segnare i tuoi punteggi tramite il pulsante qui sotto.
 					</p>
 					<span className="arrow">&#8595;</span>
 					<Link to="/matches">
