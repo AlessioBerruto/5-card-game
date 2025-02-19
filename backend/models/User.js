@@ -29,20 +29,15 @@ const userSchema = new mongoose.Schema(
 		playerId: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
-			required: true,
+			default: function () {
+				return this._id;
+			},
 		},
 	},
 	{
 		timestamps: true,
 	}
 );
-
-userSchema.pre("save", function (next) {
-	if (!this.playerId) {
-		this.playerId = this._id;
-	}
-	next();
-});
 
 const User = mongoose.model("User", userSchema);
 

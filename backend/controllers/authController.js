@@ -11,8 +11,7 @@ export const registerUser = async (req, res) => {
 			return res.status(400).json({ message: "Utente già esistente" });
 		}
 
-		const newUser = new User({
-			playerId: new mongoose.Types.ObjectId(),
+		const newUser = new User({			
 			name,
 			email,
 			password,

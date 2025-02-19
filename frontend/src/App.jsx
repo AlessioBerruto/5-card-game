@@ -86,13 +86,10 @@ const App = () => {
 			navigate("/game");
 		} catch (err) {
 			console.log(err);
-			const errorMessage =
-				err?.response?.data?.message || err.message || "Errore sconosciuto";
-			setError(
-				"Errore nella registrazione: " + err.response?.data?.message ||
-					err.message
-			);
-		} finally {
+			const errorMessage = err.response?.data?.message ?? err.message ?? "Errore sconosciuto";
+			setError(`Errore nella registrazione: ${errorMessage}`);
+		}
+		 finally {
 			dispatch(setLoading(false));
 		}
 	};
