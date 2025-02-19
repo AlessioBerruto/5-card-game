@@ -9,7 +9,7 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-	position: relative;	
+	position: relative;
 	padding: 4rem;
 	gap: 4vh;
 }
@@ -18,7 +18,7 @@
 	font-size: 3.5rem;
 	color: $secondary;
 	font-weight: bold;
-	text-shadow: 3px 3px 3px rgba(255,255,255,0.5);
+	text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.5);
 }
 
 .objective-description {
@@ -32,11 +32,10 @@
 	color: $forth;
 	padding: 0.5rem 1.2rem;
 
-	.trophy-img {		
+	.trophy-img {
 		height: 100%;
 		margin-right: 1rem;
 	}
-	
 }
 
 .unlocked {

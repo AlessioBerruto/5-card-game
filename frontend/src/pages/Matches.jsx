@@ -12,16 +12,17 @@ const Matches = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	useEffect(() => {
-		if (user?.email) {
+		if (user?.playerId) {
 			fetchMatches();
 			fetchMatchReport();
 		}
 	}, [user]);
 
 	const fetchMatches = async () => {
+		if (!user?.playerId) return;
 		try {
 			const response = await axios.get(
-				`https://five-card-game.onrender.com/api/matches/${user.email}`
+				`https://five-card-game.onrender.com/api/matches/${user.playerId}`
 			);
 			setMatches(response.data);
 		} catch (error) {
@@ -30,9 +31,10 @@ const Matches = () => {
 	};
 
 	const fetchMatchReport = async () => {
+		if (!user?.playerId) return;
 		try {
 			const response = await axios.get(
-				`https://five-card-game.onrender.com/api/matches/${user.email}/report`
+				`https://five-card-game.onrender.com/api/matches/${user.playerId}/report`
 			);
 			setReport(response.data);
 		} catch (error) {
@@ -48,7 +50,7 @@ const Matches = () => {
 
 		try {
 			await axios.post("https://five-card-game.onrender.com/api/matches", {
-				playerEmail: user.email,
+				playerId: user.playerId,
 				playerName: user.name,
 				opponent,
 				result,
@@ -67,7 +69,7 @@ const Matches = () => {
 	const handleDeleteLastMatch = async () => {
 		try {
 			await axios.delete(
-				`https://five-card-game.onrender.com/api/matches/${user.email}/last`
+				`https://five-card-game.onrender.com/api/matches/${user.playerId}/last`
 			);
 			fetchMatches();
 			fetchMatchReport();
@@ -81,124 +83,69 @@ const Matches = () => {
 	);
 
 	return (
-		<>
-			<div className="matches-page">
-				<h1>Partite e Punteggi</h1>
-				<div className="tables-container">
-					<div className="score-container">
-						<h3>Inserisci una nuova partita</h3>
-						<div className="input-container">
-							<div className="players">
-								<p>									
-									<strong>{user?.name || "Nome non disponibile"}</strong>
-								</p>
-								<p>VS</p>
-								<input
-									type="text"
-									placeholder="Nome avversario"
-									className="opponent-input-left"
-									value={opponent}
-									onChange={(e) => setOpponent(e.target.value)}
-								/>
-							</div>
-							<div className="result-options">
-								<label>
-									<input
-										type="radio"
-										name="result"
-										value="vittoria"
-										checked={result === "vittoria"}
-										onChange={(e) => setResult(e.target.value)}
-									/>
-									Vittoria
-								</label>
-								<label>
-									<input
-										type="radio"
-										name="result"
-										value="pareggio"
-										checked={result === "pareggio"}
-										onChange={(e) => setResult(e.target.value)}
-									/>
-									Pareggio
-								</label>
-								<label>
-									<input
-										type="radio"
-										name="result"
-										value="sconfitta"
-										checked={result === "sconfitta"}
-										onChange={(e) => setResult(e.target.value)}
-									/>
-									Sconfitta
-								</label>
-							</div>
-							<button className="confirm-button" onClick={handleAddMatch}>Conferma</button>
-						</div>
-						<h3>Resoconto delle Partite</h3>
-						<div className="result-container">
-							{report ? (
-								<div className="scores">
-									<p>Vittorie: {report.totalWins}</p>
-									<p>Pareggi: {report.totalDraws}</p>
-									<p>Sconfitte: {report.totalLosses}</p>
-								</div>
-							) : (
-								<p>Caricamento dati...</p>
-							)}
-						</div>
-					</div>
-
-					<div className="report-container">
-						<h3>Storico Partite</h3>
-						<div className="search-bar">
-							<img
-								src={`${import.meta.env.BASE_URL}/assets/lens-icon-white.svg`}
-								className="card-img-top"
-								alt="icona della lente"
-							/>
+		<div className="matches-page">
+			<h1>Partite e Punteggi</h1>
+			<div className="tables-container">
+				<div className="score-container">
+					<h3>Inserisci una nuova partita</h3>
+					<div className="input-container">
+						<div className="players">
+							<p>
+								<strong>{user?.name || "Nome non disponibile"}</strong>
+							</p>
+							<p>VS</p>
 							<input
 								type="text"
 								placeholder="Nome avversario"
-								className="opponent-input-right"
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
+								className="opponent-input-left"
+								value={opponent}
+								onChange={(e) => setOpponent(e.target.value)}
 							/>
-							<img
-								src={`${import.meta.env.BASE_URL}/assets/bin-icon-white.svg`}
-								className="card-img-top"
-								alt="icona del cestino"
-							/>
-							<button className="delete-button" onClick={handleDeleteLastMatch}>
-								Elimina Ultima Partita
-							</button>
 						</div>
-
-						<div className="match-history">
-							<ul>
-								{filteredMatches.length > 0 ? (
-									filteredMatches.map((match) => (
-										<li key={match._id}>
-											{user?.name} vs {match.opponent} -{" "}
-											{match.result.toUpperCase()} (
-											{new Date(match.date).toLocaleString()})
-										</li>
-									))
-								) : (
-									<p>Nessuna partita trovata.</p>
-								)}
-							</ul>
+						<div className="result-options">
+							<label>
+								<input
+									type="radio"
+									name="result"
+									value="vittoria"
+									checked={result === "vittoria"}
+									onChange={(e) => setResult(e.target.value)}
+								/>
+								Vittoria
+							</label>
+							<label>
+								<input
+									type="radio"
+									name="result"
+									value="pareggio"
+									checked={result === "pareggio"}
+									onChange={(e) => setResult(e.target.value)}
+								/>
+								Pareggio
+							</label>
+							<label>
+								<input
+									type="radio"
+									name="result"
+									value="sconfitta"
+									checked={result === "sconfitta"}
+									onChange={(e) => setResult(e.target.value)}
+								/>
+								Sconfitta
+							</label>
 						</div>
+						<button className="confirm-button" onClick={handleAddMatch}>
+							Conferma
+						</button>
 					</div>
 				</div>
-
-				<footer>
-					<Link to="/game" className="footer-link">
-						↱ Torna al gioco ↰
-					</Link>
-				</footer>
 			</div>
-		</>
+			<footer>
+				<Link to="/game" className="footer-link">
+					↱ Torna al gioco ↰
+				</Link>
+			</footer>
+		</div>
 	);
 };
 

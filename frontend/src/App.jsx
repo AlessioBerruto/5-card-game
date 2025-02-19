@@ -7,8 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles/App.scss";
 import Loader from "./components/Loader";
 import { setLoading } from "./slices/loadingSlice";
-import { setRegistrationGoalUnlocked, setIsLoggedIn } from "./slices/userSlice"; 	
-
+import { setRegistrationGoalUnlocked, setIsLoggedIn } from "./slices/userSlice";
 
 const App = () => {
 	const [isRegistering, setIsRegistering] = useState(false);
@@ -87,7 +86,8 @@ const App = () => {
 			navigate("/game");
 		} catch (err) {
 			console.log(err);
-			const errorMessage = err?.response?.data?.message || err.message || "Errore sconosciuto";
+			const errorMessage =
+				err?.response?.data?.message || err.message || "Errore sconosciuto";
 			setError(
 				"Errore nella registrazione: " + err.response?.data?.message ||
 					err.message
@@ -105,9 +105,10 @@ const App = () => {
 					<div className="home-description">
 						<h1 className="home-title">5 - The Card Game</h1>
 						<p>
-							Benvenuto in <strong>Cinque</strong>, un nuovo gioco di carte ispirato a Solitario
-							ma multigiocatore.
-							<br /><br />						
+							Benvenuto in <strong>Cinque</strong>, un nuovo gioco di carte
+							ispirato a Solitario ma multigiocatore.
+							<br />
+							<br />
 							Registrati o Accedi per scoprire le regole di questo gioco, in
 							attesa dell'uscita della sua versione digitale.
 						</p>

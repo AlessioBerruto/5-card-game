@@ -35,15 +35,15 @@
 	gap: 8vw;
 }
 
-.home-description {	
+.home-description {
 	color: $fifth;
 	max-width: 47vw;
 	text-align: center;
 	font-size: 1.6rem;
 	font-weight: 500;
 	line-height: 3.3rem;
-	
-	p{
+
+	p {
 		padding: 1rem;
 		background-color: #40b67d;
 		border-radius: 10px;
@@ -161,7 +161,6 @@ footer {
 
 // MEDIA QUERIES
 @media (min-width: 992px) and (max-width: 1250px) {
-
 	.home-description {
 		font-size: 1.4rem;
 	}
@@ -425,7 +424,6 @@ footer {
 		.report-container {
 			margin: 2rem 1rem;
 			.search-bar {
-				
 				img {
 					width: 25px;
 				}
@@ -495,7 +493,7 @@ footer {
 			width: 200px;
 			font-size: 0.9rem;
 		}
-	}	
+	}
 
 	.popup {
 		font-size: 0.8rem;
@@ -697,7 +695,6 @@ footer {
 		.report-container {
 			margin: 2rem 0.5rem;
 			.search-bar {
-
 				img {
 					width: 25px;
 				}
@@ -765,7 +762,7 @@ footer {
 			width: 200px;
 			font-size: 0.9rem;
 		}
-	}		
+	}
 
 	.popup {
 		font-size: 0.8rem;
@@ -995,7 +992,6 @@ footer {
 			height: 50%;
 			width: 80%;
 			.search-bar {
-
 				img {
 					width: 25px;
 				}
@@ -1026,8 +1022,8 @@ footer {
 		}
 
 		footer {
-			position: relative; 
-			margin-top: auto; 
+			position: relative;
+			margin-top: auto;
 		}
 	}
 }
@@ -1075,7 +1071,7 @@ footer {
 			width: 200px;
 			font-size: 0.9rem;
 		}
-	}	
+	}
 
 	.popup {
 		font-size: 0.8rem;
@@ -1304,7 +1300,6 @@ footer {
 			height: 50%;
 			width: 80%;
 			.search-bar {
-
 				img {
 					width: 25px;
 				}
@@ -1335,8 +1330,8 @@ footer {
 		}
 
 		footer {
-			position: relative; 
-			margin-top: auto; 
+			position: relative;
+			margin-top: auto;
 		}
 	}
 }

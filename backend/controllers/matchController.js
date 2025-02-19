@@ -2,71 +2,88 @@ import Match from "../models/Match.js";
 
 // Nuova partita
 export const addMatch = async (req, res) => {
-  const { playerEmail, playerName, opponent, result, date } = req.body;
+	const { playerId, playerName, opponent, result, date } = req.body;
 
-  if (!playerEmail || !playerName || !opponent || !result || !date) {
-    return res.status(400).json({ message: "Tutti i campi sono obbligatori" });
-  }
+	if (!playerId || !playerName || !opponent || !result || !date) {
+		return res.status(400).json({ message: "Tutti i campi sono obbligatori" });
+	}
 
-  try {
-    const newMatch = new Match({ playerEmail, playerName, opponent, result, date });
-    await newMatch.save();
-    res.status(201).json({ message: "Partita salvata con successo", match: newMatch });
-  } catch (error) {
-    res.status(500).json({ message: "Errore nel server", error });
-  }
+	if (playerName === opponent) {
+		return res
+			.status(400)
+			.json({ message: "Non puoi giocare contro te stesso!" });
+	}
+
+	try {
+		const newMatch = new Match({
+			playerId,
+			playerName,
+			opponent,
+			result,
+			date,
+		});
+		await newMatch.save();
+		res
+			.status(201)
+			.json({ message: "Partita salvata con successo", match: newMatch });
+	} catch (error) {
+		res.status(500).json({ message: "Errore nel server", error });
+	}
 };
 
 // Storico delle partite
 export const getMatches = async (req, res) => {
-  const { playerEmail } = req.params;
+	const { playerId } = req.params;
 
-  try {
-    const matches = await Match.find({ playerEmail }).sort({ date: -1 });
-    res.status(200).json(matches);
-  } catch (error) {
-    res.status(500).json({ message: "Errore nel server", error });
-  }
+	try {
+		const matches = await Match.find({ playerId }).sort({ date: -1 });
+		res.status(200).json(matches);
+	} catch (error) {
+		res.status(500).json({ message: "Errore nel server", error });
+	}
 };
 
 // Report
 export const getMatchReport = async (req, res) => {
-  const { playerEmail } = req.params;
+	const { playerId } = req.params;
 
-  try {
-    const matches = await Match.find({ playerEmail });
+	try {
+		const matches = await Match.find({ playerId });
 
-    const report = {
-      totalWins: 0,
-      totalDraws: 0,
-      totalLosses: 0,
-    };
+		const report = matches.reduce(
+			(acc, match) => {
+				const mapping = {
+					vittoria: "totalWins",
+					pareggio: "totalDraws",
+					sconfitta: "totalLosses",
+				};
 
-    matches.forEach((match) => {
-      if (match.result === "vittoria") report.totalWins++;
-      if (match.result === "pareggio") report.totalDraws++;
-      if (match.result === "sconfitta") report.totalLosses++;
-    });
+				if (mapping[match.result]) acc[mapping[match.result]]++;
 
-    res.status(200).json(report);
-  } catch (error) {
-    res.status(500).json({ message: "Errore nel server", error });
-  }
+				return acc;
+			},
+			{ totalWins: 0, totalDraws: 0, totalLosses: 0 }
+		);
+
+		res.status(200).json(report);
+	} catch (error) {
+		res.status(500).json({ message: "Errore nel server", error });
+	}
 };
 
 export const deleteLastMatch = async (req, res) => {
-  const { playerEmail } = req.params;
+	const { playerId } = req.params;
 
-  try {
-    const lastMatch = await Match.findOne({ playerEmail }).sort({ date: -1 });
+	try {
+		const lastMatch = await Match.findOne({ playerId }).sort({ date: -1 });
 
-    if (!lastMatch) {
-      return res.status(404).json({ message: "Nessuna partita da eliminare" });
-    }
+		if (!lastMatch) {
+			return res.status(404).json({ message: "Nessuna partita da eliminare" });
+		}
 
-    await Match.findByIdAndDelete(lastMatch._id);
-    res.status(200).json({ message: "Ultima partita eliminata con successo" });
-  } catch (error) {
-    res.status(500).json({ message: "Errore durante l'eliminazione", error });
-  }
+		await Match.findByIdAndDelete(lastMatch._id);
+		res.status(200).json({ message: "Ultima partita eliminata con successo" });
+	} catch (error) {
+		res.status(500).json({ message: "Errore durante l'eliminazione", error });
+	}
 };

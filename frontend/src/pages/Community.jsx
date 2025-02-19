@@ -46,9 +46,9 @@ const Community = () => {
 			const { status, message } = response.data;
 
 			if (status === "success") {
-				dispatch(setSubscriptionStatus(true)); 
+				dispatch(setSubscriptionStatus(true));
 				setIsChecked(true);
-				
+
 				const emailParams = { user_name: userName, user_email: userEmail };
 				await emailjs
 					.send(

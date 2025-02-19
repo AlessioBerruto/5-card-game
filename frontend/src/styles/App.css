@@ -20,7 +20,7 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -131,7 +131,7 @@
 
 .logout-link:hover span {
   font-weight: 700;
-  color: #C13331;
+  color: #c13331;
 }
 
 .navbar-link {
@@ -183,11 +183,11 @@
   cursor: pointer;
 }
 .logout-modal .logout-modal-buttons button.btn-confirm {
-  background-color: #009E52;
+  background-color: #009e52;
   color: aliceblue;
 }
 .logout-modal .logout-modal-buttons button.btn-cancel {
-  background-color: #C13331;
+  background-color: #c13331;
   color: aliceblue;
 }
 .logout-modal .logout-modal-buttons button:hover {
@@ -206,7 +206,7 @@
   bottom: 6.5vh;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #009E52;
+  background-color: #009e52;
   color: white;
   padding: 0.5rem 0.5rem;
   border-radius: 10px;
@@ -235,7 +235,7 @@
 
 .profile-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: column;
@@ -328,7 +328,7 @@
 
 .delete-btn,
 .cancel-btn {
-  background-color: #C13331;
+  background-color: #c13331;
   transition: transform 0.3s;
 }
 .delete-btn:hover,
@@ -372,7 +372,7 @@
 
 .rules-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: column;
@@ -419,7 +419,7 @@
 
 .assistance-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: row;
@@ -491,7 +491,7 @@
 
 .objective-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: column;
@@ -527,14 +527,14 @@
 }
 
 .unlocked {
-  background-color: #009E52;
+  background-color: #009e52;
   color: #1b1b1d;
   border: 2px solid #1b1b1d;
 }
 
 .community-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: row;
@@ -623,7 +623,7 @@
 
 .matches-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: column;
@@ -694,7 +694,7 @@
 }
 .matches-page .score-container .search-bar .delete-button,
 .matches-page .report-container .search-bar .delete-button {
-  background-color: #C13331;
+  background-color: #c13331;
   transition: transform 0.3s;
   width: 17vw;
   height: 6vh;
@@ -801,7 +801,7 @@
 
 .home-page {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  background-color: #009E52;
+  background-color: #009e52;
   background-image: url("/assets/pattern-bianco.png");
   display: flex;
   flex-direction: column;
@@ -901,7 +901,7 @@
 }
 
 .error-message {
-  color: #C13331;
+  color: #c13331;
   margin-bottom: 1rem;
 }
 
@@ -916,7 +916,7 @@ footer {
 footer .footer-link {
   text-decoration: none;
   font-size: 1.5rem;
-  color: #C13331;
+  color: #c13331;
   font-weight: 700;
   text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.3);
 }

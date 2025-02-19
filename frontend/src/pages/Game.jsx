@@ -137,15 +137,18 @@ const Game = () => {
 				<div className="game-window">
 					<div className="countdown">Countdown: {timeLeft}</div>
 					<p className="game-text">
-						5 - The Card Game sarà disponibile al termine del countdown. <br /><br />
-						In attesa dell'uscita potrai scoprire le Regole ed esercitarti, oppure segnare i tuoi punteggi tramite il pulsante qui sotto.
+						5 - The Card Game sarà disponibile al termine del countdown. <br />
+						<br />
+						In attesa dell'uscita potrai scoprire le Regole ed esercitarti,
+						oppure segnare i tuoi punteggi tramite il pulsante qui sotto.
 					</p>
 					<span className="arrow">&#8595;</span>
 					<Link to="/matches">
 						<button className="matches-button">Segnapunti</button>
 					</Link>
 					<p className="scores-text">
-						Se entro il rilascio del gioco avrai utilizzato il segnapunti per minimo 30 giorni, riceverai un premio speciale.
+						Se entro il rilascio del gioco avrai utilizzato il segnapunti per
+						minimo 30 giorni, riceverai un premio speciale.
 					</p>
 				</div>
 

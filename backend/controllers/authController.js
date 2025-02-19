@@ -14,7 +14,7 @@ export const registerUser = async (req, res) => {
 			name,
 			email,
 			password,
-			profileImage: null,			
+			profileImage: null,
 			isSubscribedToNewsletter: false,
 		});
 		await newUser.save();
@@ -22,11 +22,11 @@ export const registerUser = async (req, res) => {
 		res.status(201).json({
 			message: "Utente registrato con successo",
 			user: {
-				id: newUser._id,
+				playerId: newUser._id,
 				name,
 				email,
 				password,
-				profileImage: newUser.profileImage
+				profileImage: newUser.profileImage,
 			},
 		});
 	} catch (error) {
@@ -47,10 +47,11 @@ export const loginUser = async (req, res) => {
 		res.status(200).json({
 			message: "Login avvenuto con successo",
 			user: {
+				playerId: user._id,
 				name: user.name,
 				email,
 				password,
-				profileImage: user.profileImage || null
+				profileImage: user.profileImage || null,
 			},
 		});
 	} catch (error) {

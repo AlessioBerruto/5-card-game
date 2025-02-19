@@ -22,15 +22,27 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			default: null,
 		},
-		isSubscribedToNewsletter: { 
-			type: Boolean, 
-			default: false 
-		},		
+		isSubscribedToNewsletter: {
+			type: Boolean,
+			default: false,
+		},
+		playerId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			required: true,
+		},
 	},
 	{
 		timestamps: true,
 	}
 );
+
+userSchema.pre("save", function (next) {
+	if (!this.playerId) {
+		this.playerId = this._id;
+	}
+	next();
+});
 
 const User = mongoose.model("User", userSchema);
 

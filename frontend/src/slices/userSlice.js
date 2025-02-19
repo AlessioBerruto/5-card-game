@@ -4,6 +4,7 @@ const initialState = {
 	userData: {
 		name: "",
 		email: "",
+		playerId: "",
 		password: "",
 		profileImage: "",
 		isSubscribedToNewsletter: false,
@@ -20,7 +21,7 @@ const userSlice = createSlice({
 			state.userData = action.payload;
 		},
 		clearUserData: (state) => {
-			state.userData = null;
+			state.userData = { ...initialState.userData };
 		},
 		updateUser: (state, action) => {
 			state.userData = { ...state.userData, ...action.payload };
@@ -29,7 +30,7 @@ const userSlice = createSlice({
 			state.userData.profileImage = action.payload;
 		},
 		deleteUser: (state) => {
-			state.userData = null;
+			state.userData = { ...initialState.userData };
 		},
 		setSubscriptionStatus: (state, action) => {
 			state.userData.isSubscribedToNewsletter = action.payload;

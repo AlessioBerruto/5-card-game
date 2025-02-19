@@ -41,27 +41,27 @@
 	}
 
 	.game-text,
-	.scores-text {		
-		width: 90%;		
+	.scores-text {
+		width: 90%;
 		border-radius: 10px;
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
 		border: 2px solid $fifth;
-		text-align: center;		
-		font-weight: bold;				
+		text-align: center;
+		font-weight: bold;
 		color: $fifth;
 	}
 
 	.game-text {
 		background-color: #40b67d;
 		font-size: 1.5rem;
-		padding: 2rem;		
+		padding: 2rem;
 	}
 
 	.scores-text {
-		background-color: $forth;			
+		background-color: $forth;
 		font-size: 1.1rem;
 		margin-top: 6vh;
-		padding: 1rem;		
+		padding: 1rem;
 	}
 
 	.countdown {
@@ -103,7 +103,6 @@
 			background-color: $dark-secondary;
 			transform: scale(0.9);
 		}
-		
 	}
 
 	img {
