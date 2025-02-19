@@ -3,6 +3,7 @@ import User from "../models/User.js";
 // Registrazione
 export const registerUser = async (req, res) => {
 	const { name, email, password } = req.body;
+	console.log("Dati ricevuti:", req.body);
 
 	try {
 		const existingUser = await User.findOne({ email });
@@ -11,6 +12,7 @@ export const registerUser = async (req, res) => {
 		}
 
 		const newUser = new User({
+			playerId: new mongoose.Types.ObjectId(),
 			name,
 			email,
 			password,
@@ -30,6 +32,7 @@ export const registerUser = async (req, res) => {
 			},
 		});
 	} catch (error) {
+		console.error("Errore nel server:", error);
 		res.status(500).json({ message: "Errore nel server", error });
 	}
 };
